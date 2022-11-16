@@ -23,12 +23,10 @@ export default function App() {
       promiseRetry(
         getUserDataByToken(localToken),
         (res) => {
-          console.log("um");
           delete res.data.message;
           setUserData(res.data);
         },
         (err) => {
-          console.log("dois");
           const message = createErrorMessage(err);
 
           setAlert({
