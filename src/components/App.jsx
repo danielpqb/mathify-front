@@ -21,7 +21,9 @@ export default function App() {
     const localToken = localStorage.getItem("userToken");
     if (localToken) {
       promiseRetry(
-        getUserDataByToken(localToken),
+        () => {
+          return getUserDataByToken(localToken);
+        },
         (res) => {
           delete res.data.message;
           setUserData(res.data);

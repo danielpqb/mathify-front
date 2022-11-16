@@ -1,11 +1,11 @@
 import retryThis from "promise-retry";
 
-export function promiseRetry(promise, resFunction, errFunction) {
+export function promiseRetry(createPromise, resFunction, errFunction) {
   retryThis(
     //Function that will retry
     (retry, number) => {
       console.log("tryNumber:", number);
-      return promise.catch(retry);
+      return createPromise().catch(retry);
     },
     { retries: 4, minTimeout: 1000, factor: 2 }
   ).then(
