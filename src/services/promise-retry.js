@@ -4,7 +4,7 @@ export function promiseRetry(createPromise, resFunction, errFunction) {
   retryThis(
     //Function that will retry
     (retry, number) => {
-      console.log("tryNumber:", number);
+      // console.log("tryNumber:", number);
       return createPromise().catch(retry);
     },
     { retries: 4, minTimeout: 1000, factor: 2 }

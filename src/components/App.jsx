@@ -14,6 +14,7 @@ import { promiseRetry } from "../services/promise-retry";
 
 export default function App() {
   const [userData, setUserData] = useState({});
+  const [gameData, setGameData] = useState({ config: { questionTime: 15000 } });
   const [alert, setAlert] = useState({});
   const [reloadApp, setReloadApp] = useState(false);
 
@@ -47,9 +48,11 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
-      <AppContext.Provider value={{ reloadApp, setReloadApp, alert, setAlert, userData, setUserData }}>
+      <AppContext.Provider
+        value={{ reloadApp, setReloadApp, alert, setAlert, userData, setUserData, gameData, setGameData }}
+      >
         {alert.show && <Alert />}
-        <Container>
+        <Background>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Game />} />
@@ -60,17 +63,37 @@ export default function App() {
               </Route>
             </Routes>
           </BrowserRouter>
-        </Container>
+        </Background>
       </AppContext.Provider>
     </>
   );
 }
 
-const Container = styled.div`
-  & {
-    width: 300px;
-    height: 300px;
+function Background({ children }) {
+  return (
+    <>
+      <Layer1>
+        <Layer2>{children}</Layer2>
+      </Layer1>
+    </>
+  );
+}
 
-    background-color: red;
+const Layer1 = styled.div`
+  & {
+    width: 100vw;
+    height: 100vh;
+
+    padding: 20px;
+
+    background-color: #afafaf;
+  }
+`;
+
+const Layer2 = styled.div`
+  & {
+    background-color: #252525;
+
+    border-radius: 20px;
   }
 `;
