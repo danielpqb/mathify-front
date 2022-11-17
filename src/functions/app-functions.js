@@ -25,7 +25,7 @@ export function createProblemData() {
   }
 
   //Calculate Result
-  let result = null;
+  let result;
   switch (operator) {
     case "+":
       result = operates[0] + operates[1];

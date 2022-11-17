@@ -12,8 +12,6 @@ export default function Game() {
 
   const questionTime = gameData?.currentQuestion?.time;
 
-  console.log(questionTime);
-
   useEffect(() => {
     if (questionTime > 0) {
       const interval = setInterval(() => {

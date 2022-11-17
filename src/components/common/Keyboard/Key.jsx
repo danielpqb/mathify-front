@@ -28,7 +28,7 @@ export default function Key({ value, children }) {
             return element.isAnswer;
           })[0].value;
 
-          if (Number(myAnswer) === answer) {
+          if (myAnswer !== "" && Number(myAnswer) === answer) {
             console.log("Correct answer!");
           } else {
             console.log("Incorrect answer!");
