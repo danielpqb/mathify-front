@@ -2,13 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --fontsize: 18px;
+    --fontsize: 22px;
     --default-color-one: #065183;
     --default-color-two: #2082C5;
-
-    @media (max-width: 1100px) {
-        --fontsize: 16px;
-    }
   }
 
   /* Hide scrollbar */

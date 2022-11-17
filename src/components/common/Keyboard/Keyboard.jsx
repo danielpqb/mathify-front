@@ -2,12 +2,22 @@ import styled from "styled-components";
 import Key from "./Key";
 
 export default function Keyboard() {
-  const keys = [1, 2, 3, 4, 5, 6, 7, 8, 9, "clear", 0, "enter"];
+  const keys = [1, 2, 3, 4, 5, 6, 7, 8, 9, "backspace", 0, "enter"];
 
   return (
     <Container>
       {keys.map((value, index) => {
-        return <Key key={index}>{value}</Key>;
+        return (
+          <Key value={value} key={index}>
+            {value === "backspace" ? (
+              <ion-icon name="backspace"></ion-icon>
+            ) : value === "enter" ? (
+              <ion-icon name="arrow-forward"></ion-icon>
+            ) : (
+              value
+            )}
+          </Key>
+        );
       })}
     </Container>
   );
@@ -19,8 +29,7 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
 
-    width: 90%;
-    max-width: 300px;
-    height: 300px;
+    width: fit-content;
+    height: fit-content;
   }
 `;

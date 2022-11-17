@@ -95,5 +95,8 @@ const Layer2 = styled.div`
     background-color: #252525;
 
     border-radius: 20px;
+
+    padding-top: 80px;
+    padding-bottom: 20px;
   }
 `;
