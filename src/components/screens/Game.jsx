@@ -1,23 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../contexts/contexts";
+import { createProblemData } from "../../functions/app-functions";
 import Keyboard from "../common/Keyboard/Keyboard";
 import Problem from "../common/Problem/Problem";
 
 export default function Game() {
-  const { setAlert, gameData } = useContext(AppContext);
+  const { setAlert, gameData, setGameData } = useContext(AppContext);
 
   const timerWidth = window.innerWidth - 40;
 
-  const [timerTime, setTimerTime] = useState(gameData.config.questionTime);
+  const questionTime = gameData?.currentQuestion?.time;
+
+  console.log(questionTime);
 
   useEffect(() => {
-    if (timerTime > 0) {
+    if (questionTime > 0) {
       const interval = setInterval(() => {
-        setTimerTime(Math.max(timerTime - 50, 0));
+        setGameData({
+          ...gameData,
+          currentQuestion: { ...gameData.currentQuestion, time: Math.max(questionTime - 50, 0) },
+        });
       }, 50);
       return () => clearInterval(interval);
     }
+
+    setGameData({
+      ...gameData,
+      currentQuestion: { problemData: createProblemData(), answer: "", time: gameData.config.questionTime },
+    });
 
     // setAlert({
     //   show: true,
@@ -27,14 +38,14 @@ export default function Game() {
     //   color: "rgba(200,0,0)",
     //   icon: "alert-circle",
     // });
-  }, [setAlert, timerTime]);
+  }, [gameData, questionTime, setAlert, setGameData]);
 
   return (
     <Container>
       <Question>
         <Problem />
         <Keyboard />
-        <Timer timerProgress={(timerWidth * timerTime) / gameData.config.questionTime} />
+        <Timer timerProgress={(timerWidth * questionTime) / gameData.config.questionTime} />
       </Question>
     </Container>
   );

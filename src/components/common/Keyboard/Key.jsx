@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../contexts/contexts";
+import { createProblemData } from "../../../functions/app-functions";
 
 export default function Key({ value, children }) {
   const { gameData, setGameData } = useContext(AppContext);
@@ -26,11 +27,17 @@ export default function Key({ value, children }) {
           const answer = gameData.currentQuestion.problemData.filter((element) => {
             return element.isAnswer;
           })[0].value;
+
           if (Number(myAnswer) === answer) {
             console.log("Correct answer!");
           } else {
             console.log("Incorrect answer!");
           }
+
+          setGameData({
+            ...gameData,
+            currentQuestion: { problemData: createProblemData(), answer: "", time: gameData.config.questionTime },
+          });
         }
       }}
     >
