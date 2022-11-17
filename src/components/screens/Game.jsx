@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../contexts/contexts";
+import Keyboard from "../common/Keyboard/Keyboard";
+import Problem from "../common/Problem/Problem";
 
 export default function Game() {
   const { setAlert, gameData } = useContext(AppContext);
@@ -29,23 +31,27 @@ export default function Game() {
 
   return (
     <Container>
-      <Question></Question>
-      <Timer timerProgress={(timerWidth * timerTime) / gameData.config.questionTime}></Timer>
+      <Question>
+        <Problem />
+        <Keyboard />
+        <Timer timerProgress={(timerWidth * timerTime) / gameData.config.questionTime} />
+      </Question>
     </Container>
   );
 }
 
 const Container = styled.div`
   & {
-    flex-direction: column;
-
-    padding-bottom: 20px;
   }
 `;
 
 const Question = styled.div`
   & {
     flex-direction: column;
+
+    justify-content: space-between;
+
+    padding-bottom: 20px;
   }
 `;
 
