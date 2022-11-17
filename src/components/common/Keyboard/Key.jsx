@@ -1,10 +1,37 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { AppContext } from "../../../contexts/contexts";
 
 export default function Key({ value, children }) {
+  const { gameData, setGameData } = useContext(AppContext);
+
+  const myAnswer = gameData?.currentQuestion?.answer;
+
   return (
     <Container
       onClick={() => {
-        console.log(value);
+        if (!isNaN(Number(value))) {
+          return setGameData({
+            ...gameData,
+            currentQuestion: { ...gameData.currentQuestion, answer: `${myAnswer}${value}` },
+          });
+        }
+        if (value === "backspace") {
+          return setGameData({
+            ...gameData,
+            currentQuestion: { ...gameData.currentQuestion, answer: myAnswer.slice(0, -1) },
+          });
+        }
+        if (value === "enter") {
+          const answer = gameData.currentQuestion.problemData.filter((element) => {
+            return element.isAnswer;
+          })[0].value;
+          if (Number(myAnswer) === answer) {
+            console.log("Correct answer!");
+          } else {
+            console.log("Incorrect answer!");
+          }
+        }
       }}
     >
       {children}

@@ -19,14 +19,14 @@ export default function Game() {
       return () => clearInterval(interval);
     }
 
-    setAlert({
-      show: true,
-      message: "Time has ended!",
-      type: 0,
-      doThis: () => {},
-      color: "rgba(200,0,0)",
-      icon: "alert-circle",
-    });
+    // setAlert({
+    //   show: true,
+    //   message: "Time has ended!",
+    //   type: 0,
+    //   doThis: () => {},
+    //   color: "rgba(200,0,0)",
+    //   icon: "alert-circle",
+    // });
   }, [setAlert, timerTime]);
 
   return (
