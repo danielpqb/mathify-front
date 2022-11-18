@@ -1,9 +1,4 @@
 export function createProblemData() {
-  //Generate Operates
-  const operates = [];
-  operates.push(Math.floor(Math.random() * 10));
-  operates.push(Math.floor(Math.random() * 10));
-
   //Generate Operator
   let operator = "";
   const operatorCode = Math.floor(Math.random() * 4);
@@ -21,6 +16,28 @@ export function createProblemData() {
       operator = "÷";
       break;
     default:
+      break;
+  }
+
+  //Generate Operates
+  const operates = [];
+  switch (operator) {
+    case "-":
+      operates.push(Math.floor(Math.random() * 10));
+      operates.push(Math.floor(Math.random() * 10));
+
+      operates.sort((a, b) => b - a);
+      break;
+    case "÷":
+      const first = Math.floor(Math.random() * 10);
+      const second = Math.floor(Math.random() * 9) + 1;
+
+      operates.push(first * second);
+      operates.push(second);
+      break;
+    default:
+      operates.push(Math.floor(Math.random() * 10));
+      operates.push(Math.floor(Math.random() * 10));
       break;
   }
 
