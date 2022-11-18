@@ -1,22 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../contexts/contexts";
-import { createProblemData } from "../../../functions/app-functions";
 import Box from "./Box";
 
 export default function Problem() {
-  const { gameData, setGameData } = useContext(AppContext);
+  const { gameData } = useContext(AppContext);
 
-  useEffect(() => {
-    if (!gameData.currentQuestion) {
-      setGameData({ ...gameData, currentQuestion: { problemData: createProblemData(), answer: "" } });
-    }
-    // console.log(gameData);
-  }, [gameData, setGameData]);
+  const problemData = gameData?.currentQuestion?.problemData;
 
   return (
     <Container>
-      {gameData.currentQuestion?.problemData?.map((element, index) => {
+      {problemData?.map((element, index) => {
         return <Box boxData={element} key={index}></Box>;
       })}
     </Container>

@@ -70,3 +70,27 @@ export function createProblemData() {
 
   return data;
 }
+
+export function renderNewQuestion(setGameData) {
+  setGameData((old) => {
+    const _new = {
+      ...old,
+      currentQuestion: {
+        problemData: createProblemData(),
+        answer: "",
+        timeLeft: old?.config?.questionTime,
+        startTimestamp: Date.now(),
+      },
+    };
+
+    console.log(_new);
+    return _new;
+  });
+}
+
+export function renderNewGame(setGameData) {
+  setGameData((old) => {
+    const _new = { ...old, screen: "question", config: { questionTime: 15000 } };
+    return _new;
+  });
+}

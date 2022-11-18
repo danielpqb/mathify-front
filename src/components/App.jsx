@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import Alert from "./common/Alert/Alert";
 import ProtectedRoute from "./common/ProtectedRoute";
-import Game from "./screens/Game";
+import Game from "./pages/Game/Game";
 import { GlobalStyle } from "../styles/global-styles";
 import { AppContext } from "../contexts/contexts";
 import { createErrorMessage } from "../functions/api-functions";
@@ -14,7 +14,7 @@ import { promiseRetry } from "../services/promise-retry";
 
 export default function App() {
   const [userData, setUserData] = useState({});
-  const [gameData, setGameData] = useState({ config: { questionTime: 15000 } });
+  const [gameData, setGameData] = useState({});
   const [alert, setAlert] = useState({});
   const [reloadApp, setReloadApp] = useState(false);
 
@@ -97,6 +97,5 @@ const Layer2 = styled.div`
     border-radius: 20px;
 
     padding-top: 80px;
-    padding-bottom: 20px;
   }
 `;

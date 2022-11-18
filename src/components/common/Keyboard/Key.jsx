@@ -12,15 +12,19 @@ export default function Key({ value, children }) {
     <Container
       onClick={() => {
         if (!isNaN(Number(value))) {
-          return setGameData({
-            ...gameData,
-            currentQuestion: { ...gameData.currentQuestion, answer: `${myAnswer}${value}` },
+          return setGameData((old) => {
+            return {
+              ...old,
+              currentQuestion: { ...old.currentQuestion, answer: `${myAnswer}${value}` },
+            };
           });
         }
         if (value === "backspace") {
-          return setGameData({
-            ...gameData,
-            currentQuestion: { ...gameData.currentQuestion, answer: myAnswer.slice(0, -1) },
+          return setGameData((old) => {
+            return {
+              ...old,
+              currentQuestion: { ...old.currentQuestion, answer: myAnswer.slice(0, -1) },
+            };
           });
         }
         if (value === "enter") {
@@ -34,9 +38,11 @@ export default function Key({ value, children }) {
             console.log("Incorrect answer!");
           }
 
-          setGameData({
-            ...gameData,
-            currentQuestion: { problemData: createProblemData(), answer: "", time: gameData.config.questionTime },
+          setGameData((old) => {
+            return {
+              ...old,
+              currentQuestion: { problemData: createProblemData(), answer: "", time: old.config.questionTime },
+            };
           });
         }
       }}
