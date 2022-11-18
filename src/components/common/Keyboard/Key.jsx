@@ -7,6 +7,8 @@ export default function Key({ value, children }) {
   const { gameData, setGameData } = useContext(AppContext);
 
   const myAnswer = gameData?.currentQuestion?.answer;
+  const id = gameData?.currentQuestion?.id;
+  const startTimestamp = gameData?.currentQuestion?.startTimestamp;
 
   return (
     <Container
@@ -38,8 +40,22 @@ export default function Key({ value, children }) {
           }
           if (Number(myAnswer) === answer) {
             console.log("Correct answer!");
+
+            setGameData((old) => {
+              const _new = { ...old };
+              _new.answers[id - 1].isCorrect = true;
+              _new.answers[id - 1].timeSpent = Date.now() - startTimestamp;
+              return _new;
+            });
           } else {
             console.log("Incorrect answer!");
+
+            setGameData((old) => {
+              const _new = { ...old };
+              _new.answers[id - 1].isCorrect = false;
+              _new.answers[id - 1].timeSpent = Date.now() - startTimestamp;
+              return _new;
+            });
           }
 
           renderNewQuestion(setGameData);

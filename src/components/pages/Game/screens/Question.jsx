@@ -12,6 +12,8 @@ export default function Question() {
   const timerWidth = window.innerWidth - 40;
 
   const questionTime = gameData?.currentQuestion?.timeLeft;
+  const id = gameData?.currentQuestion?.id;
+  const startTimestamp = gameData?.currentQuestion?.startTimestamp;
 
   useEffect(() => {
     if (questionTime > 0) {
@@ -27,8 +29,20 @@ export default function Question() {
       return () => clearInterval(interval);
     }
 
-    renderNewQuestion(setGameData);
-  }, [questionTime, setAlert, setGameData]);
+    if (questionTime === 0) {
+      setGameData((old) => {
+        const _new = { ...old };
+        _new.answers[id - 1].isCorrect = false;
+        _new.answers[id - 1].timeSpent = Date.now() - startTimestamp;
+
+        return _new;
+      });
+
+      return renderNewQuestion(setGameData);
+    }
+
+    return renderNewQuestion(setGameData);
+  }, [id, questionTime, setAlert, setGameData, startTimestamp]);
 
   return (
     <Container>

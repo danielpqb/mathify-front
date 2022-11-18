@@ -11,7 +11,7 @@ export default function Answers() {
   return (
     <Container>
       {answers?.map((element, index) => {
-        return <Answer isCorrect={element.isCorrect} key={index} />;
+        return <Answer answerData={element} key={index} />;
       })}
     </Container>
   );

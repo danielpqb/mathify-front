@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
-export default function Answer({ isCorrect }) {
+export default function Answer({ answerData }) {
   let style;
-  if (isCorrect) {
-    style = { backgroundColor: "#ff0101" };
+  if (answerData.isCorrect === true) {
+    style = { backgroundColor: "#287211" };
+  } else if (answerData.isCorrect === false) {
+    style = { backgroundColor: "#8d0000" };
+  } else {
+    style = { backgroundColor: "#9b9807" };
   }
 
-  return <Container style={style}></Container>;
+  return <Container style={style}>{answerData.id}</Container>;
 }
 
 const Container = styled.div.attrs(({ style }) => ({
@@ -15,5 +19,7 @@ const Container = styled.div.attrs(({ style }) => ({
   & {
     width: 50px;
     height: 50px;
+
+    border-radius: 50%;
   }
 `;

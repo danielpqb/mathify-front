@@ -73,24 +73,67 @@ export function createProblemData() {
 
 export function renderNewQuestion(setGameData) {
   setGameData((old) => {
-    const _new = {
-      ...old,
-      currentQuestion: {
-        problemData: createProblemData(),
-        answer: "",
-        timeLeft: old?.config?.questionTime,
-        startTimestamp: Date.now(),
-      },
-    };
+    if (old?.config?.numberOfQuestions > old?.currentQuestion?.id) {
+      const oldId = Number(old?.currentQuestion?.id);
 
-    console.log(_new);
-    return _new;
+      const _new = {
+        ...old,
+        currentQuestion: {
+          id: isNaN(oldId) ? 1 : oldId + 1,
+          problemData: createProblemData(),
+          answer: "",
+          timeLeft: old?.config?.questionTime,
+          startTimestamp: Date.now(),
+        },
+      };
+
+      console.log(_new);
+      return _new;
+    } else {
+      return {
+        ...old,
+        screen: "result",
+      };
+    }
   });
 }
 
 export function renderNewGame(setGameData) {
+  const config = { questionTime: 15000, numberOfQuestions: 10 };
+
+  const answers = () => {
+    const answers = [];
+    for (let i = 1; i <= config.numberOfQuestions; i++) {
+      answers.push({ id: i });
+    }
+
+    return answers;
+  };
+
   setGameData((old) => {
-    const _new = { ...old, screen: "question", config: { questionTime: 15000 } };
+    const _new = {
+      ...old,
+      currentQuestion: { ...old?.currentQuestion, id: 1 },
+      screen: "config",
+      config: config,
+      answers: answers(),
+    };
+    return _new;
+  });
+}
+
+export function changeScreen(setGameData, screen) {
+  switch (screen) {
+    case "config":
+      break;
+
+    default:
+      renderNewGame(setGameData);
+      break;
+  }
+
+  setGameData((old) => {
+    const _new = { ...old, screen: screen };
     return _new;
   });
 }
