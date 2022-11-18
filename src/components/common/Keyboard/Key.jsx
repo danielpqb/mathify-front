@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../contexts/contexts";
-import { createProblemData } from "../../../functions/app-functions";
+import { renderNewQuestion } from "../../../functions/app-functions";
 
 export default function Key({ value, children }) {
   const { gameData, setGameData } = useContext(AppContext);
@@ -11,7 +11,8 @@ export default function Key({ value, children }) {
   return (
     <Container
       onClick={() => {
-        if (!isNaN(Number(value))) {
+        const isNumber = !isNaN(Number(value));
+        if (isNumber) {
           return setGameData((old) => {
             return {
               ...old,
@@ -32,18 +33,16 @@ export default function Key({ value, children }) {
             return element.isAnswer;
           })[0].value;
 
-          if (myAnswer !== "" && Number(myAnswer) === answer) {
+          if (myAnswer === "") {
+            return console.log("Empty answer!");
+          }
+          if (Number(myAnswer) === answer) {
             console.log("Correct answer!");
           } else {
             console.log("Incorrect answer!");
           }
 
-          setGameData((old) => {
-            return {
-              ...old,
-              currentQuestion: { problemData: createProblemData(), answer: "", time: old.config.questionTime },
-            };
-          });
+          renderNewQuestion(setGameData);
         }
       }}
     >
