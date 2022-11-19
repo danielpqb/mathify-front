@@ -58,7 +58,7 @@ export default function Key({ value, children }) {
             });
           }
 
-          renderNewQuestion(setGameData);
+          renderNewQuestion(setGameData, "answering");
         }
       }}
     >

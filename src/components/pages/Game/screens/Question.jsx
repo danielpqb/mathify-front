@@ -38,10 +38,10 @@ export default function Question() {
         return _new;
       });
 
-      return renderNewQuestion(setGameData);
+      return renderNewQuestion(setGameData, "timeEnded");
     }
 
-    return renderNewQuestion(setGameData);
+    return renderNewQuestion(setGameData, "firstRendering");
   }, [id, questionTime, setAlert, setGameData, startTimestamp]);
 
   return (

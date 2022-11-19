@@ -71,31 +71,103 @@ export function createProblemData() {
   return data;
 }
 
-export function renderNewQuestion(setGameData) {
-  setGameData((old) => {
-    if (old?.config?.numberOfQuestions > old?.currentQuestion?.id) {
-      const oldId = Number(old?.currentQuestion?.id);
+export function renderNewQuestion(setGameData, type) {
+  switch (type) {
+    case "answering":
+      setGameData((old) => {
+        if (old?.config?.numberOfQuestions > old?.currentQuestion?.id) {
+          const oldId = Number(old?.currentQuestion?.id);
 
-      const _new = {
-        ...old,
-        currentQuestion: {
-          id: isNaN(oldId) ? 1 : oldId + 1,
-          problemData: createProblemData(),
-          answer: "",
-          timeLeft: old?.config?.questionTime,
-          startTimestamp: Date.now(),
-        },
-      };
+          return {
+            ...old,
+            currentQuestion: {
+              id: isNaN(oldId) ? 1 : oldId + 1,
+              problemData: createProblemData(),
+              answer: "",
+              timeLeft: old?.config?.questionTime,
+              startTimestamp: Date.now(),
+            },
+          };
+        } else {
+          setGameData((old) => {
+            return {
+              ...old,
+              screen: "result",
+            };
+          });
+        }
+      });
+      break;
 
-      console.log(_new);
-      return _new;
-    } else {
-      return {
-        ...old,
-        screen: "result",
-      };
-    }
-  });
+    case "timeEnded":
+      setGameData((old) => {
+        if (old?.config?.numberOfQuestions > old?.currentQuestion?.id) {
+          const oldId = Number(old?.currentQuestion?.id);
+
+          return {
+            ...old,
+            currentQuestion: {
+              id: isNaN(oldId) ? 1 : oldId + 1,
+              problemData: createProblemData(),
+              answer: "",
+              timeLeft: old?.config?.questionTime,
+              startTimestamp: Date.now(),
+            },
+          };
+        } else {
+          setGameData((old) => {
+            return {
+              ...old,
+              screen: "result",
+            };
+          });
+        }
+      });
+      break;
+
+    case "firstRendering":
+      setGameData((old) => {
+        const oldId = Number(old?.currentQuestion?.id);
+
+        return {
+          ...old,
+          currentQuestion: {
+            id: isNaN(oldId) ? 1 : oldId + 1,
+            problemData: createProblemData(),
+            answer: "",
+            timeLeft: old?.config?.questionTime,
+            startTimestamp: Date.now(),
+          },
+        };
+      });
+      break;
+
+    case "restartingGame":
+      setGameData((old) => {
+        const oldId = Number(old?.currentQuestion?.id);
+
+        return {
+          ...old,
+          currentQuestion: {
+            id: isNaN(oldId) ? 1 : oldId + 1,
+            problemData: createProblemData(),
+            answer: "",
+            timeLeft: old?.config?.questionTime,
+            startTimestamp: Date.now(),
+          },
+        };
+      });
+      break;
+
+    default:
+      setGameData((old) => {
+        return {
+          ...old,
+          screen: "result",
+        };
+      });
+      break;
+  }
 }
 
 export function renderNewGame(setGameData) {
