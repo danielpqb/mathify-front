@@ -1,26 +1,35 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../../contexts/contexts";
-import { changeScreen, renderNewQuestion } from "../../../../functions/app-functions";
+import { changeScreen, renderNewQuestion } from "../../../../functions/game-functions";
 
 export default function Result() {
-  const { gameData, setGameData } = useContext(AppContext);
+  const { gameData, setGameData, setQuestionData } = useContext(AppContext);
 
   const answers = gameData?.answers;
 
+  const configGameData = gameData?.config;
+
   return (
     <Container>
-      {answers?.map((element) => {
+      {answers?.map((element, index) => {
         const timeSpent = (element.timeSpent / 1000).toFixed(3);
 
         return (
-          <ResultLine>{`id: ${element.id} | isCorrect: ${element.isCorrect} | timeSpent: ${timeSpent}s`}</ResultLine>
+          <ResultLine
+            key={index}
+          >{`id: ${element.id} | isCorrect: ${element.isCorrect} | timeSpent: ${timeSpent}s`}</ResultLine>
         );
       })}
 
       <Restart
         onClick={() => {
-          renderNewQuestion(setGameData, "restartingGame");
+          renderNewQuestion({
+            setQuestionData: setQuestionData,
+            configGameData: configGameData,
+            setGameData: setGameData,
+            type: "restartingGame",
+          });
           changeScreen(setGameData, "question");
         }}
       >

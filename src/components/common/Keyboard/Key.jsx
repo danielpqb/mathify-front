@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../contexts/contexts";
-import { renderNewQuestion } from "../../../functions/app-functions";
+import { renderNewQuestion } from "../../../functions/game-functions";
 
 export default function Key({ value, children }) {
   const { gameData, setGameData } = useContext(AppContext);

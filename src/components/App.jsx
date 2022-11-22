@@ -8,40 +8,19 @@ import ProtectedRoute from "./common/ProtectedRoute";
 import Game from "./pages/Game/Game";
 import { GlobalStyle } from "../styles/global-styles";
 import { AppContext } from "../contexts/contexts";
-import { createErrorMessage } from "../functions/api-functions";
-import getUserDataByToken from "../services/mathify-api";
-import { promiseRetry } from "../services/promise-retry";
+import { requestUserData } from "../functions/app-functions";
 
 export default function App() {
   const [userData, setUserData] = useState({});
   const [gameData, setGameData] = useState({});
+  const [questionData, setQuestionData] = useState({});
   const [alert, setAlert] = useState({});
   const [reloadApp, setReloadApp] = useState(false);
 
   useEffect(() => {
     const localToken = localStorage.getItem("userToken");
     if (localToken) {
-      promiseRetry(
-        () => {
-          return getUserDataByToken(localToken);
-        },
-        (res) => {
-          delete res.data.message;
-          setUserData(res.data);
-        },
-        (err) => {
-          const message = createErrorMessage(err);
-
-          setAlert({
-            show: true,
-            message: message,
-            type: 0,
-            doThis: () => {},
-            color: "rgba(200,0,0)",
-            icon: "alert-circle",
-          });
-        }
-      );
+      requestUserData(localToken, setUserData, setAlert);
     }
   }, [setUserData, reloadApp]);
 
@@ -49,7 +28,18 @@ export default function App() {
     <>
       <GlobalStyle />
       <AppContext.Provider
-        value={{ reloadApp, setReloadApp, alert, setAlert, userData, setUserData, gameData, setGameData }}
+        value={{
+          reloadApp,
+          setReloadApp,
+          alert,
+          setAlert,
+          userData,
+          setUserData,
+          gameData,
+          setGameData,
+          questionData,
+          setQuestionData,
+        }}
       >
         {alert.show && <Alert />}
         <Background>

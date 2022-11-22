@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../contexts/contexts";
 import { renderNewGame } from "../../../functions/app-functions";
-import Config from "./screens/Config";
 import Question from "./screens/Question";
 import Result from "./screens/Result";
 
@@ -17,15 +16,16 @@ export default function Game() {
 
   let render;
   switch (screen) {
-    case "config":
-      render = <Config />;
-      break;
     case "result":
       render = <Result />;
       break;
 
-    default:
+    case "question":
       render = <Question />;
+      break;
+
+    default:
+      render = `Game screen '${screen}' not found.`;
       break;
   }
 

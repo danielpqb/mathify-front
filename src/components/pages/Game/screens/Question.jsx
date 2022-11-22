@@ -4,24 +4,24 @@ import Answers from "../../../common/Answers/Answers";
 import Problem from "../../../common/Problem/Problem";
 import Keyboard from "../../../common/Keyboard/Keyboard";
 import { AppContext } from "../../../../contexts/contexts";
-import { renderNewQuestion } from "../../../../functions/app-functions";
+import { renderNewQuestion } from "../../../../functions/game-functions";
 
 export default function Question() {
-  const { setAlert, gameData, setGameData } = useContext(AppContext);
+  const { gameData, setGameData, questionData, setQuestionData } = useContext(AppContext);
 
   const timerWidth = window.innerWidth - 40;
 
-  const questionTime = gameData?.currentQuestion?.timeLeft;
-  const id = gameData?.currentQuestion?.id;
-  const startTimestamp = gameData?.currentQuestion?.startTimestamp;
+  const { timeLeft, id, startTimestamp } = questionData;
+
+  const configGameData = gameData?.config;
 
   useEffect(() => {
-    if (questionTime > 0) {
+    if (timeLeft > 0) {
       const interval = setInterval(() => {
-        setGameData((old) => {
+        setQuestionData((old) => {
           return {
             ...old,
-            currentQuestion: { ...old.currentQuestion, timeLeft: Math.max(questionTime - 50, 0) },
+            timeLeft: Math.max(timeLeft - 50, 0),
           };
         });
       }, 50);
@@ -29,20 +29,29 @@ export default function Question() {
       return () => clearInterval(interval);
     }
 
-    if (questionTime === 0) {
+    if (timeLeft === 0) {
       setGameData((old) => {
         const _new = { ...old };
         _new.answers[id - 1].isCorrect = false;
         _new.answers[id - 1].timeSpent = Date.now() - startTimestamp;
-
         return _new;
       });
 
-      return renderNewQuestion(setGameData, "timeEnded");
+      return renderNewQuestion({
+        setQuestionData: setQuestionData,
+        configGameData: configGameData,
+        setGameData: setGameData,
+        type: "timeEnded",
+      });
     }
 
-    return renderNewQuestion(setGameData, "firstRendering");
-  }, [id, questionTime, setAlert, setGameData, startTimestamp]);
+    return renderNewQuestion({
+      setQuestionData: setQuestionData,
+      configGameData: configGameData,
+      setGameData: setGameData,
+      type: "firstRendering",
+    });
+  }, [configGameData, id, setGameData, setQuestionData, startTimestamp, timeLeft]);
 
   return (
     <Container>
@@ -50,7 +59,7 @@ export default function Question() {
       <Keyboard />
 
       <Info>
-        <Timer timerProgress={(timerWidth * questionTime) / gameData?.config?.questionTime} />
+        <Timer timerProgress={(timerWidth * timeLeft) / gameData?.config?.questionTime} />
         <Answers />
       </Info>
     </Container>

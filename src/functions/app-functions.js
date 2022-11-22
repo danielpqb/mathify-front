@@ -1,173 +1,20 @@
-export function createProblemData() {
-  //Generate Operator
-  let operator = "";
-  const operatorCode = Math.floor(Math.random() * 4);
-  switch (operatorCode) {
-    case 0:
-      operator = "+";
-      break;
-    case 1:
-      operator = "-";
-      break;
-    case 2:
-      operator = "×";
-      break;
-    case 3:
-      operator = "÷";
-      break;
-    default:
-      break;
-  }
+import promiseRetry from "promise-retry";
+import getUserDataByToken from "../services/mathify-api";
+import { showAlertOnError } from "./api-functions";
 
-  //Generate Operates
-  const operates = [];
-  switch (operator) {
-    case "-":
-      operates.push(Math.floor(Math.random() * 10));
-      operates.push(Math.floor(Math.random() * 10));
-
-      operates.sort((a, b) => b - a);
-      break;
-    case "÷":
-      const first = Math.floor(Math.random() * 10);
-      const second = Math.floor(Math.random() * 9) + 1;
-
-      operates.push(first * second);
-      operates.push(second);
-      break;
-    default:
-      operates.push(Math.floor(Math.random() * 10));
-      operates.push(Math.floor(Math.random() * 10));
-      break;
-  }
-
-  //Calculate Result
-  let result;
-  switch (operator) {
-    case "+":
-      result = operates[0] + operates[1];
-      break;
-    case "-":
-      result = operates[0] - operates[1];
-      break;
-    case "×":
-      result = operates[0] * operates[1];
-      break;
-    case "÷":
-      result = operates[0] / operates[1];
-      break;
-    default:
-      break;
-  }
-
-  const data = [
-    { type: "operate", value: operates[0], isAnswer: false },
-    { type: "operator", value: operator, isAnswer: false },
-    { type: "operate", value: operates[1], isAnswer: false },
-    { type: "equals", value: "=" },
-    { type: "result", value: result, isAnswer: true },
-  ];
-
-  return data;
-}
-
-export function renderNewQuestion(setGameData, type) {
-  switch (type) {
-    case "answering":
-      setGameData((old) => {
-        if (old?.config?.numberOfQuestions > old?.currentQuestion?.id) {
-          const oldId = Number(old?.currentQuestion?.id);
-
-          return {
-            ...old,
-            currentQuestion: {
-              id: isNaN(oldId) ? 1 : oldId + 1,
-              problemData: createProblemData(),
-              answer: "",
-              timeLeft: old?.config?.questionTime,
-              startTimestamp: Date.now(),
-            },
-          };
-        } else {
-          setGameData((old) => {
-            return {
-              ...old,
-              screen: "result",
-            };
-          });
-        }
-      });
-      break;
-
-    case "timeEnded":
-      setGameData((old) => {
-        if (old?.config?.numberOfQuestions > old?.currentQuestion?.id) {
-          const oldId = Number(old?.currentQuestion?.id);
-
-          return {
-            ...old,
-            currentQuestion: {
-              id: isNaN(oldId) ? 1 : oldId + 1,
-              problemData: createProblemData(),
-              answer: "",
-              timeLeft: old?.config?.questionTime,
-              startTimestamp: Date.now(),
-            },
-          };
-        } else {
-          setGameData((old) => {
-            return {
-              ...old,
-              screen: "result",
-            };
-          });
-        }
-      });
-      break;
-
-    case "firstRendering":
-      setGameData((old) => {
-        const oldId = Number(old?.currentQuestion?.id);
-
-        return {
-          ...old,
-          currentQuestion: {
-            id: isNaN(oldId) ? 1 : oldId + 1,
-            problemData: createProblemData(),
-            answer: "",
-            timeLeft: old?.config?.questionTime,
-            startTimestamp: Date.now(),
-          },
-        };
-      });
-      break;
-
-    case "restartingGame":
-      setGameData((old) => {
-        const oldId = Number(old?.currentQuestion?.id);
-
-        return {
-          ...old,
-          currentQuestion: {
-            id: isNaN(oldId) ? 1 : oldId + 1,
-            problemData: createProblemData(),
-            answer: "",
-            timeLeft: old?.config?.questionTime,
-            startTimestamp: Date.now(),
-          },
-        };
-      });
-      break;
-
-    default:
-      setGameData((old) => {
-        return {
-          ...old,
-          screen: "result",
-        };
-      });
-      break;
-  }
+export function requestUserData(localToken, setUserData, setAlert) {
+  promiseRetry(
+    () => {
+      return getUserDataByToken(localToken);
+    },
+    (res) => {
+      delete res.data.message;
+      setUserData(res.data);
+    },
+    (error) => {
+      showAlertOnError({ error, setAlert });
+    }
+  );
 }
 
 export function renderNewGame(setGameData) {
@@ -185,27 +32,10 @@ export function renderNewGame(setGameData) {
   setGameData((old) => {
     const _new = {
       ...old,
-      currentQuestion: { ...old?.currentQuestion, id: 1 },
-      screen: "config",
+      screen: "question",
       config: config,
       answers: answers(),
     };
-    return _new;
-  });
-}
-
-export function changeScreen(setGameData, screen) {
-  switch (screen) {
-    case "config":
-      break;
-
-    default:
-      renderNewGame(setGameData);
-      break;
-  }
-
-  setGameData((old) => {
-    const _new = { ...old, screen: screen };
     return _new;
   });
 }
