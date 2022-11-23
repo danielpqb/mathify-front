@@ -9,6 +9,7 @@ import { GlobalStyle } from "../styles/global-styles";
 import { AppContext } from "../contexts/contexts";
 import { requestUserData } from "../functions/app-functions";
 import Config from "./pages/Config/Config";
+import Game from "./pages/Game/Game";
 
 export default function App() {
   const [userData, setUserData] = useState({});
@@ -16,6 +17,8 @@ export default function App() {
   const [questionData, setQuestionData] = useState({});
   const [alert, setAlert] = useState({});
   const [reloadApp, setReloadApp] = useState(false);
+
+  const isGameStarted = gameData?.isGameStarted;
 
   useEffect(() => {
     const localToken = localStorage.getItem("userToken");
@@ -45,7 +48,7 @@ export default function App() {
         <Background>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Config />} />
+              <Route path="/" element={isGameStarted ? <Game /> : <Config />} />
               <Route path="/sign-up" element={<></>} />
               <Route element={<ProtectedRoute token={localStorage.getItem("userToken")} setAlert={setAlert} />}>
                 <Route path="/game" element={<></>} />
