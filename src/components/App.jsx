@@ -8,8 +8,8 @@ import ProtectedRoute from "./common/ProtectedRoute";
 import { GlobalStyle } from "../styles/global-styles";
 import { AppContext } from "../contexts/contexts";
 import { requestUserData } from "../functions/app-functions";
-import Config from "../pages/Config/Config";
 import Game from "../pages/Game/Game";
+import Config from "../pages/Game/components/Config/Config";
 
 export default function App() {
   const [userData, setUserData] = useState({});
@@ -87,6 +87,6 @@ const Layer2 = styled.div`
 
     border-radius: 20px;
 
-    padding-top: 80px;
+    padding: 20px;
   }
 `;

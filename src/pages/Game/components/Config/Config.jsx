@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../../contexts/contexts";
-import { renderNewGame } from "../../functions/app-functions";
-import ConfigTable from "./components/ConfigTable";
+import { AppContext } from "../../../../contexts/contexts";
+import { renderNewGame } from "../../../../functions/app-functions";
+import ConfigTable from "./components/ConfigTable/ConfigTable";
 
 export default function Config() {
   const { setGameData } = useContext(AppContext);
@@ -44,5 +44,7 @@ const StartButton = styled.div`
     height: 60px;
 
     justify-self: center;
+
+    margin: 10px;
   }
 `;

@@ -1,4 +1,5 @@
 import promiseRetry from "promise-retry";
+import { defaultGameConfig } from "../constants/game-constants";
 import getUserDataByToken from "../services/mathify-api";
 import { showAlertOnError } from "./api-functions";
 
@@ -18,7 +19,7 @@ export function requestUserData(localToken, setUserData, setAlert) {
 }
 
 export function renderNewGame(setGameData) {
-  const config = { questionTime: 15000, numberOfQuestions: 10 };
+  const config = defaultGameConfig;
 
   const answers = () => {
     const answers = [];

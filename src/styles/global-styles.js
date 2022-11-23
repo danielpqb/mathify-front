@@ -36,6 +36,10 @@ export const GlobalStyle = createGlobalStyle`
     color: white;
   }
 
+  *:focus {
+    outline: none;
+  }
+
   div {
     display: flex;
     justify-content: center;

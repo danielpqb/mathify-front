@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../contexts/contexts";
 import { renderNewGame } from "../../functions/app-functions";
-import Question from "./screens/Question";
-import Result from "./screens/Result";
+import Question from "./components/Question";
+import Result from "./components/Result";
 
 export default function Game() {
   const { gameData, setGameData } = useContext(AppContext);
