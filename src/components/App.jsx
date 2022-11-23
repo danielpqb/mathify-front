@@ -17,8 +17,6 @@ export default function App() {
   const [alert, setAlert] = useState({});
   const [reloadApp, setReloadApp] = useState(false);
 
-  console.log(questionData);
-
   useEffect(() => {
     const localToken = localStorage.getItem("userToken");
     if (localToken) {

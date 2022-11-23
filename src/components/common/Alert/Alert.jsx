@@ -7,23 +7,25 @@ import SubmitButton from "./SubmitButton";
 export default function Alert() {
   const { alert, setAlert } = useContext(AppContext);
 
+  const { color, icon, message, fontColor, doThis, type } = alert;
+
   return (
     <>
       <Blur />
 
       <Container>
-        <AlertIcon color={alert.color}>
-          <ion-icon name={alert.icon ? alert.icon : "checkmark-circle"}></ion-icon>
+        <AlertIcon color={color}>
+          <ion-icon name={icon ? icon : "checkmark-circle"}></ion-icon>
         </AlertIcon>
 
-        <Message>{alert.message ? alert.message : "Alert!"}</Message>
+        <Message>{message ? message : "Alert!"}</Message>
 
-        {alert.type === 1 ? (
+        {type === 1 ? (
           <>
-            <ColoredButton color={alert.color} fontColor={alert.fontColor}>
+            <ColoredButton color={color} fontColor={fontColor}>
               <SubmitButton
                 onClick={() => {
-                  alert.doThis();
+                  doThis();
                   setAlert({});
                 }}
               >
@@ -41,11 +43,11 @@ export default function Alert() {
               </SubmitButton>
             </ColoredButton>
           </>
-        ) : alert.type === 2 ? (
+        ) : type === 2 ? (
           <></>
         ) : (
           <>
-            <ColoredButton color={alert.color} fontColor={alert.fontColor}>
+            <ColoredButton color={color} fontColor={fontColor}>
               <SubmitButton
                 onClick={() => {
                   setAlert({});
