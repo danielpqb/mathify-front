@@ -5,16 +5,21 @@ export const GlobalStyle = createGlobalStyle`
     --fontsize: 22px;
     --default-color-one: #065183;
     --default-color-two: #2082C5;
+    --doc-heigth: 100%;
   }
 
   /* Hide scrollbar */
   body::-webkit-scrollbar {
     display: none; /* Chrome, Safari and Opera */
   }
-  
   body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+  html,
+  body {
+    height: var(--doc-heigth);
   }
 
   * {

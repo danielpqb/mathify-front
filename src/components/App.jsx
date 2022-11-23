@@ -72,7 +72,6 @@ function Background({ children }) {
 const Layer1 = styled.div`
   & {
     width: 100vw;
-    height: 100vh;
 
     padding: 20px;
 
