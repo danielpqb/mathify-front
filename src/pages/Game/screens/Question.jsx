@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
-import Answers from "../../../common/Answers/Answers";
-import Problem from "../../../common/Problem/Problem";
-import Keyboard from "../../../common/Keyboard/Keyboard";
-import { AppContext } from "../../../../contexts/contexts";
-import { renderNewQuestion, saveAnswer } from "../../../../functions/game-functions";
+import Answers from "../../../components/common/Answers/Answers";
+import Problem from "../../../components/common/Problem/Problem";
+import Keyboard from "../../../components/common/Keyboard/Keyboard";
+import { AppContext } from "../../../contexts/contexts";
+import { renderNewQuestion, saveAnswer } from "../../../functions/game-functions";
 
 export default function Question() {
   const { gameData, setGameData, questionData, setQuestionData } = useContext(AppContext);

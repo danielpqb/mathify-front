@@ -1,13 +1,16 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../../../contexts/contexts";
-import { renderNewGame } from "../../../functions/app-functions";
+import { AppContext } from "../../contexts/contexts";
+import { renderNewGame } from "../../functions/app-functions";
+import ConfigTable from "./components/ConfigTable";
 
 export default function Config() {
   const { setGameData } = useContext(AppContext);
 
   return (
     <Container>
+      <ConfigTable />
+
       <StartButton
         onClick={() => {
           renderNewGame(setGameData);
@@ -24,6 +27,7 @@ export default function Config() {
 
 const Container = styled.div`
   & {
+    flex-direction: column;
   }
 `;
 

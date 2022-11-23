@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../../../../contexts/contexts";
-import { changeScreen, renderNewQuestion } from "../../../../functions/game-functions";
+import { AppContext } from "../../../contexts/contexts";
+import { changeScreen, renderNewQuestion } from "../../../functions/game-functions";
 
 export default function Result() {
   const { gameData, setGameData, setQuestionData } = useContext(AppContext);

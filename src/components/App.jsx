@@ -8,8 +8,8 @@ import ProtectedRoute from "./common/ProtectedRoute";
 import { GlobalStyle } from "../styles/global-styles";
 import { AppContext } from "../contexts/contexts";
 import { requestUserData } from "../functions/app-functions";
-import Config from "./pages/Config/Config";
-import Game from "./pages/Game/Game";
+import Config from "../pages/Config/Config";
+import Game from "../pages/Game/Game";
 
 export default function App() {
   const [userData, setUserData] = useState({});
@@ -51,7 +51,6 @@ export default function App() {
               <Route path="/" element={isGameStarted ? <Game /> : <Config />} />
               <Route path="/sign-up" element={<></>} />
               <Route element={<ProtectedRoute token={localStorage.getItem("userToken")} setAlert={setAlert} />}>
-                <Route path="/game" element={<></>} />
                 <Route path="*" element={<Navigate to="/" />} />
               </Route>
             </Routes>
