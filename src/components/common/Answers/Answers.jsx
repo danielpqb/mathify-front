@@ -19,6 +19,8 @@ export default function Answers() {
 
 const Container = styled.div`
   & {
-    height: 50px;
+    flex-wrap: wrap;
+
+    height: fit-content;
   }
 `;

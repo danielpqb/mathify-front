@@ -9,7 +9,7 @@ import { renderNewQuestion, saveAnswer } from "../../../functions/game-functions
 export default function Question() {
   const { gameData, setGameData, questionData, setQuestionData } = useContext(AppContext);
 
-  const timerWidth = window.innerWidth - 40;
+  const timerWidth = window.innerWidth - 80;
 
   const { timeLeft, lastTickTimestamp } = questionData;
   const _questionData = questionData;
@@ -55,10 +55,12 @@ export default function Question() {
 
   return (
     <Container>
-      <Problem />
-      <Keyboard />
+      <TopInfo>
+        <Problem />
+      </TopInfo>
 
       <Info>
+        <Keyboard />
         <Timer timerProgress={(timerWidth * timeLeft) / gameData?.config?.questionTime} />
         <Answers />
       </Info>
@@ -69,8 +71,15 @@ export default function Question() {
 const Container = styled.div`
   & {
     flex-direction: column;
+    justify-content: flex-end;
 
-    justify-content: space-between;
+    height: 100%;
+  }
+`;
+
+const TopInfo = styled.div`
+  & {
+    height: 100%;
   }
 `;
 
@@ -78,7 +87,9 @@ const Info = styled.div`
   & {
     flex-direction: column;
 
-    justify-content: flex-end;
+    height: fit-content;
+
+    justify-self: flex-end;
   }
 `;
 
@@ -91,5 +102,10 @@ const Timer = styled.div.attrs(({ timerProgress }) => ({
     align-self: flex-start;
     height: 10px;
     background-color: #c50000;
+
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    margin: 15px 0px;
   }
 `;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import styled from "styled-components";
@@ -20,6 +20,28 @@ export default function App() {
   const [reloadApp, setReloadApp] = useState(false);
 
   const isGameStarted = gameData?.isGameStarted;
+
+  useMemo(() => {
+    console.clear();
+
+    setQuestionData((old) => {
+      console.log("questionData");
+      console.log(old);
+      console.log("-----------------------");
+      return old;
+    });
+
+    console.log("-----------------------");
+    console.log("gameData");
+    console.log(gameData);
+    console.log("");
+    console.log("configData");
+    console.log(configData);
+    console.log("");
+    console.log("userData");
+    console.log(userData);
+    console.log("");
+  }, [configData, gameData, userData, setQuestionData]);
 
   useEffect(() => {
     const localToken = localStorage.getItem("userToken");

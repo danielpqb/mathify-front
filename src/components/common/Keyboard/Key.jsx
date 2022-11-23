@@ -10,8 +10,11 @@ export default function Key({ value, children }) {
 
   const configGameData = gameData?.config;
 
+  const style = { gridArea: `a${value}` };
+
   return (
     <Container
+      style={style}
       onClick={() => {
         const isNumber = !isNaN(Number(value));
         if (isNumber) {
@@ -61,7 +64,9 @@ export default function Key({ value, children }) {
   );
 }
 
-const Container = styled.div`
+const Container = styled.div.attrs(({ style }) => ({
+  style,
+}))`
   & {
     background-color: #213a7e;
 

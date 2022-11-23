@@ -21,9 +21,9 @@ const Container = styled.div`
   & {
     column-gap: 10px;
 
-    max-height: 250px;
+    max-height: 180px;
 
-    @media (max-width: 1100px) {
+    @media (orientation: portrait) {
       display: grid;
       grid-template-areas:
         ". . ."

@@ -26,10 +26,23 @@ export default function Keyboard() {
 const Container = styled.div`
   & {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "a1 a2 a3"
+      "a4 a5 a6"
+      "a7 a8 a9"
+      "abackspace a0 aenter";
+    grid-auto-flow: column;
     gap: 10px;
 
     width: fit-content;
     height: fit-content;
+
+    justify-content: flex-end;
+
+    @media (orientation: landscape) {
+      grid-template-areas:
+        ". a1 a2 a3 a4 a5 ."
+        "abackspace a6 a7 a8 a9 a0 aenter";
+    }
   }
 `;
