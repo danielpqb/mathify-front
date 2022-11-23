@@ -29,6 +29,7 @@ export default function Result() {
             configGameData: configGameData,
             setGameData: setGameData,
             type: "restartingGame",
+            isFirst: true,
           });
           changeScreen(setGameData, "question");
         }}

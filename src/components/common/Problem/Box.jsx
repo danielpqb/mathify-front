@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { AppContext } from "../../../contexts/contexts";
 
 export default function Box({ boxData }) {
-  const { gameData } = useContext(AppContext);
+  const { questionData } = useContext(AppContext);
 
-  const myAnswer = gameData?.currentQuestion?.answer;
+  const myAnswer = questionData?.answer;
 
   let style = {};
   switch (boxData.type) {

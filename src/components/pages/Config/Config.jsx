@@ -1,20 +1,27 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../contexts/contexts";
-import { changeScreen } from "../../../functions/game-functions";
+import { renderNewGame } from "../../../functions/app-functions";
+import Game from "../Game/Game";
 
 export default function Config() {
   const { setGameData } = useContext(AppContext);
+  const [isGameStarted, setIsGameStarted] = useState(false);
 
   return (
     <Container>
-      <StartButton
-        onClick={() => {
-          changeScreen(setGameData, "question");
-        }}
-      >
-        Start
-      </StartButton>
+      {isGameStarted ? (
+        <Game />
+      ) : (
+        <StartButton
+          onClick={() => {
+            renderNewGame(setGameData);
+            setIsGameStarted((old) => !old);
+          }}
+        >
+          Start
+        </StartButton>
+      )}
     </Container>
   );
 }

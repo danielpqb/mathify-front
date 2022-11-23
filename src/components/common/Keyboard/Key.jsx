@@ -4,34 +4,35 @@ import { AppContext } from "../../../contexts/contexts";
 import { renderNewQuestion } from "../../../functions/game-functions";
 
 export default function Key({ value, children }) {
-  const { gameData, setGameData } = useContext(AppContext);
+  const { gameData, setGameData, questionData, setQuestionData } = useContext(AppContext);
 
-  const myAnswer = gameData?.currentQuestion?.answer;
-  const id = gameData?.currentQuestion?.id;
-  const startTimestamp = gameData?.currentQuestion?.startTimestamp;
+  const { id, startTimestamp } = questionData;
+  const myAnswer = questionData?.answer;
+
+  const configGameData = gameData?.config;
 
   return (
     <Container
       onClick={() => {
         const isNumber = !isNaN(Number(value));
         if (isNumber) {
-          return setGameData((old) => {
+          return setQuestionData((old) => {
             return {
               ...old,
-              currentQuestion: { ...old.currentQuestion, answer: `${myAnswer}${value}` },
+              answer: `${myAnswer}${value}`,
             };
           });
         }
         if (value === "backspace") {
-          return setGameData((old) => {
+          return setQuestionData((old) => {
             return {
               ...old,
-              currentQuestion: { ...old.currentQuestion, answer: myAnswer.slice(0, -1) },
+              answer: myAnswer.slice(0, -1),
             };
           });
         }
         if (value === "enter") {
-          const answer = gameData.currentQuestion.problemData.filter((element) => {
+          const answer = questionData.problemData.filter((element) => {
             return element.isAnswer;
           })[0].value;
 
@@ -58,7 +59,13 @@ export default function Key({ value, children }) {
             });
           }
 
-          renderNewQuestion(setGameData, "answering");
+          renderNewQuestion({
+            setQuestionData: setQuestionData,
+            configGameData: configGameData,
+            setGameData: setGameData,
+            type: "answering",
+            isFirst: false,
+          });
         }
       }}
     >

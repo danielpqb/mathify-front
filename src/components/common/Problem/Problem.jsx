@@ -4,9 +4,9 @@ import { AppContext } from "../../../contexts/contexts";
 import Box from "./Box";
 
 export default function Problem() {
-  const { gameData } = useContext(AppContext);
+  const { questionData } = useContext(AppContext);
 
-  const problemData = gameData?.currentQuestion?.problemData;
+  const problemData = questionData?.problemData;
 
   return (
     <Container>

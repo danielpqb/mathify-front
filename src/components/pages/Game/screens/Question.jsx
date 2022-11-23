@@ -42,6 +42,7 @@ export default function Question() {
         configGameData: configGameData,
         setGameData: setGameData,
         type: "timeEnded",
+        isFirst: false,
       });
     }
 
@@ -50,6 +51,7 @@ export default function Question() {
       configGameData: configGameData,
       setGameData: setGameData,
       type: "firstRendering",
+      isFirst: true,
     });
   }, [configGameData, id, setGameData, setQuestionData, startTimestamp, timeLeft]);
 
