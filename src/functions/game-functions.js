@@ -9,7 +9,6 @@ export function renderNewQuestion({ setQuestionData, configGameData, setGameData
           problemData: createProblemData(),
           answer: "",
           timeLeft: configGameData.questionTime,
-          startTimestamp: Date.now(),
         };
       })
     : setQuestionData((old) => {
@@ -19,7 +18,6 @@ export function renderNewQuestion({ setQuestionData, configGameData, setGameData
             problemData: createProblemData(),
             answer: "",
             timeLeft: configGameData.questionTime,
-            startTimestamp: Date.now(),
           };
         } else {
           changeScreen(setGameData, "result");
@@ -39,6 +37,15 @@ export function changeScreen(setGameData, screen) {
 
   setGameData((old) => {
     const _new = { ...old, screen: screen };
+    return _new;
+  });
+}
+
+export function saveAnswer({ setGameData, questionData, isCorrect }) {
+  setGameData((old) => {
+    const _new = { ...old };
+    _new.answers[questionData.id - 1].isCorrect = isCorrect;
+    _new.answers[questionData.id - 1].timeSpent = old.config.questionTime - questionData.timeLeft;
     return _new;
   });
 }

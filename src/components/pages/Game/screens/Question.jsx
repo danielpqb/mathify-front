@@ -4,14 +4,15 @@ import Answers from "../../../common/Answers/Answers";
 import Problem from "../../../common/Problem/Problem";
 import Keyboard from "../../../common/Keyboard/Keyboard";
 import { AppContext } from "../../../../contexts/contexts";
-import { renderNewQuestion } from "../../../../functions/game-functions";
+import { renderNewQuestion, saveAnswer } from "../../../../functions/game-functions";
 
 export default function Question() {
   const { gameData, setGameData, questionData, setQuestionData } = useContext(AppContext);
 
   const timerWidth = window.innerWidth - 40;
 
-  const { timeLeft, id, startTimestamp } = questionData;
+  const { timeLeft, lastTickTimestamp } = questionData;
+  const _questionData = questionData;
 
   const configGameData = gameData?.config;
 
@@ -19,9 +20,11 @@ export default function Question() {
     if (timeLeft > 0) {
       const interval = setInterval(() => {
         setQuestionData((old) => {
+          const now = Date.now();
           return {
             ...old,
-            timeLeft: Math.max(timeLeft - 50, 0),
+            timeLeft: Math.max(timeLeft - (now - (lastTickTimestamp ? lastTickTimestamp : now)), 0),
+            lastTickTimestamp: now,
           };
         });
       }, 50);
@@ -30,12 +33,7 @@ export default function Question() {
     }
 
     if (timeLeft === 0) {
-      setGameData((old) => {
-        const _new = { ...old };
-        _new.answers[id - 1].isCorrect = false;
-        _new.answers[id - 1].timeSpent = Date.now() - startTimestamp;
-        return _new;
-      });
+      saveAnswer({ setGameData, questionData: _questionData, isCorrect: false });
 
       return renderNewQuestion({
         setQuestionData: setQuestionData,
@@ -53,7 +51,7 @@ export default function Question() {
       type: "firstRendering",
       isFirst: true,
     });
-  }, [configGameData, id, setGameData, setQuestionData, startTimestamp, timeLeft]);
+  }, [_questionData, configGameData, lastTickTimestamp, setGameData, setQuestionData, timeLeft]);
 
   return (
     <Container>

@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../contexts/contexts";
-import { renderNewQuestion } from "../../../functions/game-functions";
+import { renderNewQuestion, saveAnswer } from "../../../functions/game-functions";
 
 export default function Key({ value, children }) {
   const { gameData, setGameData, questionData, setQuestionData } = useContext(AppContext);
 
-  const { id, startTimestamp } = questionData;
   const myAnswer = questionData?.answer;
 
   const configGameData = gameData?.config;
@@ -41,22 +40,10 @@ export default function Key({ value, children }) {
           }
           if (Number(myAnswer) === answer) {
             console.log("Correct answer!");
-
-            setGameData((old) => {
-              const _new = { ...old };
-              _new.answers[id - 1].isCorrect = true;
-              _new.answers[id - 1].timeSpent = Date.now() - startTimestamp;
-              return _new;
-            });
+            saveAnswer({ setGameData, questionData, isCorrect: true });
           } else {
             console.log("Incorrect answer!");
-
-            setGameData((old) => {
-              const _new = { ...old };
-              _new.answers[id - 1].isCorrect = false;
-              _new.answers[id - 1].timeSpent = Date.now() - startTimestamp;
-              return _new;
-            });
+            saveAnswer({ setGameData, questionData, isCorrect: false });
           }
 
           renderNewQuestion({
