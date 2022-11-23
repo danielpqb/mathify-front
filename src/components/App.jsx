@@ -14,6 +14,7 @@ import Config from "../pages/Game/components/Config/Config";
 export default function App() {
   const [userData, setUserData] = useState({});
   const [gameData, setGameData] = useState({});
+  const [configData, setConfigData] = useState({});
   const [questionData, setQuestionData] = useState({});
   const [alert, setAlert] = useState({});
   const [reloadApp, setReloadApp] = useState(false);
@@ -42,6 +43,8 @@ export default function App() {
           setGameData,
           questionData,
           setQuestionData,
+          configData,
+          setConfigData,
         }}
       >
         {alert.show && <Alert />}
