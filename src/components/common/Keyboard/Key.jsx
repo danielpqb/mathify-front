@@ -79,10 +79,5 @@ const Container = styled.div.attrs(({ style }) => ({
     height: 60px;
 
     justify-self: center;
-
-    @media (max-height: 400px) {
-      width: 50px;
-      height: 50px;
-    }
   }
 `;

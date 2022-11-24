@@ -9,7 +9,7 @@ import { renderNewQuestion, saveAnswer } from "../../../functions/game-functions
 export default function Question() {
   const { gameData, setGameData, questionData, setQuestionData } = useContext(AppContext);
 
-  const timerWidth = window.innerWidth - 80;
+  const timerWidth = window.innerWidth - (window.matchMedia("(min-height: 400px)").matches ? 80 : 0);
 
   const { timeLeft, lastTickTimestamp } = questionData;
   const _questionData = questionData;

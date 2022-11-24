@@ -22,9 +22,5 @@ const Container = styled.div`
     flex-wrap: wrap;
 
     height: fit-content;
-
-    @media (max-height: 400px) {
-      display: none;
-    }
   }
 `;

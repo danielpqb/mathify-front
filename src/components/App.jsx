@@ -103,6 +103,10 @@ const Layer1 = styled.div`
     padding: 20px;
 
     background-color: #afafaf;
+
+    @media (max-height: 400px) {
+      padding: 0px;
+    }
   }
 `;
 
@@ -113,5 +117,10 @@ const Layer2 = styled.div`
     border-radius: 20px;
 
     padding: 20px;
+
+    @media (max-height: 400px) {
+      padding: 0px;
+      border-radius: 0px;
+    }
   }
 `;
