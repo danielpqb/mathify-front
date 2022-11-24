@@ -2,9 +2,26 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --fontsize: 22px;
-    --default-color-one: #065183;
-    --default-color-two: #2082C5;
+    --fontsize: 26px;
+
+    --background-a-color: #afafaf;
+    --background-b-color: #252525;
+
+    --keyboard-buttom-enter-color: #11257c;
+    --keyboard-buttom-backspace-color: #BC2525;
+    --keyboard-buttom-number-color: #747474;
+
+    --problem-operator-color: #ccb220;
+    --problem-operate-color: #3044b8;
+    --problem-equals-color: #1b743e;
+    --problem-result-color: #F15412;
+
+    --question-timer-color: #BC2525;
+
+    --game-answers-true-color: #287211;
+    --game-answers-false-color: #BC2525;
+    --game-answers-none-color: #747474;
+
     --doc-heigth: 100%;
   }
 
@@ -29,10 +46,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0px;
     vertical-align: middle;
     box-sizing: border-box;
-    font-family: "Fira Sans";
+    font-family: "Roboto Slab";
     font-style: normal;
     font-weight: 400;
     font-size: var(--fontsize);
+    line-height: 100%;
     color: white;
   }
 

@@ -27,10 +27,10 @@ const Container = styled.div`
   & {
     display: grid;
     grid-template-areas:
-      "a1 a2 a3"
-      "a4 a5 a6"
-      "a7 a8 a9"
-      "abackspace a0 aenter";
+      ". a1 a2 a3 ."
+      ". a4 a5 a6 ."
+      ". a7 a8 a9 ."
+      "abackspace abackspace a0 aenter aenter";
     grid-auto-flow: column;
     gap: 10px;
 

@@ -10,20 +10,20 @@ export default function Box({ boxData }) {
   let style = {};
   switch (boxData.type) {
     case "operator":
-      style = { backgroundColor: "#666666", height: "35px", fontSize: "30px" };
+      style = { backgroundColor: "var(--problem-operator-color)", height: "30px", minWidth: "40px", fontSize: "30px" };
       break;
     case "operate":
-      style = { backgroundColor: "#297e21" };
+      style = { backgroundColor: "var(--problem-operate-color)" };
       break;
     case "result":
-      style = { backgroundColor: "#aca546", gridArea: "result" };
+      style = { backgroundColor: "var(--problem-result-color)", gridArea: "result" };
       break;
     default:
-      style = { backgroundColor: "#666666", gridArea: "equals", height: "35px", fontSize: "30px" };
+      style = { backgroundColor: "var(--problem-equals-color)", gridArea: "equals", height: "35px", fontSize: "30px" };
       break;
   }
   if (boxData.isAnswer) {
-    style = { ...style, backgroundColor: "#252525", border: "5px solid rgba(201, 0, 0, 0.7)" };
+    style = { ...style, backgroundColor: "var(--default-color-one)", border: "4px dashed #e20000" };
   }
 
   return <Container style={style}>{boxData.isAnswer ? (myAnswer === "" ? "???" : myAnswer) : boxData.value}</Container>;
@@ -35,7 +35,7 @@ const Container = styled.div.attrs(({ style }) => ({
   & {
     border-radius: 10px;
 
-    border: 3px solid rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     min-width: 50px;
@@ -47,5 +47,7 @@ const Container = styled.div.attrs(({ style }) => ({
     padding: 0px 10px;
 
     justify-self: center;
+
+    padding-bottom: 2px;
   }
 `;

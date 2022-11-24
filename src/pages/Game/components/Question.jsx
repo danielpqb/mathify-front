@@ -101,12 +101,13 @@ const Timer = styled.div.attrs(({ timerProgress }) => ({
   & {
     align-self: flex-start;
     height: 10px;
-    background-color: #c50000;
+    background-color: var(--question-timer-color);
 
     border: 2px solid rgba(0, 0, 0, 0.4);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    margin: 15px 0px;
+    margin-top: 15px;
+    margin-bottom: 5px;
 
     @media (max-height: 400px) {
       margin-bottom: 0px;

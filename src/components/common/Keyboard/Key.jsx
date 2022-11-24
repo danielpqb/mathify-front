@@ -10,7 +10,16 @@ export default function Key({ value, children }) {
 
   const configGameData = gameData?.config;
 
-  const style = { gridArea: `a${value}` };
+  const style = {
+    gridArea: `a${value}`,
+    backgroundColor:
+      value === "enter"
+        ? "var(--keyboard-buttom-enter-color)"
+        : value === "backspace"
+        ? "var(--keyboard-buttom-backspace-color)"
+        : "var(--keyboard-buttom-number-color)",
+    width: value === "enter" || value === "backspace" ? "75px" : "55px",
+  };
 
   return (
     <Container
@@ -68,15 +77,12 @@ const Container = styled.div.attrs(({ style }) => ({
   style,
 }))`
   & {
-    background-color: #213a7e;
-
     border-radius: 10px;
 
-    border: 4px solid rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(0, 0, 0, 0.5);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    width: 60px;
-    height: 60px;
+    height: 55px;
 
     justify-self: center;
   }

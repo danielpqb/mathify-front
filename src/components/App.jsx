@@ -102,7 +102,7 @@ const Layer1 = styled.div`
 
     padding: 20px;
 
-    background-color: #afafaf;
+    background-color: var(--background-a-color);
 
     @media (max-height: 400px) {
       padding: 0px;
@@ -112,11 +112,11 @@ const Layer1 = styled.div`
 
 const Layer2 = styled.div`
   & {
-    background-color: #252525;
+    background-color: var(--background-b-color);
 
     border-radius: 20px;
 
-    padding: 20px;
+    padding: 10px 0px;
 
     @media (max-height: 400px) {
       padding: 0px;
