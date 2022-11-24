@@ -60,13 +60,16 @@ export function createProblemData() {
       break;
   }
 
-  const data = [
-    { type: "operate", value: operates[0], isAnswer: false },
-    { type: "operator", value: operator, isAnswer: false },
-    { type: "operate", value: operates[1], isAnswer: false },
-    { type: "equals", value: "=" },
-    { type: "result", value: result, isAnswer: true },
-  ];
+  const data = {
+    data: [
+      { type: "operate", value: operates[0], isAnswer: false },
+      { type: "operator", value: operator, isAnswer: false },
+      { type: "operate", value: operates[1], isAnswer: false },
+      { type: "equals", value: "=" },
+      { type: "result", value: result, isAnswer: true },
+    ],
+    correctAnswer: result,
+  };
 
   return data;
 }

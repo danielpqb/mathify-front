@@ -21,7 +21,12 @@ export const GlobalStyle = createGlobalStyle`
     --game-answers-true-color: #287211;
     --game-answers-false-color: #BC2525;
     --game-answers-none-color: #747474;
-
+    
+    --result-answers-true-color: #287211;
+    --result-answers-false-color: #BC2525;
+    --result-answers-header-color: #747474;
+    --result-answers-line-color: #3b3b3b;
+    
     --doc-heigth: 100%;
   }
 
