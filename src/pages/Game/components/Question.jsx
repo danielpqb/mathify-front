@@ -107,5 +107,9 @@ const Timer = styled.div.attrs(({ timerProgress }) => ({
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     margin: 15px 0px;
+
+    @media (max-height: 400px) {
+      margin-bottom: 0px;
+    }
   }
 `;
