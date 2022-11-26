@@ -71,9 +71,7 @@ export default function Key({ value, children }) {
   );
 }
 
-const Container = styled.div.attrs(({ style }) => ({
-  style,
-}))`
+const Container = styled.div.attrs(({ style }) => style)`
   & {
     border-radius: 10px;
 

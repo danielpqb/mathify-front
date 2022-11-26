@@ -13,9 +13,7 @@ export default function Answer({ answerData }) {
   return <Container style={style}>{answerData.id}</Container>;
 }
 
-const Container = styled.div.attrs(({ style }) => ({
-  style,
-}))`
+const Container = styled.div.attrs(({ style }) => style)`
   & {
     width: 25px;
     height: 25px;

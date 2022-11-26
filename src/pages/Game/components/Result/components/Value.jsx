@@ -10,9 +10,7 @@ export default function Value({ value, lineData }) {
   return <Container style={style}>{value}</Container>;
 }
 
-const Container = styled.div.attrs(({ style }) => ({
-  style,
-}))`
+const Container = styled.div.attrs(({ style }) => style)`
   & {
     font-size: calc(var(--fontsize) - 10px);
 
