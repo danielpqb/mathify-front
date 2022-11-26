@@ -9,27 +9,30 @@ import { IoMdAlert } from "react-icons/io";
 import ShowPasswordCheckBox from "./ShowPasswordCheckBox";
 
 export default function InputBox({
-  name,
-  placeholder,
+  name = "InputBoxName",
+  placeholder = "InputBoxPlaceholder",
   type = "text",
-  onChange,
-  value,
+  onChange = () => {},
+  value = "",
+  required = true,
   style = {},
-  hasShowPasswordCheckBox,
+  hasShowPasswordCheckBox = false,
   showPasswordCheckBoxStyle = { size: "35px", color: "#555555" },
-  hasIcon,
-  regex,
+  hasIcon = false,
+  isFormInput = false,
+  validationRegex,
 }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isValidPattern, setIsValidPattern] = useState(true);
 
   useEffect(() => {
-    if (value?.match(regex) || value?.length === 0) {
+    if (!isFormInput) return;
+    if (value?.match(validationRegex) || value?.length === 0) {
       setIsValidPattern(true);
     } else {
       setIsValidPattern(false);
     }
-  }, [value, regex]);
+  }, [value, validationRegex, isFormInput]);
 
   let icon;
   if (hasIcon) {
@@ -73,7 +76,7 @@ export default function InputBox({
     <Container style={style}>
       {hasIcon && <Icon>{icon}</Icon>}
       <input
-        required
+        required={required}
         name={name}
         type={type}
         value={value}
