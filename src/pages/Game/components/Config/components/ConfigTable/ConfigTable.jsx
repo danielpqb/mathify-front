@@ -1,22 +1,44 @@
-import { useState } from "react";
 import styled from "styled-components";
-import Custom from "./components/Custom";
-import Default from "./components/Default";
+import ConfigParam from "./components/ConfigParam";
 
 export default function ConfigTable() {
-  const [isCustomConfig, setIsCustomConfig] = useState(false);
+  const configParamsData = [
+    {
+      name: "time",
+      text: "Max time per question",
+      type: "input",
+      placeholder: "15",
+      unit: "s",
+    },
+    {
+      name: "operations",
+      text: "Allowed operations",
+      type: "multi-choice",
+      choices: [
+        { id: 1, value: "+", isChecked: true },
+        { id: 2, value: "-", isChecked: true },
+        { id: 3, value: "×", isChecked: true },
+        { id: 4, value: "÷", isChecked: true },
+      ],
+    },
+    {
+      name: "questions",
+      text: "Questions per game",
+      type: "input",
+      placeholder: "10",
+    },
+  ];
 
   return (
     <Container>
-      {isCustomConfig ? <Custom /> : <Default />}
-
-      <ToggleButton
-        onClick={() => {
-          setIsCustomConfig((old) => !old);
-        }}
-      >
-        Custom Setup
-      </ToggleButton>
+      {configParamsData.map((configParamData, index) => {
+        return (
+          <ConfigParam
+            configParamData={configParamData}
+            key={index}
+          />
+        );
+      })}
     </Container>
   );
 }
@@ -26,19 +48,7 @@ const Container = styled.div`
     flex-direction: column;
 
     justify-content: flex-start;
-  }
-`;
 
-const ToggleButton = styled.div`
-  & {
-    width: fit-content;
-    height: 40px;
-    margin: 5px;
-    padding: 10px;
-
-    background-color: #213a7e;
-    border-radius: 10px;
-    border: 4px solid rgba(0, 0, 0, 0.4);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 0px 10px;
   }
 `;

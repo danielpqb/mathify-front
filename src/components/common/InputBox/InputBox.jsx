@@ -12,10 +12,11 @@ export default function InputBox({
   name = "InputBoxName",
   placeholder = "InputBoxPlaceholder",
   type = "text",
-  onChange = () => {},
+  onChange,
   value = "",
   required = true,
   style = {},
+  inputStyle = {},
   hasShowPasswordCheckBox = false,
   showPasswordCheckBoxStyle = { size: "35px", color: "#555555" },
   hasIcon = false,
@@ -24,6 +25,15 @@ export default function InputBox({
 }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isValidPattern, setIsValidPattern] = useState(true);
+
+  const [valueIfUndefinedOnChange, setValueIfUndefinedOnChange] = useState("");
+  if (onChange === undefined) {
+    onChange = (e) => {
+      setValueIfUndefinedOnChange(() => {
+        return e.target.value;
+      });
+    };
+  }
 
   useEffect(() => {
     if (!isFormInput) return;
@@ -57,29 +67,17 @@ export default function InputBox({
 
   type = type === "password" && isChecked ? "text" : type;
 
-  const defaultStyle = {
-    width: "100%",
-    height: "60px",
-    background: "#ffffff",
-    borderRadius: "5px",
-    margin: "10px 0px",
-  };
-  for (let key in defaultStyle) {
-    if (style[key] === undefined) {
-      style[key] = defaultStyle[key];
-    }
-  }
-
   !isValidPattern && (style = { ...style, border: "3px solid rgb(190, 0, 0)" });
 
   return (
     <Container style={style}>
       {hasIcon && <Icon>{icon}</Icon>}
-      <input
+      <Input
+        inputStyle={inputStyle}
         required={required}
         name={name}
         type={type}
-        value={value}
+        value={valueIfUndefinedOnChange !== "" ? valueIfUndefinedOnChange : value}
         placeholder={placeholder}
         onChange={(e) => {
           onChange(e);
@@ -106,21 +104,23 @@ export default function InputBox({
 }
 
 const Container = styled.div.attrs(({ style }) => style)`
-  input {
-    font-family: "Oswald";
+  & {
+    width: 100%;
+    height: 60px;
+    background: #ffffff;
+    border-radius: 5px;
+    margin: 10px 0px;
+  }
+`;
+
+const Input = styled.input.attrs(({ inputStyle }) => ({ style: inputStyle }))`
+  & {
     font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    color: #6d6d6d;
+    opacity: 0.9;
     padding: 10px;
     border: none;
     outline: none;
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
-  }
-  input::placeholder {
-    color: #afafaf;
+    text-align: center;
   }
 `;
 
