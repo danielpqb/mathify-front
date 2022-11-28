@@ -55,5 +55,7 @@ const Container = styled.div`
     justify-content: flex-start;
 
     height: calc(100% - 60px);
+
+    padding: 0px 5px;
   }
 `;
