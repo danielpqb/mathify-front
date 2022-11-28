@@ -73,10 +73,26 @@ export default function App() {
         <Background>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={isGameStarted ? <Game /> : <Config />} />
-              <Route path="/sign-up" element={<></>} />
-              <Route element={<ProtectedRoute token={localStorage.getItem("userToken")} setAlert={setAlert} />}>
-                <Route path="*" element={<Navigate to="/" />} />
+              <Route
+                path="/"
+                element={isGameStarted ? <Game /> : <Config />}
+              />
+              <Route
+                path="/sign-up"
+                element={<></>}
+              />
+              <Route
+                element={
+                  <ProtectedRoute
+                    token={localStorage.getItem("userToken")}
+                    setAlert={setAlert}
+                  />
+                }
+              >
+                <Route
+                  path="*"
+                  element={<Navigate to="/" />}
+                />
               </Route>
             </Routes>
           </BrowserRouter>
@@ -100,7 +116,7 @@ const Layer1 = styled.div`
   & {
     width: 100vw;
 
-    padding: 20px;
+    padding: 5px;
 
     background-color: var(--background-a-color);
 

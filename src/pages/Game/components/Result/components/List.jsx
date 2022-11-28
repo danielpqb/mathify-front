@@ -20,18 +20,30 @@ export default function List() {
   const footerData = {
     id: "",
     isCorrect: countProps({ prop: "isCorrect", withValue: true, data: answers }),
-    timeSpent: sumProps({ prop: "timeSpent", data: answers }),
+    timeSpent: `${(sumProps({ prop: "timeSpent", data: answers }) / 1000).toFixed(3)}s`,
     myAnswer: "",
     correctAnswer: "",
   };
 
   return (
     <Container>
-      <Line type={"header"} data={headerData} />
+      <Line
+        type={"header"}
+        data={headerData}
+      />
       {answers?.map((answerData, index) => {
-        return <Line key={index} type={"answer"} data={answerData} />;
+        return (
+          <Line
+            key={index}
+            type={"answer"}
+            data={answerData}
+          />
+        );
       })}
-      <Line type={"footer"} data={footerData} />
+      <Line
+        type={"footer"}
+        data={footerData}
+      />
     </Container>
   );
 }
@@ -41,5 +53,7 @@ const Container = styled.div`
     flex-direction: column;
 
     justify-content: flex-start;
+
+    max-height: 90vh;
   }
 `;

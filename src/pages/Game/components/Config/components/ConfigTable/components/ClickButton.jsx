@@ -3,12 +3,12 @@ import styled from "styled-components";
 export default function ClickButton({ choiceData, choicesChecked, setChoicesChecked }) {
   return (
     <Container
-      style={choiceData.isChecked && { background: "#115c2d" }}
-      onClick={async () => {
+      style={choicesChecked && choicesChecked[choiceData.id] ? { background: "#115c2d" } : {}}
+      onClick={() => {
         setChoicesChecked((old) => {
-          old[choiceData.id] = !old[choiceData.id];
-          console.log(old);
-          return { ...old };
+          const newer = { ...old };
+          newer[choiceData.id] = !newer[choiceData.id];
+          return newer;
         });
       }}
     >

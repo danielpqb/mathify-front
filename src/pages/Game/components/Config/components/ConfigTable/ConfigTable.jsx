@@ -27,6 +27,13 @@ export default function ConfigTable() {
       type: "input",
       placeholder: "10",
     },
+    {
+      name: "range",
+      text: "Range of numbers",
+      type: "input-range",
+      placeholder: ["0", "10"],
+      unit: ["from", "to"],
+    },
   ];
 
   return (
