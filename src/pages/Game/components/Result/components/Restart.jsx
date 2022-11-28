@@ -36,8 +36,10 @@ const Container = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     max-width: 150px;
-    height: 60px;
+    min-height: 50px;
+    max-height: 50px;
 
     justify-self: center;
+    margin-top: 10px;
   }
 `;

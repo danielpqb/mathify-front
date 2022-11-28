@@ -54,6 +54,6 @@ const Container = styled.div`
 
     justify-content: flex-start;
 
-    max-height: 90vh;
+    height: calc(100% - 60px);
   }
 `;

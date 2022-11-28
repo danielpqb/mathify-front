@@ -15,5 +15,7 @@ export default function Result() {
 const Container = styled.div`
   & {
     flex-direction: column;
+
+    justify-content: space-between;
   }
 `;

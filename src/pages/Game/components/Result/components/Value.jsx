@@ -16,9 +16,11 @@ const Container = styled.div.attrs(({ style }) => style)`
 
     border-radius: 10px;
 
-    border: 4px solid rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(0, 0, 0, 0.4);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     justify-self: center;
+
+    padding: 0px 5px;
   }
 `;
