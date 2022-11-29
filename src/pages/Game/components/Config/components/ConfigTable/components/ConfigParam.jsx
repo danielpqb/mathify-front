@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import InputBox from "../../../../../../../components/common/InputBox/InputBox";
+import { defaultGameConfig } from "../../../../../../../constants/game-constants";
 import ClickButton from "./ClickButton";
 
 export default function ConfigParam({ configParamData }) {
@@ -64,23 +65,15 @@ export default function ConfigParam({ configParamData }) {
 }
 
 export function ParamChoices({ configParamData }) {
-  const [choicesChecked, setChoicesChecked] = useState();
-
-  useEffect(() => {
-    let defaultChoicesChecked = {};
-    for (let i = 0; i < configParamData.choices.length; i++) {
-      defaultChoicesChecked[configParamData.choices[i].id] = configParamData.choices[i].isChecked;
-    }
-    setChoicesChecked(defaultChoicesChecked);
-  }, [configParamData.choices, setChoicesChecked]);
+  const [choicesChecked, setChoicesChecked] = useState(defaultGameConfig.allowedOperators);
 
   return (
     <Choices>
-      {configParamData.choices.map((choiceData, index) => {
+      {configParamData.choices.map((choice, index) => {
         return (
           <ClickButton
             key={index}
-            choiceData={choiceData}
+            choice={choice}
             choicesChecked={choicesChecked}
             setChoicesChecked={setChoicesChecked}
           />

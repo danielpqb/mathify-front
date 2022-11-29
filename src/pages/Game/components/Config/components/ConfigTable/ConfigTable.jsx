@@ -14,12 +14,7 @@ export default function ConfigTable() {
       name: "operations",
       text: "Allowed operations",
       type: "multi-choice",
-      choices: [
-        { id: 1, value: "+", isChecked: true },
-        { id: 2, value: "-", isChecked: true },
-        { id: 3, value: "×", isChecked: true },
-        { id: 4, value: "÷", isChecked: true },
-      ],
+      choices: ["+", "-", "×", "÷"],
     },
     {
       name: "questions",

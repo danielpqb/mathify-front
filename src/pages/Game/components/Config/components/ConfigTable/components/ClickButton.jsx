@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-export default function ClickButton({ choiceData, choicesChecked, setChoicesChecked }) {
+export default function ClickButton({ choice, choicesChecked, setChoicesChecked }) {
   return (
     <Container
-      style={choicesChecked && choicesChecked[choiceData.id] ? { background: "#115c2d" } : {}}
+      style={choicesChecked && choicesChecked[choice] ? { background: "#115c2d" } : {}}
       onClick={() => {
         setChoicesChecked((old) => {
           const newer = { ...old };
-          newer[choiceData.id] = !newer[choiceData.id];
+          newer[choice] = !newer[choice];
           return newer;
         });
       }}
     >
-      {choiceData.value}
+      {choice}
     </Container>
   );
 }
