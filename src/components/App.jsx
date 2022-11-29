@@ -14,41 +14,42 @@ import Config from "../pages/Game/components/Config/Config";
 export default function App() {
   const [userData, setUserData] = useState({});
   const [gameData, setGameData] = useState({});
-  const [configData, setConfigData] = useState({});
   const [questionData, setQuestionData] = useState({});
   const [alert, setAlert] = useState({});
-  const [reloadApp, setReloadApp] = useState(false);
+  const [reloadApp, setReloadApp] = useState(0);
 
   const isGameStarted = gameData?.isGameStarted;
 
   useMemo(() => {
     console.clear();
+    console.log("-----------------------");
+    console.log("gameData (dependency)");
+    console.log(gameData);
+    console.log("");
+    console.log("userData (dependency)");
+    console.log(userData);
+    console.log("");
 
     setQuestionData((old) => {
       console.log("questionData");
       console.log(old);
-      console.log("-----------------------");
+      console.log("");
       return old;
     });
 
-    console.log("-----------------------");
-    console.log("gameData");
-    console.log(gameData);
-    console.log("");
-    console.log("configData");
-    console.log(configData);
-    console.log("");
-    console.log("userData");
-    console.log(userData);
-    console.log("");
-  }, [configData, gameData, userData, setQuestionData]);
+    setReloadApp((old) => {
+      console.log("Dependencies Reloads:", old + 1);
+      console.log("-----------------------");
+      return old + 1;
+    });
+  }, [gameData, userData, setQuestionData]);
 
   useEffect(() => {
     const localToken = localStorage.getItem("userToken");
     if (localToken) {
       requestUserData(localToken, setUserData, setAlert);
     }
-  }, [setUserData, reloadApp]);
+  }, [setUserData]);
 
   return (
     <>
@@ -65,8 +66,6 @@ export default function App() {
           setGameData,
           questionData,
           setQuestionData,
-          configData,
-          setConfigData,
         }}
       >
         {alert.show && <Alert />}

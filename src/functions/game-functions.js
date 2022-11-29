@@ -25,17 +25,30 @@ export function renderNewQuestion({ setQuestionData, configGameData, setGameData
           };
         } else {
           changeScreen(setGameData, "result");
+          // autoRestart = {
+          //   setQuestionData: setQuestionData,
+          //   configGameData: configGameData,
+          //   setGameData: setGameData,
+          //   type: "autoRestartingGame",
+          //   isFirst: true,
+          // };
         }
       });
 }
 
-export function changeScreen(setGameData, screen) {
+export function changeScreen(setGameData, screen, autoRestart) {
   switch (screen) {
     case "result":
       break;
 
+    case "question":
+      if (autoRestart) {
+        renderNewGame(setGameData);
+        renderNewQuestion(autoRestart);
+      }
+      break;
+
     default:
-      renderNewGame(setGameData);
       break;
   }
 
