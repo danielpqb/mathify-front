@@ -1,13 +1,19 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { AppContext } from "../../../../../../../contexts/contexts";
 
-export default function ClickButton({ choice, choicesChecked, setChoicesChecked }) {
+export default function ClickButton({ choice, configParamData }) {
+  const { configData, setConfigData } = useContext(AppContext);
+
   return (
     <Container
-      style={choicesChecked && choicesChecked[choice] ? { background: "#115c2d" } : {}}
+      style={
+        configData[configParamData.name] && configData[configParamData.name][choice] ? { background: "#115c2d" } : {}
+      }
       onClick={() => {
-        setChoicesChecked((old) => {
+        setConfigData((old) => {
           const newer = { ...old };
-          newer[choice] = !newer[choice];
+          newer[configParamData.name][choice] = !newer[configParamData.name][choice];
           return newer;
         });
       }}

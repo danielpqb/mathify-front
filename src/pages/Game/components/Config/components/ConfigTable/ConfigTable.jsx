@@ -8,7 +8,7 @@ export default function ConfigTable() {
       name: "questionTime",
       text: "Max time per question",
       type: "input",
-      placeholder: defaultGameConfig.questionTime / 1000,
+      placeholder: defaultGameConfig.questionTime,
       unit: "seconds",
     },
     {

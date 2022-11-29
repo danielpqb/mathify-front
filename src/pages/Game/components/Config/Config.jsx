@@ -1,11 +1,20 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { defaultGameConfig } from "../../../../constants/game-constants";
 import { AppContext } from "../../../../contexts/contexts";
 import { renderNewGame } from "../../../../functions/app-functions";
 import ConfigTable from "./components/ConfigTable/ConfigTable";
 
 export default function Config() {
-  const { setGameData } = useContext(AppContext);
+  const { setGameData, setConfigData } = useContext(AppContext);
+
+  useEffect(() => {
+    setConfigData((old) => {
+      const newer = { ...old, ...defaultGameConfig };
+
+      return newer;
+    });
+  }, [setConfigData]);
 
   return (
     <Container>

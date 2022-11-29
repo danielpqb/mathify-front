@@ -30,6 +30,9 @@ export default function App() {
     console.log("userData (dependency)");
     console.log(userData);
     console.log("");
+    console.log("configData (dependency)");
+    console.log(configData);
+    console.log("");
 
     setQuestionData((old) => {
       console.log("questionData");
@@ -43,7 +46,7 @@ export default function App() {
       console.log("-----------------------");
       return old + 1;
     });
-  }, [gameData, userData, setQuestionData]);
+  }, [gameData, userData, configData, setQuestionData]);
 
   useEffect(() => {
     const localToken = localStorage.getItem("userToken");

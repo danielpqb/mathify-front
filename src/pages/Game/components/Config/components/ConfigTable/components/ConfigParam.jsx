@@ -1,7 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import InputBox from "../../../../../../../components/common/InputBox/InputBox";
-import { defaultGameConfig } from "../../../../../../../constants/game-constants";
 import { AppContext } from "../../../../../../../contexts/contexts";
 import { filterInput } from "../../../../../../../functions/regex-functions";
 import ClickButton from "./ClickButton";
@@ -13,7 +12,6 @@ export default function ConfigParam({ configParamData }) {
   if (configData?.hasOwnProperty(configParamData.name)) {
     inputValues = configData[configParamData.name];
   }
-  console.log(configData);
 
   let unitStyle = {
     margin: "0px 5px",
@@ -108,8 +106,6 @@ export default function ConfigParam({ configParamData }) {
 }
 
 export function ParamChoices({ configParamData }) {
-  const [choicesChecked, setChoicesChecked] = useState(defaultGameConfig.allowedOperators);
-
   return (
     <Choices>
       {configParamData.choices.map((choice, index) => {
@@ -117,8 +113,7 @@ export function ParamChoices({ configParamData }) {
           <ClickButton
             key={index}
             choice={choice}
-            choicesChecked={choicesChecked}
-            setChoicesChecked={setChoicesChecked}
+            configParamData={configParamData}
           />
         );
       })}
