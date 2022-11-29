@@ -11,6 +11,19 @@ export default function ConfigParam({ configParamData }) {
     border: "4px solid rgba(0, 0, 0, 0.4)",
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     height: "40px",
+    padding: "0px 5px",
+  };
+
+  let inputBoxStyle = {
+    background: "#242424",
+    border: "2px solid black",
+    width: "60px",
+    margin: "0px",
+    height: "fit-content",
+  };
+
+  let innerInputStyle = {
+    padding: "0px 5px",
   };
 
   return (
@@ -20,10 +33,10 @@ export default function ConfigParam({ configParamData }) {
       {configParamData.type === "multi-choice" && <ParamChoices configParamData={configParamData} />}
 
       {configParamData.type === "input" && (
-        <div>
+        <div style={{ height: "100%" }}>
           <InputBox
-            style={{ background: "#242424", border: "2px solid black", width: "60px" }}
-            inputStyle={{}}
+            style={inputBoxStyle}
+            inputStyle={innerInputStyle}
             placeholder={configParamData.placeholder}
           />
           <Unit style={configParamData.unit && unitStyle}>{configParamData.unit}</Unit>
@@ -34,14 +47,14 @@ export default function ConfigParam({ configParamData }) {
         <div>
           <Unit style={configParamData.unit && unitStyle}>{configParamData.unit[0]}</Unit>
           <InputBox
-            style={{ background: "#242424", border: "2px solid black", width: "60px" }}
-            inputStyle={{}}
+            style={inputBoxStyle}
+            inputStyle={innerInputStyle}
             placeholder={configParamData.placeholder[0]}
           />
           <Unit style={configParamData.unit && unitStyle}>{configParamData.unit[1]}</Unit>
           <InputBox
-            style={{ background: "#242424", border: "2px solid black", width: "60px" }}
-            inputStyle={{}}
+            style={inputBoxStyle}
+            inputStyle={innerInputStyle}
             placeholder={configParamData.placeholder[1]}
           />
         </div>
@@ -88,21 +101,22 @@ const Container = styled.div`
     border: 4px solid rgba(0, 0, 0, 0.4);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    padding: 10px 15px;
+    padding: 10px 10px;
   }
 `;
 
 const Title = styled.div`
   & {
-    padding: 10px 0px;
+    padding-bottom: 10px;
 
     text-align: center;
+
+    font-size: 20px;
   }
 `;
 
 const Choices = styled.div`
   & {
-    padding: 10px 0px;
   }
 `;
 
@@ -112,6 +126,6 @@ const Unit = styled.div.attrs(({ style }) => style)`
 
     opacity: 0.7;
 
-    padding: 0px 5px;
+    font-size: 20px;
   }
 `;

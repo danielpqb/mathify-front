@@ -8,7 +8,7 @@ export default function ConfigTable() {
       text: "Max time per question",
       type: "input",
       placeholder: "15",
-      unit: "s",
+      unit: "seconds",
     },
     {
       name: "operations",
@@ -31,7 +31,7 @@ export default function ConfigTable() {
       name: "range",
       text: "Range of numbers",
       type: "input-range",
-      placeholder: ["0", "10"],
+      placeholder: ["0", "9"],
       unit: ["from", "to"],
     },
   ];
@@ -57,5 +57,9 @@ const Container = styled.div`
     justify-content: flex-start;
 
     padding: 0px 10px;
+
+    height: calc(100% - 60px);
+
+    overflow-y: auto;
   }
 `;
