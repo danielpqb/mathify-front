@@ -22,7 +22,7 @@ export default function App() {
   const isGameStarted = gameData?.isGameStarted;
 
   useMemo(() => {
-    console.clear();
+    //console.clear();
     console.log("-----------------------");
     console.log("gameData (dependency)");
     console.log(gameData);

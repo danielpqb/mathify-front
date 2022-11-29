@@ -19,13 +19,11 @@ export function requestUserData(localToken, setUserData, setAlert) {
 }
 
 export function renderNewGame(setGameData, configData) {
-  const config = configData
-    ? configData
-    : { ...defaultGameConfig, questionTime: defaultGameConfig.questionTime * 1000 };
+  let config = configData ? configData : { ...defaultGameConfig, questionTime: defaultGameConfig.questionTime * 1000 };
 
-  const answers = () => {
+  const answers = (n) => {
     const answers = [];
-    for (let i = 1; i <= config.numberOfQuestions; i++) {
+    for (let i = 1; i <= n; i++) {
       answers.push({ id: i });
     }
 
@@ -33,11 +31,13 @@ export function renderNewGame(setGameData, configData) {
   };
 
   setGameData((old) => {
+    config = old.config ? old.config : config;
+
     const newer = {
       ...old,
       screen: "question",
-      config: old.config ? old.config : config,
-      answers: answers(),
+      config: config,
+      answers: answers(config.numberOfQuestions),
     };
     return newer;
   });

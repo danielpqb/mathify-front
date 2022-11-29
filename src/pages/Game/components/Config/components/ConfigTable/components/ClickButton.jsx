@@ -12,9 +12,11 @@ export default function ClickButton({ choice, configParamData }) {
       }
       onClick={() => {
         setConfigData((old) => {
-          const newer = { ...old };
-          newer[configParamData.name][choice] = !newer[configParamData.name][choice];
-          return newer;
+          const newer = {};
+          newer[configParamData.name] = { ...old[configParamData.name] };
+          newer[configParamData.name][choice] = !old[configParamData.name][choice];
+          console.log(newer);
+          return { ...old, ...newer };
         });
       }}
     >

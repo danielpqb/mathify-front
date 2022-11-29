@@ -58,7 +58,7 @@ export function saveAnswer({ setGameData, questionData, isCorrect }) {
 
 export function saveConfigs(setGameData, configData) {
   setGameData((old) => {
-    const newer = { ...old, config: configData };
+    const newer = { ...old, config: { ...configData, questionTime: configData.questionTime * 1000 } };
     return newer;
   });
 }

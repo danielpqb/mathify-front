@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { defaultGameConfig } from "../../../../constants/game-constants";
 import { AppContext } from "../../../../contexts/contexts";
 import { renderNewGame } from "../../../../functions/app-functions";
+import { saveConfigs } from "../../../../functions/game-functions";
 import ConfigTable from "./components/ConfigTable/ConfigTable";
 
 export default function Config() {
-  const { setGameData, setConfigData } = useContext(AppContext);
+  const { setGameData, setConfigData, configData } = useContext(AppContext);
 
   useEffect(() => {
     setConfigData((old) => {
@@ -22,6 +23,7 @@ export default function Config() {
 
       <StartButton
         onClick={() => {
+          saveConfigs(setGameData, configData);
           renderNewGame(setGameData);
           setGameData((old) => {
             return { ...old, isGameStarted: true };
