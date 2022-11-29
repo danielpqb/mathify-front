@@ -31,19 +31,21 @@ export default function List() {
         type={"header"}
         data={headerData}
       />
-      {answers?.map((answerData, index) => {
-        return (
-          <Line
-            key={index}
-            type={"answer"}
-            data={answerData}
-          />
-        );
-      })}
-      <Line
-        type={"footer"}
-        data={footerData}
-      />
+      <ListBody>
+        {answers?.map((answerData, index) => {
+          return (
+            <Line
+              key={index}
+              type={"answer"}
+              data={answerData}
+            />
+          );
+        })}
+        <Line
+          type={"footer"}
+          data={footerData}
+        />
+      </ListBody>
     </Container>
   );
 }
@@ -51,11 +53,19 @@ export default function List() {
 const Container = styled.div`
   & {
     flex-direction: column;
-
     justify-content: flex-start;
 
-    height: calc(100% - 60px);
-
     padding: 0px 5px;
+
+    height: calc(100% - 60px);
+  }
+`;
+
+const ListBody = styled.div`
+  & {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    overflow-y: auto;
   }
 `;

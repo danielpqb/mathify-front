@@ -49,7 +49,7 @@ const Container = styled.div.attrs(({ style }) => style)`
   & {
     display: grid;
 
-    height: 50px;
+    min-height: 40px;
 
     text-align: center;
   }
