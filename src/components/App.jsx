@@ -15,6 +15,7 @@ export default function App() {
   const [userData, setUserData] = useState({});
   const [gameData, setGameData] = useState({});
   const [questionData, setQuestionData] = useState({});
+  const [configData, setConfigData] = useState({});
   const [alert, setAlert] = useState({});
   const [reloadApp, setReloadApp] = useState(0);
 
@@ -66,6 +67,8 @@ export default function App() {
           setGameData,
           questionData,
           setQuestionData,
+          configData,
+          setConfigData,
         }}
       >
         {alert.show && <Alert />}

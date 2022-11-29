@@ -18,8 +18,8 @@ export function requestUserData(localToken, setUserData, setAlert) {
   );
 }
 
-export function renderNewGame(setGameData) {
-  const config = defaultGameConfig;
+export function renderNewGame(setGameData, configData) {
+  const config = configData ? configData : defaultGameConfig;
 
   const answers = () => {
     const answers = [];
@@ -31,12 +31,12 @@ export function renderNewGame(setGameData) {
   };
 
   setGameData((old) => {
-    const _new = {
+    const newer = {
       ...old,
       screen: "question",
-      config: config,
+      config: old.config ? old.config : config,
       answers: answers(),
     };
-    return _new;
+    return newer;
   });
 }

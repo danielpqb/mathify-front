@@ -53,18 +53,25 @@ export function changeScreen(setGameData, screen, autoRestart) {
   }
 
   setGameData((old) => {
-    const _new = { ...old, screen: screen };
-    return _new;
+    const newer = { ...old, screen: screen };
+    return newer;
   });
 }
 
 export function saveAnswer({ setGameData, questionData, isCorrect }) {
   setGameData((old) => {
-    const _new = { ...old };
-    _new.answers[questionData.id - 1].isCorrect = isCorrect;
-    _new.answers[questionData.id - 1].timeSpent = old.config.questionTime - questionData.timeLeft;
-    _new.answers[questionData.id - 1].myAnswer = questionData.answer;
-    _new.answers[questionData.id - 1].correctAnswer = questionData.correctAnswer;
-    return _new;
+    const newer = { ...old };
+    newer.answers[questionData.id - 1].isCorrect = isCorrect;
+    newer.answers[questionData.id - 1].timeSpent = old.config.questionTime - questionData.timeLeft;
+    newer.answers[questionData.id - 1].myAnswer = questionData.answer;
+    newer.answers[questionData.id - 1].correctAnswer = questionData.correctAnswer;
+    return newer;
+  });
+}
+
+export function saveConfigs(setGameData, configData) {
+  setGameData((old) => {
+    const newer = { ...old, config: configData };
+    return newer;
   });
 }

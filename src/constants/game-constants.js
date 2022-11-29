@@ -1,6 +1,6 @@
 export const defaultGameConfig = {
   questionTime: 15000,
-  allowedOperators: { "+": true, "-": true, "×": true, "÷": true },
+  allowedOperators: { "+": false, "-": false, "×": true, "÷": true },
   numberOfQuestions: 10,
-  rangeOfNumbers: [0, 9],
+  rangeOfNumbers: { from: 0, to: 9 },
 };

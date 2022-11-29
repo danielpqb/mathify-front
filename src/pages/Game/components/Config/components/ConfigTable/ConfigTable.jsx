@@ -1,32 +1,34 @@
 import styled from "styled-components";
+import { defaultGameConfig } from "../../../../../../constants/game-constants";
 import ConfigParam from "./components/ConfigParam";
 
 export default function ConfigTable() {
   const configParamsData = [
     {
-      name: "time",
+      name: "questionTime",
       text: "Max time per question",
       type: "input",
-      placeholder: "15",
+      placeholder: defaultGameConfig.questionTime / 1000,
       unit: "seconds",
     },
     {
-      name: "operations",
+      name: "allowedOperators",
       text: "Allowed operations",
       type: "multi-choice",
-      choices: ["+", "-", "×", "÷"],
+      choices: Object.keys(defaultGameConfig.allowedOperators),
     },
     {
-      name: "questions",
+      name: "numberOfQuestions",
       text: "Questions per game",
       type: "input",
-      placeholder: "10",
+      placeholder: defaultGameConfig.numberOfQuestions,
+      unit: "",
     },
     {
-      name: "range",
+      name: "rangeOfNumbers",
       text: "Range of numbers",
       type: "input-range",
-      placeholder: ["0", "9"],
+      placeholder: defaultGameConfig.rangeOfNumbers,
       unit: ["from", "to"],
     },
   ];

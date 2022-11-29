@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import InputBox from "../../../../../../../components/common/InputBox/InputBox";
 import { defaultGameConfig } from "../../../../../../../constants/game-constants";
+import { AppContext } from "../../../../../../../contexts/contexts";
+import { filterInput } from "../../../../../../../functions/regex-functions";
 import ClickButton from "./ClickButton";
 
 export default function ConfigParam({ configParamData }) {
+  const { configData, setConfigData } = useContext(AppContext);
+
+  let inputValues = "";
+  if (configData?.hasOwnProperty(configParamData.name)) {
+    inputValues = configData[configParamData.name];
+  }
+  console.log(configData);
+
   let unitStyle = {
     margin: "0px 5px",
     backgroundColor: "#4b4b4b",
@@ -34,29 +44,62 @@ export default function ConfigParam({ configParamData }) {
       {configParamData.type === "multi-choice" && <ParamChoices configParamData={configParamData} />}
 
       {configParamData.type === "input" && (
-        <div style={{ height: "100%" }}>
+        <div>
           <InputBox
             style={inputBoxStyle}
             inputStyle={innerInputStyle}
+            value={inputValues}
             placeholder={configParamData.placeholder}
+            onChange={(e) => {
+              setConfigData((old) => {
+                const value = filterInput({ value: e.target.value, type: "only-numbers", size: 2 });
+                const newer = { ...old };
+                newer[configParamData.name] = value;
+                return newer;
+              });
+            }}
           />
-          <Unit style={configParamData.unit && unitStyle}>{configParamData.unit}</Unit>
+          <Unit style={configParamData.unit ? unitStyle : {}}>{configParamData.unit}</Unit>
         </div>
       )}
 
       {configParamData.type === "input-range" && (
         <div>
-          <Unit style={configParamData.unit && unitStyle}>{configParamData.unit[0]}</Unit>
+          <Unit style={configParamData.unit ? unitStyle : {}}>{configParamData.unit[0]}</Unit>
           <InputBox
             style={inputBoxStyle}
             inputStyle={innerInputStyle}
-            placeholder={configParamData.placeholder[0]}
+            value={inputValues.from}
+            placeholder={configParamData.placeholder.from}
+            onChange={(e) => {
+              setConfigData((old) => {
+                const value = filterInput({ value: e.target.value, type: "only-numbers", size: 2 });
+                const newer = { ...old };
+                newer[configParamData.name] = {
+                  ...newer[configParamData.name],
+                  from: value,
+                };
+                return newer;
+              });
+            }}
           />
-          <Unit style={configParamData.unit && unitStyle}>{configParamData.unit[1]}</Unit>
+          <Unit style={configParamData.unit ? unitStyle : {}}>{configParamData.unit[1]}</Unit>
           <InputBox
             style={inputBoxStyle}
             inputStyle={innerInputStyle}
-            placeholder={configParamData.placeholder[1]}
+            value={inputValues.to}
+            placeholder={configParamData.placeholder.to}
+            onChange={(e) => {
+              setConfigData((old) => {
+                const value = filterInput({ value: e.target.value, type: "only-numbers", size: 2 });
+                const newer = { ...old };
+                newer[configParamData.name] = {
+                  ...newer[configParamData.name],
+                  to: value,
+                };
+                return newer;
+              });
+            }}
           />
         </div>
       )}
