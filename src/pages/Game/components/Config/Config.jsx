@@ -7,7 +7,7 @@ import { saveConfigs } from "../../../../functions/game-functions";
 import ConfigTable from "./components/ConfigTable/ConfigTable";
 
 export default function Config() {
-  const { setGameData, setConfigData, configData } = useContext(AppContext);
+  const { setGameData, setConfigData, configData, setAlert } = useContext(AppContext);
 
   useEffect(() => {
     setConfigData((old) => {
@@ -23,11 +23,13 @@ export default function Config() {
 
       <StartButton
         onClick={() => {
-          saveConfigs(setGameData, configData);
-          renderNewGame(setGameData);
-          setGameData((old) => {
-            return { ...old, isGameStarted: true };
-          });
+          const isSaved = saveConfigs({ setGameData, configData, setAlert });
+          if (isSaved) {
+            renderNewGame(setGameData);
+            setGameData((old) => {
+              return { ...old, isGameStarted: true };
+            });
+          }
         }}
       >
         Start

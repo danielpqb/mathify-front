@@ -4,7 +4,7 @@ import { createProblemData } from "./question-functions";
 export function renderNewQuestion({ setQuestionData, configGameData, setGameData, type, isFirst }) {
   isFirst
     ? setQuestionData((old) => {
-        const problem = createProblemData();
+        const problem = createProblemData(configGameData);
         return {
           id: 1,
           problemData: problem.data,
@@ -15,7 +15,7 @@ export function renderNewQuestion({ setQuestionData, configGameData, setGameData
       })
     : setQuestionData((old) => {
         if (configGameData.numberOfQuestions > old.id) {
-          const problem = createProblemData();
+          const problem = createProblemData(configGameData);
           return {
             id: Number(old.id) + 1,
             problemData: problem.data,
@@ -56,9 +56,21 @@ export function saveAnswer({ setGameData, questionData, isCorrect }) {
   });
 }
 
-export function saveConfigs(setGameData, configData) {
+export function saveConfigs({ setGameData, configData, setAlert }) {
+  if (configData.rangeOfNumbers.from > configData.rangeOfNumbers.to) {
+    setAlert({
+      show: true,
+      message: "Range of numbers:\n\nMin value can't be greater then max value!",
+      type: 0,
+      doThis: () => {},
+      color: "rgba(230,200,0)",
+      icon: "alert-circle",
+    });
+    return false;
+  }
   setGameData((old) => {
     const newer = { ...old, config: { ...configData, questionTime: configData.questionTime * 1000 } };
     return newer;
   });
+  return true;
 }
