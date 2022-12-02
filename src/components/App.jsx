@@ -22,28 +22,38 @@ export default function App() {
   const isGameStarted = gameData?.isGameStarted;
 
   useMemo(() => {
+    const headerColor = "color: #ffbe88; font-weight: bold;";
+    const paramColor = "\x1B[38;2;126;204;152m"; //rgb(126, 204, 152)"
+    const dependencyColor = "\x1B[38;2;255;154;136m"; //rgb(255, 154, 136)"
+    const resetColor = "\x1B[m";
+
+    const separateParams = (obj) => {
+      if (obj) {
+        Object.entries(obj).forEach((keyValuePair) => {
+          console.log(`  ${paramColor}${keyValuePair[0]}:`, keyValuePair[1]);
+        });
+      }
+      console.log("\n ");
+    };
+
     console.clear();
-    console.log("-----------------------");
-    console.log("gameData (dependency)");
-    console.log(gameData);
-    console.log("");
-    console.log("userData (dependency)");
-    console.log(userData);
-    console.log("");
-    console.log("configData (dependency)");
-    console.log(configData);
-    console.log("");
+    console.log(`%c\ngameData ${dependencyColor}(dependency)${resetColor}`, headerColor);
+    separateParams(gameData);
+
+    console.log(`%c\nuserData ${dependencyColor}(dependency)${resetColor}`, headerColor);
+    separateParams(userData);
+
+    console.log(`%c\nconfigData ${dependencyColor}(dependency)${resetColor}`, headerColor);
+    separateParams(configData);
 
     setQuestionData((old) => {
-      console.log("questionData");
-      console.log(old);
-      console.log("");
+      console.log(`%c\nquestionData`, headerColor);
+      separateParams(old);
       return old;
     });
 
     setReloadApp((old) => {
-      console.log("Dependencies Reloads:", old + 1);
-      console.log("-----------------------");
+      console.log(`%c\nDependencies Reloads: ${dependencyColor}${old + 1}\n `, headerColor);
       return old + 1;
     });
   }, [gameData, userData, configData, setQuestionData]);
