@@ -10,6 +10,7 @@ import { AppContext } from "../contexts/contexts";
 import { requestUserData } from "../functions/app-functions";
 import Game from "../pages/Game/Game";
 import Config from "../pages/Game/components/Config/Config";
+import Counter from "./common/Counter/Counter";
 
 export default function App() {
   const [userData, setUserData] = useState({});
@@ -17,6 +18,7 @@ export default function App() {
   const [questionData, setQuestionData] = useState({});
   const [configData, setConfigData] = useState({});
   const [alert, setAlert] = useState({});
+  const [counter, setCounter] = useState({});
   const [reloadApp, setReloadApp] = useState(0);
 
   const isGameStarted = gameData?.isGameStarted;
@@ -79,6 +81,8 @@ export default function App() {
           setReloadApp,
           alert,
           setAlert,
+          counter,
+          setCounter,
           userData,
           setUserData,
           gameData,
@@ -90,6 +94,7 @@ export default function App() {
         }}
       >
         {alert.show && <Alert />}
+        {counter.show && <Counter />}
         <Background>
           <BrowserRouter>
             <Routes>

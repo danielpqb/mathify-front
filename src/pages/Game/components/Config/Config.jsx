@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { defaultGameConfig } from "../../../../constants/game-constants";
 import { AppContext } from "../../../../contexts/contexts";
 import { renderNewGame } from "../../../../functions/app-functions";
-import { saveConfigs } from "../../../../functions/game-functions";
+import { saveConfigs, renderNewQuestion } from "../../../../functions/game-functions";
 import ConfigTable from "./components/ConfigTable/ConfigTable";
 
 export default function Config() {
-  const { setGameData, setConfigData, configData, setAlert } = useContext(AppContext);
+  const { setGameData, setConfigData, configData, setAlert, setCounter, setQuestionData } = useContext(AppContext);
 
   useEffect(() => {
     setConfigData((old) => {
@@ -28,6 +28,24 @@ export default function Config() {
             renderNewGame(setGameData);
             setGameData((old) => {
               return { ...old, isGameStarted: true };
+            });
+            setCounter({
+              show: true,
+              inicialValue: 3000,
+              tick: 1000,
+              delayStart: 1000,
+              doThisWhenOver: () => {
+                setGameData((old) => {
+                  renderNewQuestion({
+                    setQuestionData: setQuestionData,
+                    configGameData: old.config,
+                    setGameData: setGameData,
+                    type: "firstRendering",
+                    isFirst: true,
+                  });
+                  return old;
+                });
+              },
             });
           }
         }}

@@ -43,14 +43,6 @@ export default function Question() {
         isFirst: false,
       });
     }
-
-    return renderNewQuestion({
-      setQuestionData: setQuestionData,
-      configGameData: configGameData,
-      setGameData: setGameData,
-      type: "firstRendering",
-      isFirst: true,
-    });
   }, [_questionData, configGameData, lastTickTimestamp, setGameData, setQuestionData, timeLeft]);
 
   return (
