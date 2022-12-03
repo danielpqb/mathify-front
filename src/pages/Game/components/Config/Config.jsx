@@ -33,7 +33,6 @@ export default function Config() {
               show: true,
               inicialValue: 3000,
               tick: 1000,
-              delayStart: 1000,
               doThisWhenOver: () => {
                 setGameData((old) => {
                   renderNewQuestion({

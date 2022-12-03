@@ -44,7 +44,7 @@ export default function Key({ value, children }) {
         }
         if (value === "enter") {
           if (myAnswer === "") {
-            return console.log("Empty answer!");
+            return;
           } else {
             saveAnswer({ setGameData, questionData });
           }
