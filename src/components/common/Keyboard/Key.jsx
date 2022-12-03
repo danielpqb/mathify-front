@@ -43,17 +43,10 @@ export default function Key({ value, children }) {
           });
         }
         if (value === "enter") {
-          const correctAnswer = questionData.correctAnswer;
-
           if (myAnswer === "") {
             return console.log("Empty answer!");
-          }
-          if (Number(myAnswer) === Number(correctAnswer)) {
-            console.log("Correct answer!");
-            saveAnswer({ setGameData, questionData, isCorrect: true });
           } else {
-            console.log("Incorrect answer!");
-            saveAnswer({ setGameData, questionData, isCorrect: false });
+            saveAnswer({ setGameData, questionData });
           }
 
           renderNewQuestion({

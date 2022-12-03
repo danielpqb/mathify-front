@@ -46,13 +46,17 @@ export function changeScreen(setGameData, screen) {
   });
 }
 
-export function saveAnswer({ setGameData, questionData, isCorrect }) {
+export function saveAnswer({ setGameData, questionData }) {
+  const myAnswer = Number(questionData.answer);
+  const correctAnswer = Number(questionData.correctAnswer);
+  const isCorrect = myAnswer === correctAnswer ? true : false;
+
   setGameData((old) => {
     const newer = { ...old };
     newer.answers[questionData.id - 1].isCorrect = isCorrect;
     newer.answers[questionData.id - 1].timeSpent = old.config.questionTime - questionData.timeLeft;
-    newer.answers[questionData.id - 1].myAnswer = questionData.answer;
-    newer.answers[questionData.id - 1].correctAnswer = questionData.correctAnswer;
+    newer.answers[questionData.id - 1].myAnswer = myAnswer;
+    newer.answers[questionData.id - 1].correctAnswer = correctAnswer;
     return newer;
   });
 }

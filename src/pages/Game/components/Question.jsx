@@ -33,7 +33,7 @@ export default function Question() {
     }
 
     if (timeLeft === 0) {
-      saveAnswer({ setGameData, questionData: _questionData, isCorrect: false });
+      saveAnswer({ setGameData, questionData: _questionData });
 
       return renderNewQuestion({
         setQuestionData: setQuestionData,
