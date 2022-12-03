@@ -22,7 +22,10 @@ export default function Alert() {
 
         {type === 1 ? (
           <>
-            <ColoredButton color={color} fontColor={fontColor}>
+            <ColoredButton
+              color={color}
+              fontColor={fontColor}
+            >
               <SubmitButton
                 onClick={() => {
                   doThis();
@@ -33,7 +36,10 @@ export default function Alert() {
               </SubmitButton>
             </ColoredButton>
 
-            <ColoredButton color={"#ececec"} fontColor={"#505050"}>
+            <ColoredButton
+              color={"#ececec"}
+              fontColor={"#505050"}
+            >
               <SubmitButton
                 onClick={() => {
                   setAlert({});
@@ -47,7 +53,10 @@ export default function Alert() {
           <></>
         ) : (
           <>
-            <ColoredButton color={color} fontColor={fontColor}>
+            <ColoredButton
+              color={color}
+              fontColor={fontColor}
+            >
               <SubmitButton
                 onClick={() => {
                   setAlert({});
@@ -80,9 +89,10 @@ const Container = styled.div`
     max-width: 450px;
     height: fit-content;
     padding: 15px;
-    background: rgba(245, 245, 245, 1);
+    background: rgba(220, 220, 220, 1);
     border-radius: 10px;
-    box-shadow: -5px -5px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 2px 10px rgba(150, 150, 150, 0.8);
+    border: 2px solid rgba(0, 0, 0, 0.1);
   }
   button {
     cursor: pointer;
@@ -96,6 +106,9 @@ const Container = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
+  }
+  * {
+    font-family: "Arial";
   }
 `;
 
@@ -119,7 +132,7 @@ const Message = styled.div`
     margin-top: 40px;
     margin-bottom: 30px;
     white-space: pre-line;
-    word-break: break-all;
+    word-break: break-word;
     text-align: center;
   }
 `;
@@ -128,7 +141,7 @@ const AlertIcon = styled.div`
   && {
     position: absolute;
     top: -35px;
-    background: rgba(245, 245, 245, 1);
+    background: rgba(220, 220, 220, 1);
     border-radius: 50%;
     width: fit-content;
     height: fit-content;
@@ -136,6 +149,7 @@ const AlertIcon = styled.div`
   ion-icon {
     color: ${({ color }) => (color ? color : "rgb(30, 130, 200)")};
     font-size: 70px;
+    filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.2));
   }
 `;
 
@@ -143,5 +157,7 @@ const ColoredButton = styled.div`
   button {
     background: ${({ color }) => color};
     color: ${({ fontColor }) => fontColor};
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
   }
 `;
