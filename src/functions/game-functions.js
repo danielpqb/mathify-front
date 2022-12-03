@@ -49,7 +49,7 @@ export function changeScreen(setGameData, screen) {
 export function saveAnswer({ setGameData, questionData }) {
   const myAnswer = Number(questionData.answer);
   const correctAnswer = Number(questionData.correctAnswer);
-  const isCorrect = myAnswer === correctAnswer ? true : false;
+  const isCorrect = questionData.answer === "" ? false : myAnswer === correctAnswer ? true : false;
 
   setGameData((old) => {
     const newer = { ...old };
