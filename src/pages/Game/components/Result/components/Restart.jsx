@@ -28,7 +28,7 @@ export default function Restart() {
 
 const Container = styled.div`
   & {
-    background-color: #7e7c21;
+    background-color: var(--game-restart-buttom-color);
 
     border-radius: 10px;
 

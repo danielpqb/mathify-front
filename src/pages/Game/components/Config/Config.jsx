@@ -63,7 +63,7 @@ const Container = styled.div`
 
 const StartButton = styled.div`
   & {
-    background-color: #213a7e;
+    background-color: var(--game-start-buttom-color);
 
     border-radius: 10px;
 

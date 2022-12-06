@@ -25,7 +25,7 @@ export default function Key({ value, children }) {
     <Container
       style={style}
       onClick={() => {
-        const isNumber = !isNaN(Number(value));
+        const isNumber = !isNaN(value);
         if (isNumber) {
           return setQuestionData((old) => {
             return {

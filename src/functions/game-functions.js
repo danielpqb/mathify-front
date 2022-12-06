@@ -50,6 +50,14 @@ export function saveAnswer({ setGameData, questionData }) {
   const myAnswer = Number(questionData.answer);
   const correctAnswer = Number(questionData.correctAnswer);
   const isCorrect = questionData.answer === "" ? false : myAnswer === correctAnswer ? true : false;
+  const problemData = questionData.problemData;
+
+  const writeSolution = () => {
+    const problemValues = problemData.map((box) => {
+      return box.value;
+    });
+    return problemValues.join(" ");
+  };
 
   setGameData((old) => {
     const newer = { ...old };
@@ -57,6 +65,7 @@ export function saveAnswer({ setGameData, questionData }) {
     newer.answers[questionData.id - 1].timeSpent = old.config.questionTime - questionData.timeLeft;
     newer.answers[questionData.id - 1].myAnswer = myAnswer;
     newer.answers[questionData.id - 1].correctAnswer = correctAnswer;
+    newer.answers[questionData.id - 1].solution = writeSolution();
     return newer;
   });
 }

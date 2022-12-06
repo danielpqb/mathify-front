@@ -148,6 +148,7 @@ const Title = styled.div`
 
 const Choices = styled.div`
   & {
+    gap: 5px;
   }
 `;
 

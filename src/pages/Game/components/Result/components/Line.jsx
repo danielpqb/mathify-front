@@ -2,18 +2,30 @@ import styled from "styled-components";
 import Value from "./Value";
 
 export default function Line({ data, type }) {
-  const filterValues = ["id", "myAnswer", "correctAnswer", "timeSpent"];
+  const filterValues = ["id", "solution", "myAnswer", "isCorrect"];
 
   let style = {
     gridTemplateColumns: filterValues
-      .map(() => {
+      .map((value, index) => {
+        if (index === 0 || index === 3) {
+          return "0.4fr ";
+        } else if (index === 2) {
+          return "0.6fr ";
+        }
         return "1fr ";
       })
       .join(""),
   };
 
   if (type === "header") {
-    style = { ...style, height: "50px" };
+    style = {
+      ...style,
+      height: "50px",
+      minHeight: "50px",
+      borderRadius: "5px",
+      borderTop: "3px solid rgba(255, 255, 255, 0.4)",
+      borderBottom: "3px solid rgba(255, 255, 255, 0.4)",
+    };
   }
   if (type === "answer" || type === "footer") {
     style = { ...style, height: "40px" };
@@ -30,12 +42,13 @@ export default function Line({ data, type }) {
 
   return (
     <Container style={style}>
-      {filterValues.map((valueName, index) => {
-        const value = String(lineData[valueName]);
+      {filterValues.map((columnName, index) => {
+        const value = String(lineData[columnName]);
 
         return (
           <Value
             value={value}
+            columnName={columnName}
             lineData={lineData}
             key={index}
           />

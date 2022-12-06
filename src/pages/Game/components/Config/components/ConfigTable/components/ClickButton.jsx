@@ -8,7 +8,9 @@ export default function ClickButton({ choice, configParamData }) {
   return (
     <Container
       style={
-        configData[configParamData.name] && configData[configParamData.name][choice] ? { background: "#115c2d" } : {}
+        configData[configParamData.name] && configData[configParamData.name][choice]
+          ? { background: "var(--config-true-color)", opacity: "1" }
+          : {}
       }
       onClick={() => {
         setConfigData((old) => {
@@ -29,12 +31,15 @@ const Container = styled.div.attrs(({ style }) => style)`
   & {
     width: 100%;
 
-    padding: 0px 5px;
-    margin: 10px;
+    padding: 3px 5px;
 
-    background: #63170d;
+    font-size: calc(var(--fontsize) + 5px);
+
+    background: var(--config-false-color);
+    opacity: 0.6;
+
     border-radius: 10px;
-    border: 4px solid rgba(0, 0, 0, 0.4);
+    border: 3px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 `;

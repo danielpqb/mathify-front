@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../../../../contexts/contexts";
-import { countProps, sumProps } from "../../../../../functions/result-functions";
+import Info from "./Info";
 import Line from "./Line";
 
 export default function List() {
@@ -11,22 +11,17 @@ export default function List() {
 
   const headerData = {
     id: "Id",
-    isCorrect: "Correct",
+    isCorrect: "✓",
     timeSpent: "Time",
-    myAnswer: "My Answer",
+    myAnswer: "Answer",
     correctAnswer: "Correct Answer",
-  };
-
-  const footerData = {
-    id: "",
-    isCorrect: countProps({ prop: "isCorrect", withValue: true, data: answers }),
-    timeSpent: `${(sumProps({ prop: "timeSpent", data: answers }) / 1000).toFixed(3)}s`,
-    myAnswer: "",
-    correctAnswer: "",
+    solution: "Solution",
   };
 
   return (
     <Container>
+      <Info answers={answers} />
+
       <Line
         type={"header"}
         data={headerData}
@@ -41,10 +36,6 @@ export default function List() {
             />
           );
         })}
-        <Line
-          type={"footer"}
-          data={footerData}
-        />
       </ListBody>
     </Container>
   );
@@ -58,6 +49,8 @@ const Container = styled.div`
     padding: 0px 5px;
 
     height: calc(100% - 60px);
+
+    max-width: 500px;
   }
 `;
 
