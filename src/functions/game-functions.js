@@ -74,8 +74,8 @@ export function saveConfigs({ setGameData, configData, setAlert }) {
   //Check empty entries
   if (configData.rangeOfNumbers.from === "") configData.rangeOfNumbers.from = defaultGameConfig.rangeOfNumbers.from;
   if (configData.rangeOfNumbers.to === "") configData.rangeOfNumbers.to = defaultGameConfig.rangeOfNumbers.to;
-  if (configData.numberOfQuestions === "") configData.numberOfQuestions = defaultGameConfig.numberOfQuestions;
-  if (configData.questionTime === "") configData.questionTime = defaultGameConfig.questionTime;
+  if (Number(configData.numberOfQuestions) === 0) configData.numberOfQuestions = defaultGameConfig.numberOfQuestions;
+  if (Number(configData.questionTime) === 0) configData.questionTime = defaultGameConfig.questionTime;
 
   //Check range of numbers
   if (configData.rangeOfNumbers.from > configData.rangeOfNumbers.to) {
