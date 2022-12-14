@@ -7,9 +7,10 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 
 import { requestUserData } from "./global-functions";
 import { useAppContext } from "./contexts/AppContext";
-import Home from "./components/pages/Home";
 import { useConsoleLogVariables } from "global-hooks";
 import Alert from "components/common/Alert/Alert";
+import Game from "components/pages/Game/Game";
+import Config from "components/pages/Game/Config/Config";
 
 export default function App() {
   const { setUserData, alert, counter } = useAppContext();
@@ -33,15 +34,17 @@ export default function App() {
           <Routes>
             <Route
               path="/"
-              element={<Home />} />
+              element={isGameStarted ? <Game /> : <Config />}
+            />
             <Route
-              element={
-                <ProtectedRoute token={localStorage.getItem("userToken")} />
-              }
-            >
+              path="/sign-up"
+              element={<></>}
+            />
+            <Route element={<ProtectedRoute token={localStorage.getItem("userToken")} />}>
               <Route
                 path="*"
-                element={<Navigate to="/" />} />
+                element={<Navigate to="/" />}
+              />
             </Route>
           </Routes>
         </BrowserRouter>
@@ -51,7 +54,13 @@ export default function App() {
 }
 
 function Background({ children }: { children: ReactNode }) {
-  return <Layer1>{children}</Layer1>;
+  return (
+    <>
+      <Layer1>
+        <Layer2>{children}</Layer2>
+      </Layer1>
+    </>
+  );
 }
 
 const Layer1 = styled.div`
@@ -64,6 +73,21 @@ const Layer1 = styled.div`
 
     @media (max-height: 400px) {
       padding: 0px;
+    }
+  }
+`;
+
+const Layer2 = styled.div`
+  & {
+    background-color: var(--background-b-color);
+
+    border-radius: 20px;
+
+    padding: 10px 0px;
+
+    @media (max-height: 400px) {
+      padding: 0px;
+      border-radius: 0px;
     }
   }
 `;

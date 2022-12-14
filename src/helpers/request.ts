@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export type RequestPromise = Promise<AxiosResponse<any, any>>;

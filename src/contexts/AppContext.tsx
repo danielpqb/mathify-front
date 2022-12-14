@@ -12,8 +12,26 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
   const [alert, setAlert] = useState({});
   const [counter, setCounter] = useState({});
   const [reloadApp, setReloadApp] = useState(0);
+  const [gameData, setGameData] = useState({});
+  const [questionData, setQuestionData] = useState({});
+  const [configData, setConfigData] = useState({});
 
-  const states = { userData, setUserData, alert, setAlert, counter, setCounter, reloadApp, setReloadApp };
+  const states = {
+    userData,
+    setUserData,
+    alert,
+    setAlert,
+    counter,
+    setCounter,
+    reloadApp,
+    setReloadApp,
+    gameData,
+    setGameData,
+    questionData,
+    setQuestionData,
+    configData,
+    setConfigData,
+  };
 
   return <AppContext.Provider value={states as AppStates}>{children}</AppContext.Provider>;
 }
