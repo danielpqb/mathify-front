@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { countProps, sumProps } from "../../../../functions/result-functions";
+import { GameDataAnswer } from "../types";
 import InfoBox from "./InfoBox";
 
-export default function Info({ answers }: { answers: any }) {
+export default function Info({ answers }: { answers: GameDataAnswer[] }) {
   let style;
 
   return (
     <Container style={style}>
       <InfoBox
         header={"Accuracy"}
-        value={`${((countProps({ prop: "isCorrect", withValue: true, data: answers }) / answers.length) * 100).toFixed(
-          1
-        )}%`}
+        value={`${(
+          (countProps({ prop: "isCorrect", withValue: true, data: answers }) /
+            answers.length) *
+          100
+        ).toFixed(1)}%`}
       />
       <InfoBox
         header={"Time"}

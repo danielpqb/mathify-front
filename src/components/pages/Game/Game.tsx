@@ -1,7 +1,7 @@
 import { useAppContext } from "contexts/AppContext";
+import { renderNewGame } from "functions/app-functions";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { renderNewGame } from "../../functions/app-functions";
 import Question from "./Question";
 import Result from "./Result/Result";
 
@@ -9,7 +9,7 @@ export default function Game() {
   const { gameData, setGameData } = useAppContext();
 
   useEffect(() => {
-    renderNewGame(setGameData);
+    renderNewGame({ setGameData });
   }, [setGameData]);
 
   const screen = gameData?.screen;

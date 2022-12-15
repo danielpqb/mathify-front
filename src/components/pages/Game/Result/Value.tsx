@@ -1,7 +1,20 @@
 import IonIcon from "components/common/IonIcon/IonIcon";
 import styled from "styled-components";
 
-export default function Value({ value, columnName, lineData }: { value: any; columnName: any; lineData: any }) {
+export type LineData = {
+  type: string;
+  isCorrect: boolean;
+};
+
+export default function Value({
+  value,
+  columnName,
+  lineData,
+}: {
+  value: string | JSX.Element;
+  columnName: string;
+  lineData: LineData;
+}) {
   let style;
 
   if (lineData.type === "header" || lineData.type === "footer") {
@@ -18,11 +31,29 @@ export default function Value({ value, columnName, lineData }: { value: any; col
     if (columnName === "isCorrect") {
       if (lineData.isCorrect) {
         style = { ...style, color: "var(--game-answers-true-color)" };
-        value = <IonIcon name="checkmark-circle" />;
+        value = (
+          <IonIcon
+            name="checkmark-circle"
+            style={{
+              color: style.color,
+              filter:
+                "drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.4)) brightness(1.2)",
+            }}
+          />
+        );
       }
       else {
         style = { ...style, color: "var(--game-answers-false-color)" };
-        value = <IonIcon name="close-circle" />;
+        value = (
+          <IonIcon
+            name="close-circle"
+            style={{
+              color: style.color,
+              filter:
+                "drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.4)) brightness(1.2)",
+            }}
+          />
+        );
       }
     }
   }
@@ -30,7 +61,7 @@ export default function Value({ value, columnName, lineData }: { value: any; col
   return <Container style={style}>{value}</Container>;
 }
 
-const Container = styled.div.attrs(({ style }) => style)`
+const Container = styled.div`
   & {
     font-size: calc(var(--fontsize) - 10px);
 
@@ -42,10 +73,5 @@ const Container = styled.div.attrs(({ style }) => style)`
     justify-self: center;
 
     padding: 0px 5px;
-  }
-
-  ion-icon {
-    color: ${(style) => style.color};
-    filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.4)) brightness(1.2);
   }
 `;

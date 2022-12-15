@@ -1,4 +1,12 @@
-export function filterInput({ value, type, size }) {
+export function filterInput({
+  value,
+  type,
+  size,
+}: {
+  value: string;
+  type: string;
+  size: number;
+}) {
   let resp = value;
 
   switch (type) {
@@ -11,7 +19,7 @@ export function filterInput({ value, type, size }) {
   }
 
   const sizeRegex = new RegExp(`^.{0,${size}}`, "g");
-  resp = resp.match(sizeRegex)[0];
+  resp = (resp.match(sizeRegex) as RegExpMatchArray)[0];
 
   return resp;
 }

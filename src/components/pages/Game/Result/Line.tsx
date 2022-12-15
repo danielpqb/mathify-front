@@ -1,15 +1,32 @@
 import styled from "styled-components";
-import Value from "./Value";
+import { GameDataAnswer } from "../types";
+import Value, { LineData } from "./Value";
 
-export default function Line({ data, type }) {
+export default function Line({
+  data,
+  type,
+}: {
+  data:
+    | Partial<GameDataAnswer>
+    | {
+        id: string;
+        isCorrect: string;
+        timeSpent: string;
+        myAnswer: string;
+        correctAnswer: string;
+        solution: string;
+      };
+  type: string;
+}) {
   const filterValues = ["id", "solution", "myAnswer", "isCorrect"];
 
-  let style = {
+  let style: React.CSSProperties = {
     gridTemplateColumns: filterValues
       .map((value, index) => {
         if (index === 0 || index === 3) {
           return "0.4fr ";
-        } else if (index === 2) {
+        }
+        else if (index === 2) {
           return "0.6fr ";
         }
         return "1fr ";
@@ -34,22 +51,24 @@ export default function Line({ data, type }) {
   const lineData =
     type === "answer"
       ? {
-          ...data,
-          timeSpent: `${(data?.timeSpent / 1000).toFixed(3)}s`,
-          type: type,
-        }
+        ...data,
+        timeSpent: `${((data as GameDataAnswer)?.timeSpent / 1000).toFixed(
+          3
+        )}s`,
+        type: type,
+      }
       : { ...data, type: type };
 
   return (
     <Container style={style}>
       {filterValues.map((columnName, index) => {
-        const value = String(lineData[columnName]);
+        const value = String(lineData[columnName as keyof LineData]);
 
         return (
           <Value
             value={value}
             columnName={columnName}
-            lineData={lineData}
+            lineData={lineData as LineData}
             key={index}
           />
         );

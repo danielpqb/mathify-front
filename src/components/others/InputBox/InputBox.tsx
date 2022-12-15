@@ -24,18 +24,24 @@ export default function InputBox({
   validationRegex,
 }: {
   name?: string | undefined;
-  placeholder?: string | undefined;
+  placeholder?:
+    | string
+    | undefined
+    | {
+        from: number | string;
+        to: number | string;
+      };
   type?: string | undefined;
-  onChange: any;
-  value?: string | undefined;
+  onChange?: any;
+  value?: string | undefined | number;
   required?: boolean | undefined;
   style?: React.CSSProperties;
-  inputStyle: React.CSSProperties;
-  hasShowPasswordCheckBox: boolean;
-  showPasswordCheckBoxStyle: { size: string; color: string };
-  hasIcon: boolean;
-  isFormInput: boolean;
-  validationRegex: any;
+  inputStyle?: React.CSSProperties;
+  hasShowPasswordCheckBox?: boolean;
+  showPasswordCheckBoxStyle?: { size: string; color: string };
+  hasIcon?: boolean;
+  isFormInput?: boolean;
+  validationRegex?: any;
 }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isValidPattern, setIsValidPattern] = useState(true);
@@ -51,7 +57,10 @@ export default function InputBox({
 
   useEffect(() => {
     if (!isFormInput) return;
-    if (value?.match(validationRegex) || value?.length === 0) {
+    if (
+      (value as string)?.match(validationRegex) ||
+      (value as string)?.length === 0
+    ) {
       setIsValidPattern(true);
     }
     else {
@@ -92,8 +101,10 @@ export default function InputBox({
         required={required}
         name={name}
         type={type}
-        value={valueIfUndefinedOnChange !== "" ? valueIfUndefinedOnChange : value}
-        placeholder={placeholder}
+        value={
+          valueIfUndefinedOnChange !== "" ? valueIfUndefinedOnChange : value
+        }
+        placeholder={placeholder as string}
         onChange={(e) => {
           onChange(e);
         }}

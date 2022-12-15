@@ -1,10 +1,9 @@
-import { useContext } from "react";
+import { useAppContext } from "contexts/AppContext";
+import { changeScreen, renderNewQuestion } from "functions/game-functions";
 import styled from "styled-components";
-import { AppContext } from "../../../../../contexts/contexts";
-import { changeScreen, renderNewQuestion } from "../../../../../functions/game-functions";
 
 export default function Restart() {
-  const { gameData, setGameData, setQuestionData } = useContext(AppContext);
+  const { gameData, setGameData, setQuestionData } = useAppContext();
 
   const configGameData = gameData?.config;
 

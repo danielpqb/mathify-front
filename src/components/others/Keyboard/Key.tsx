@@ -1,10 +1,19 @@
-import { useContext } from "react";
+import { useAppContext } from "contexts/AppContext";
 import styled from "styled-components";
-import { AppContext } from "../../../contexts/contexts";
-import { renderNewQuestion, saveAnswer } from "../../../functions/game-functions";
+import {
+  renderNewQuestion,
+  saveAnswer,
+} from "../../../functions/game-functions";
 
-export default function Key({ value, children }: { value: any; children: any }) {
-  const { gameData, setGameData, questionData, setQuestionData } = useContext(AppContext);
+export default function Key({
+  value,
+  children,
+}: {
+  value: any;
+  children: any;
+}) {
+  const { gameData, setGameData, questionData, setQuestionData } =
+    useAppContext();
 
   const myAnswer = questionData?.answer;
 
@@ -27,7 +36,7 @@ export default function Key({ value, children }: { value: any; children: any }) 
       onClick={() => {
         const isNumber = !isNaN(value);
         if (isNumber) {
-          return setQuestionData((old: {answers: string}) => {
+          return setQuestionData((old) => {
             return {
               ...old,
               answer: `${myAnswer}${value}`,
@@ -35,7 +44,7 @@ export default function Key({ value, children }: { value: any; children: any }) 
           });
         }
         if (value === "backspace") {
-          return setQuestionData((old: {answers: string}) => {
+          return setQuestionData((old) => {
             return {
               ...old,
               answer: myAnswer.slice(0, -1),

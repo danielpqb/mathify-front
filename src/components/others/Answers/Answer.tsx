@@ -1,6 +1,11 @@
+import { GameDataAnswer } from "components/pages/Game/types";
 import styled from "styled-components";
 
-export default function Answer({ answerData }: {answerData: {isCorrect: boolean, id: number}}) {
+export default function Answer({
+  answerData,
+}: {
+  answerData: Partial<GameDataAnswer>;
+}) {
   let style;
   if (answerData.isCorrect === true) {
     style = { backgroundColor: "var(--game-answers-true-color)" };

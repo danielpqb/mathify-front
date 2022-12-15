@@ -1,22 +1,30 @@
 import { useAppContext } from "contexts/AppContext";
 import styled from "styled-components";
+import { ConfigParamData } from "./ConfigTable";
 
-export default function ClickButton({ choice, configParamData }: { choice: any; configParamData: any }) {
+export default function ClickButton({
+  choice,
+  configParamData,
+}: {
+  choice: string;
+  configParamData: ConfigParamData;
+}) {
   const { configData, setConfigData } = useAppContext();
 
   return (
     <Container
       style={
-        configData[configParamData.name] && configData[configParamData.name][choice]
+        configData[configParamData.name as keyof object] &&
+        (configData[configParamData.name as keyof object] as any)[choice]
           ? { background: "var(--config-true-color)", opacity: "1" }
           : {}
       }
       onClick={() => {
         setConfigData((old) => {
-          const newer: any = {};
-          newer[configParamData.name] = { ...old[configParamData.name] };
-          newer[configParamData.name][choice] = !old[configParamData.name][choice];
-          console.log(newer);
+          const newer = {} as any;
+          newer[configParamData.name as keyof object] = { ...(old[configParamData.name as keyof object] as object) };
+          (newer[configParamData.name as keyof object] as any)[choice] =
+            !old[configParamData.name as keyof object][choice];
           return { ...old, ...newer };
         });
       }}

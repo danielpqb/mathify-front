@@ -1,32 +1,52 @@
-import { useContext } from "react";
+import { useAppContext } from "contexts/AppContext";
 import styled from "styled-components";
-import { AppContext } from "../../../contexts/contexts";
 
 export default function Box({ boxData }: { boxData: any }) {
-  const { questionData } = useContext(AppContext);
+  const { questionData } = useAppContext();
 
   const myAnswer = questionData?.answer;
 
   let style = {};
   switch (boxData.type) {
   case "operator":
-    style = { backgroundColor: "var(--problem-operator-color)", height: "30px", minWidth: "40px", fontSize: "30px" };
+    style = {
+      backgroundColor: "var(--problem-operator-color)",
+      height: "30px",
+      minWidth: "40px",
+      fontSize: "30px",
+    };
     break;
   case "operate":
     style = { backgroundColor: "var(--problem-operate-color)" };
     break;
   case "result":
-    style = { backgroundColor: "var(--problem-result-color)", gridArea: "result" };
+    style = {
+      backgroundColor: "var(--problem-result-color)",
+      gridArea: "result",
+    };
     break;
   default:
-    style = { backgroundColor: "var(--problem-equals-color)", gridArea: "equals", height: "35px", fontSize: "30px" };
+    style = {
+      backgroundColor: "var(--problem-equals-color)",
+      gridArea: "equals",
+      height: "35px",
+      fontSize: "30px",
+    };
     break;
   }
   if (boxData.isAnswer) {
-    style = { ...style, backgroundColor: "var(--default-color-one)", border: "4px dashed #e20000" };
+    style = {
+      ...style,
+      backgroundColor: "var(--default-color-one)",
+      border: "4px dashed #e20000",
+    };
   }
 
-  return <Container style={style}>{boxData.isAnswer ? (myAnswer === "" ? "???" : myAnswer) : boxData.value}</Container>;
+  return (
+    <Container style={style}>
+      {boxData.isAnswer ? (myAnswer === "" ? "???" : myAnswer) : boxData.value}
+    </Container>
+  );
 }
 
 const Container = styled.div.attrs(({ style }) => style)`

@@ -1,19 +1,26 @@
-import { useContext } from "react";
+import InputBox from "components/others/InputBox/InputBox";
+import { useAppContext } from "contexts/AppContext";
+import { filterInput } from "functions/regex-functions";
+import React from "react";
 import styled from "styled-components";
-import InputBox from "../../../../../../../components/others/InputBox/InputBox";
-import { AppContext } from "../../../../../../../contexts/contexts";
-import { filterInput } from "../../../../../../../functions/regex-functions";
+import { ConfigData } from "../../types";
 import ClickButton from "./ClickButton";
+import { ConfigParamData } from "./ConfigTable";
 
-export default function ConfigParam({ configParamData }) {
-  const { configData, setConfigData } = useContext(AppContext);
+export default function ConfigParam({
+  configParamData,
+}: {
+  configParamData: ConfigParamData;
+}) {
+  const { configData, setConfigData } = useAppContext();
 
-  let inputValues = "";
+  let inputValues: string | { from: string; to: string } = "";
+  // eslint-disable-next-line no-prototype-builtins
   if (configData?.hasOwnProperty(configParamData.name)) {
-    inputValues = configData[configParamData.name];
+    inputValues = configData[configParamData.name as keyof object];
   }
 
-  let unitStyle = {
+  const unitStyle = {
     margin: "0px 5px",
     backgroundColor: "#4b4b4b",
     borderRadius: "10px",
@@ -23,7 +30,7 @@ export default function ConfigParam({ configParamData }) {
     padding: "0px 5px",
   };
 
-  let inputBoxStyle = {
+  const inputBoxStyle = {
     background: "#242424",
     border: "2px solid black",
     width: "60px",
@@ -31,7 +38,7 @@ export default function ConfigParam({ configParamData }) {
     height: "fit-content",
   };
 
-  let innerInputStyle = {
+  const innerInputStyle = {
     padding: "0px 5px",
   };
 
@@ -39,7 +46,9 @@ export default function ConfigParam({ configParamData }) {
     <Container>
       <Title>{configParamData.text}:</Title>
 
-      {configParamData.type === "multi-choice" && <ParamChoices configParamData={configParamData} />}
+      {configParamData.type === "multi-choice" && (
+        <ParamChoices configParamData={configParamData} />
+      )}
 
       {configParamData.type === "input" && (
         <div>
@@ -48,54 +57,76 @@ export default function ConfigParam({ configParamData }) {
             inputStyle={innerInputStyle}
             value={inputValues}
             placeholder={configParamData.placeholder}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setConfigData((old) => {
-                const value = filterInput({ value: e.target.value, type: "only-numbers", size: 2 });
+                const value: string = filterInput({
+                  value: e.target.value,
+                  type: "only-numbers",
+                  size: 2,
+                });
                 const newer = { ...old };
-                newer[configParamData.name] = value;
+                newer[configParamData.name as keyof object] = value as never;
                 return newer;
               });
             }}
           />
-          <Unit style={configParamData.unit ? unitStyle : {}}>{configParamData.unit}</Unit>
+          <Unit style={configParamData.unit ? unitStyle : {}}>
+            {configParamData.unit}
+          </Unit>
         </div>
       )}
 
       {configParamData.type === "input-range" && (
         <div>
-          <Unit style={configParamData.unit ? unitStyle : {}}>{configParamData.unit[0]}</Unit>
+          <Unit style={configParamData.unit ? unitStyle : {}}>
+            {configParamData.unit[0]}
+          </Unit>
           <InputBox
             style={inputBoxStyle}
             inputStyle={innerInputStyle}
-            value={inputValues.from}
-            placeholder={configParamData.placeholder.from}
-            onChange={(e) => {
+            value={(inputValues as unknown as { from: any }).from}
+            placeholder={(configParamData.placeholder as { from: any }).from}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setConfigData((old) => {
-                const value = filterInput({ value: e.target.value, type: "only-numbers", size: 2 });
-                const newer = { ...old };
-                newer[configParamData.name] = {
-                  ...newer[configParamData.name],
+                const value = filterInput({
+                  value: e.target.value,
+                  type: "only-numbers",
+                  size: 2,
+                });
+                const newer = { ...old } as any;
+                newer[configParamData.name as keyof object] = {
+                  ...(newer[
+                    configParamData.name as keyof object
+                  ] as object),
                   from: value,
                 };
-                return newer;
+                return newer as ConfigData;
               });
             }}
           />
-          <Unit style={configParamData.unit ? unitStyle : {}}>{configParamData.unit[1]}</Unit>
+          <Unit style={configParamData.unit ? unitStyle : {}}>
+            {configParamData.unit[1]}
+          </Unit>
           <InputBox
             style={inputBoxStyle}
             inputStyle={innerInputStyle}
-            value={inputValues.to}
-            placeholder={configParamData.placeholder.to}
-            onChange={(e) => {
+            value={(inputValues as unknown as { to: any }).to}
+            placeholder={(configParamData.placeholder as { to: any }).to}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setConfigData((old) => {
-                const value = filterInput({ value: e.target.value, type: "only-numbers", size: 2 });
-                const newer = { ...old };
-                newer[configParamData.name] = {
-                  ...newer[configParamData.name],
+                const value = filterInput({
+                  value: e.target.value,
+                  type: "only-numbers",
+                  size: 2,
+                });
+                const newer = { ...old } as any;
+                newer[configParamData.name as keyof object] = {
+                  ...(newer[
+                    configParamData.name as keyof object
+                  ] as object),
                   to: value,
                 };
-                return newer;
+                return newer as ConfigData;
               });
             }}
           />
@@ -105,10 +136,14 @@ export default function ConfigParam({ configParamData }) {
   );
 }
 
-export function ParamChoices({ configParamData }) {
+export function ParamChoices({
+  configParamData,
+}: {
+  configParamData: ConfigParamData;
+}) {
   return (
     <Choices>
-      {configParamData.choices.map((choice, index) => {
+      {(configParamData.choices as []).map((choice, index) => {
         return (
           <ClickButton
             key={index}

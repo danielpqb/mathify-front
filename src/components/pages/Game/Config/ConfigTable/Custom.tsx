@@ -13,7 +13,11 @@ export default function Custom() {
         return (
           <ConfigParam key={index}>
             <Name>{element.name}:</Name>
-            <Value defaultValue={element.value} type={"text"} maxLength={2} />
+            <Value
+              defaultValue={element.value}
+              type={"text"}
+              maxLength={2}
+            />
             <Unit>{element.unit}</Unit>
           </ConfigParam>
         );

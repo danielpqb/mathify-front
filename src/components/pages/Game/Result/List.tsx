@@ -1,11 +1,10 @@
-import { useContext } from "react";
+import { useAppContext } from "contexts/AppContext";
 import styled from "styled-components";
-import { AppContext } from "../../../../../contexts/contexts";
 import Info from "./Info";
 import Line from "./Line";
 
 export default function List() {
-  const { gameData } = useContext(AppContext);
+  const { gameData } = useAppContext();
 
   const answers = gameData?.answers;
 

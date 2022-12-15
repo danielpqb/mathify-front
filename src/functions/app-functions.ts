@@ -1,9 +1,16 @@
+import { ConfigData, GameData } from "components/pages/Game/types";
 import { defaultGameConfig } from "../constants/game-constants";
 
-export function renderNewGame({ setGameData, configData }: {setGameData: any, configData?: any}) {
+export function renderNewGame({
+  setGameData,
+  configData,
+}: {
+  setGameData: React.Dispatch<React.SetStateAction<Partial<GameData>>>;
+  configData?: ConfigData;
+}) {
   let config = configData ? configData : { ...defaultGameConfig, questionTime: defaultGameConfig.questionTime * 1000 };
 
-  const answers = (n) => {
+  const answers = (n: number) => {
     const answers = [];
     for (let i = 1; i <= n; i++) {
       answers.push({ id: i });
@@ -21,6 +28,6 @@ export function renderNewGame({ setGameData, configData }: {setGameData: any, co
       config: config,
       answers: answers(config.numberOfQuestions),
     };
-    return newer;
+    return newer as GameData;
   });
 }

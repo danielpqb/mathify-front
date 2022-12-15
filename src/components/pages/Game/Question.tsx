@@ -9,12 +9,14 @@ import { useAppContext } from "contexts/AppContext";
 export default function Question() {
   const { gameData, setGameData, questionData, setQuestionData } = useAppContext();
 
-  const timerWidth = window.innerWidth - (window.matchMedia("(min-height: 400px)").matches ? 10 : 0);
+  const timerMaxWidth = window.innerWidth - (window.matchMedia("(min-height: 400px)").matches ? 10 : 0);
 
   const { timeLeft, lastTickTimestamp } = questionData;
   const _questionData = questionData;
 
   const configGameData = gameData?.config;
+
+  const timerWidth = (timerMaxWidth * timeLeft) / configGameData?.questionTime;
 
   useEffect(() => {
     if (timeLeft > 0) {
@@ -53,7 +55,7 @@ export default function Question() {
 
       <Info>
         <Keyboard />
-        <Timer timerProgress={(timerWidth * timeLeft) / gameData?.config?.questionTime} />
+        <Timer style={{ width: `${timerWidth}px` }} />
         <Answers />
       </Info>
     </Container>
@@ -85,11 +87,7 @@ const Info = styled.div`
   }
 `;
 
-const Timer = styled.div.attrs(({ timerProgress }) => ({
-  style: {
-    width: timerProgress + "px",
-  },
-}))`
+const Timer = styled.div`
   & {
     align-self: flex-start;
     height: 10px;

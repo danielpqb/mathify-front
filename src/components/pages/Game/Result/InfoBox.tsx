@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export default function InfoBox({ header, value }: { header: any; value: any }) {
+export default function InfoBox({
+  header,
+  value,
+}: {
+  header: string;
+  value: string;
+}) {
   let style;
 
   return (

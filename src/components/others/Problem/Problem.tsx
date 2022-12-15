@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
+import { useAppContext } from "contexts/AppContext";
 import styled from "styled-components";
-import { AppContext } from "../../../contexts/contexts";
 import Box from "./Box";
 
 export default function Problem() {
-  const { questionData } = useContext(AppContext);
+  const { questionData } = useAppContext();
 
-  const problemData: [] = questionData?.problemData;
+  const problemData = questionData?.problemData;
 
   return (
     <Container>
