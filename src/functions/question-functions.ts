@@ -1,7 +1,11 @@
-export function createProblemData({ allowedOperators, rangeOfNumbers }) {
+import { ConfigData } from "components/pages/Game/types";
+
+export function createProblemData(configGameData: ConfigData) {
+  const { allowedOperators, rangeOfNumbers } = configGameData;
+
   //Generate Operator
   let operator = "";
-  while (!allowedOperators[operator] || operator === "") {
+  while (!allowedOperators[operator as keyof object] || operator === "") {
     const operatorCode = Math.floor(Math.random() * 4);
     switch (operatorCode) {
     case 0:
@@ -22,8 +26,8 @@ export function createProblemData({ allowedOperators, rangeOfNumbers }) {
   }
 
   //Generate Operates
-  const min = rangeOfNumbers.from;
-  const dif = rangeOfNumbers.to - min;
+  const min = (rangeOfNumbers as any).from as number;
+  const dif = (rangeOfNumbers as any).to - min;
   const operates = [];
   switch (operator) {
   case "-":

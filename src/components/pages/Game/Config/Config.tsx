@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { defaultGameConfig } from "../../../../constants/game-constants";
 import { renderNewGame } from "../../../../functions/app-functions";
 import { saveConfigs, renderNewQuestion } from "../../../../functions/game-functions";
+import { ConfigData } from "../types";
 import ConfigTable from "./ConfigTable/ConfigTable";
 
 export default function Config() {
@@ -37,7 +38,7 @@ export default function Config() {
                 setGameData((old) => {
                   renderNewQuestion({
                     setQuestionData: setQuestionData,
-                    configGameData: old.config,
+                    configGameData: old.config as ConfigData,
                     setGameData: setGameData,
                     type: "firstRendering",
                     isFirst: true,

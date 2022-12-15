@@ -3,21 +3,29 @@ import { changeScreen, renderNewQuestion } from "functions/game-functions";
 import styled from "styled-components";
 
 export default function Restart() {
-  const { gameData, setGameData, setQuestionData } = useAppContext();
+  const { gameData, setGameData, setQuestionData, setCounter } =
+    useAppContext();
 
   const configGameData = gameData?.config;
 
   return (
     <Container
       onClick={() => {
-        renderNewQuestion({
-          setQuestionData: setQuestionData,
-          configGameData: configGameData,
-          setGameData: setGameData,
-          type: "restartingGame",
-          isFirst: true,
+        setCounter({
+          show: true,
+          inicialValue: 3000,
+          tick: 1000,
+          doThisWhenOver: () => {
+            renderNewQuestion({
+              setQuestionData: setQuestionData,
+              configGameData: configGameData,
+              setGameData: setGameData,
+              type: "restartingGame",
+              isFirst: true,
+            });
+            changeScreen(setGameData, "question");
+          },
         });
-        changeScreen(setGameData, "question");
       }}
     >
       Restart

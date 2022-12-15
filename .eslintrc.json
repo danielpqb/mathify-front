@@ -47,6 +47,7 @@
     "max-statements-per-line": ["error", { "max": 1 }],
     "no-multi-spaces": ["error"],
     "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+    "no-case-declarations": "off",
 
     //React
     "react/react-in-jsx-scope": "off",

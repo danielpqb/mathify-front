@@ -7,13 +7,19 @@ import Blur from "../Dummy/Blur";
 export default function Counter() {
   const { counter, setCounter } = useAppContext();
 
-  const { doThisWhenOver = () => {}, inicialValue = 5000, tick = 2000 } = counter;
+  const { inicialValue, tick, doThisWhenOver } = counter;
 
   useEffect(() => {
     if (inicialValue > 0) {
       const interval = setInterval(() => {
         setCounter((old) => {
-          return { ...old, inicialValue: Math.max((old as { inicialValue: number }).inicialValue - tick, 0) };
+          return {
+            ...old,
+            inicialValue: Math.max(
+              (old as { inicialValue: number }).inicialValue - tick,
+              0
+            ),
+          };
         });
       }, tick);
 

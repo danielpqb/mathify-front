@@ -19,11 +19,7 @@ export default function Info({ answers }: { answers: GameDataAnswer[] }) {
       <InfoBox
         header={"Time"}
         value={`${(
-          sumProps({ prop: "timeSpent", data: answers } as {
-            prop: any;
-            withValue: any;
-            data: any;
-          }) / 1000
+          sumProps({ prop: "timeSpent", data: answers }) / 1000
         ).toFixed(3)}s`}
       />
     </Container>
