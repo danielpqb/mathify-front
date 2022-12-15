@@ -13,9 +13,11 @@ import Game from "components/pages/Game/Game";
 import Config from "components/pages/Game/Config/Config";
 
 export default function App() {
-  const { setUserData, alert, counter } = useAppContext();
+  const { gameData, setUserData, alert, counter } = useAppContext();
 
-  useConsoleLogVariables();
+  const isGameStarted = gameData?.isGameStarted;
+
+  //useConsoleLogVariables();
 
   useEffect(() => {
     const localToken = localStorage.getItem("userToken");

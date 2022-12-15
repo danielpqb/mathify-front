@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   :root {
     --fontsize: 26px;
+    --fontcolor: rgb(255, 255, 255);
 
     --background-a-color: #afafaf;
     --background-b-color: #252525;
@@ -63,7 +64,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     font-size: var(--fontsize);
     line-height: 100%;
-    color: white;
+    color: var(--fontcolor);
   }
 
   *:focus {

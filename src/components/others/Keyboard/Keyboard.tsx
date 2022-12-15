@@ -14,9 +14,15 @@ export default function Keyboard() {
             key={index}
           >
             {value === "backspace" ? (
-              <IonIcon name="backspace" />
+              <IonIcon
+                name="backspace"
+                style={{ color: "var(--fontcolor)", fontSize: "26px" }}
+              />
             ) : value === "enter" ? (
-              <IonIcon name="arrow-forward" />
+              <IonIcon
+                name="arrow-forward"
+                style={{ color: "var(--fontcolor)", fontSize: "26px" }}
+              />
             ) : (
               value
             )}

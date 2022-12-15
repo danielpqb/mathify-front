@@ -11,7 +11,7 @@ export function useConsoleLogVariables() {
     const stringColor = "\x1B[38;2;54;206;193m"; //rgb(54, 206, 193)"
     const resetColor = "\x1B[m";
 
-    const separateParams = (obj) => {
+    const separateParams = (obj: object) => {
       if (obj) {
         Object.entries(obj).forEach((keyValuePair) => {
           if (typeof keyValuePair[1] === "string") {

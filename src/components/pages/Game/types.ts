@@ -2,6 +2,7 @@ export type GameData = {
   answers: Partial<GameDataAnswer>[];
   config: ConfigData;
   screen: "result" | "question";
+  isGameStarted: boolean;
 };
 
 export type GameDataAnswer = {

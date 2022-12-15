@@ -36,6 +36,9 @@ export default function Value({
             name="checkmark-circle"
             style={{
               color: style.color,
+              fontSize: "26px",
+            }}
+            divStyle={{
               filter:
                 "drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.4)) brightness(1.2)",
             }}
@@ -49,6 +52,9 @@ export default function Value({
             name="close-circle"
             style={{
               color: style.color,
+              fontSize: "26px",
+            }}
+            divStyle={{
               filter:
                 "drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.4)) brightness(1.2)",
             }}

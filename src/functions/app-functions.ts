@@ -26,7 +26,7 @@ export function renderNewGame({
       ...old,
       screen: "question",
       config: config,
-      answers: answers(config.numberOfQuestions),
+      answers: answers(config.numberOfQuestions as number),
     };
     return newer as GameData;
   });
