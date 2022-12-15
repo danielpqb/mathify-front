@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 
 import { requestUserData } from "./global-functions";
 import { useAppContext } from "./contexts/AppContext";
-import { useConsoleLogVariables } from "global-hooks";
+import { useConsoleLogVariables, useKeyboardListener } from "global-hooks";
 import Alert from "components/common/Alert/Alert";
 import Game from "components/pages/Game/Game";
 import Config from "components/pages/Game/Config/Config";
@@ -18,6 +18,7 @@ export default function App() {
   const isGameStarted = gameData?.isGameStarted;
 
   //useConsoleLogVariables();
+  useKeyboardListener();
 
   useEffect(() => {
     const localToken = localStorage.getItem("userToken");

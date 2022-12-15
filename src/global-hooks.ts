@@ -1,8 +1,10 @@
-import { useMemo } from "react";
+import { filterInput } from "functions/regex-functions";
+import { useEffect, useMemo } from "react";
 import { useAppContext } from "./contexts/AppContext";
 
 export function useConsoleLogVariables() {
-  const { userData, gameData, setQuestionData, setReloadApp, configData } = useAppContext();
+  const { userData, gameData, setQuestionData, setReloadApp, configData } =
+    useAppContext();
 
   useMemo(() => {
     const headerColor = "color: #ffbe88; font-weight: bold;";
@@ -15,7 +17,9 @@ export function useConsoleLogVariables() {
       if (obj) {
         Object.entries(obj).forEach((keyValuePair) => {
           if (typeof keyValuePair[1] === "string") {
-            console.log(`  ${paramColor}${keyValuePair[0]}: ${stringColor}'${keyValuePair[1]}'`);
+            console.log(
+              `  ${paramColor}${keyValuePair[0]}: ${stringColor}'${keyValuePair[1]}'`
+            );
             return;
           }
           console.log(`  ${paramColor}${keyValuePair[0]}:`, keyValuePair[1]);
@@ -25,13 +29,22 @@ export function useConsoleLogVariables() {
     };
 
     console.clear();
-    console.log(`%c\ngameData ${dependencyColor}(dependency)${resetColor}`, headerColor);
+    console.log(
+      `%c\ngameData ${dependencyColor}(dependency)${resetColor}`,
+      headerColor
+    );
     separateParams(gameData);
 
-    console.log(`%c\nuserData ${dependencyColor}(dependency)${resetColor}`, headerColor);
+    console.log(
+      `%c\nuserData ${dependencyColor}(dependency)${resetColor}`,
+      headerColor
+    );
     separateParams(userData);
 
-    console.log(`%c\nconfigData ${dependencyColor}(dependency)${resetColor}`, headerColor);
+    console.log(
+      `%c\nconfigData ${dependencyColor}(dependency)${resetColor}`,
+      headerColor
+    );
     separateParams(configData);
 
     setQuestionData((old) => {
@@ -41,8 +54,35 @@ export function useConsoleLogVariables() {
     });
 
     setReloadApp((old) => {
-      console.log(`%c\nDependencies Reloads: ${dependencyColor}${old + 1}\n `, headerColor);
+      console.log(
+        `%c\nDependencies Reloads: ${dependencyColor}${old + 1}\n `,
+        headerColor
+      );
       return old + 1;
     });
   }, [gameData, userData, configData, setQuestionData]);
+}
+
+export function useKeyboardListener() {
+  const { setQuestionData } = useAppContext();
+
+  useEffect(() => {
+    window.addEventListener("keydown", handler);
+  }, []);
+
+  function handler(e: KeyboardEvent) {
+    console.log(e.key);
+    const resp = filterInput({ value: e.key, type: "only-numbers", size: 1 });
+
+    if (resp) {
+      //Insert number pressed
+    }
+    if (e.key === "Enter") {
+      //Enter answer
+    }
+    if (e.key === "Backspace") {
+      //Delete last digit
+    }
+    return;
+  }
 }

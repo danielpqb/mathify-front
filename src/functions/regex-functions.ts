@@ -4,7 +4,7 @@ export function filterInput({
   size,
 }: {
   value: string;
-  type: string;
+  type: "only-numbers";
   size: number;
 }) {
   let resp = value;

@@ -1,7 +1,8 @@
+import { QuestionProblemData } from "components/pages/Game/types";
 import { useAppContext } from "contexts/AppContext";
 import styled from "styled-components";
 
-export default function Box({ boxData }: { boxData: any }) {
+export default function Box({ boxData }: { boxData: QuestionProblemData }) {
   const { questionData } = useAppContext();
 
   const myAnswer = questionData?.answer;

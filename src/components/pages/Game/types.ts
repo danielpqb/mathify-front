@@ -17,14 +17,16 @@ export type GameDataAnswer = {
 export type QuestionData = {
   answer: string;
   id: number;
-  problemData: {
-    type: "operate" | "operator" | "equals" | "result";
-    value: number | "+" | "-" | "÷" | "×";
-    isAnswer: boolean;
-  }[];
+  problemData: QuestionProblemData[];
   timeLeft: number;
   correctAnswer: number;
   lastTickTimestamp: number;
+};
+
+export type QuestionProblemData = {
+  type: "operate" | "operator" | "equals" | "result";
+  value: number | "+" | "-" | "÷" | "×";
+  isAnswer: boolean;
 };
 
 export type ConfigData = {

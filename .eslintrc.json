@@ -48,6 +48,7 @@
     "no-multi-spaces": ["error"],
     "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
     "no-case-declarations": "off",
+    "no-extra-boolean-cast": "error",
 
     //React
     "react/react-in-jsx-scope": "off",
