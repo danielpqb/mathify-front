@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode, useState } from "react";
-import { AppStates } from "../global-types";
+import { AppStates, UserData } from "../global-types";
 
 const AppContext = createContext({} as AppStates);
 
@@ -33,5 +33,5 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
     setConfigData,
   };
 
-  return <AppContext.Provider value={states as AppStates}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={states as any}>{children}</AppContext.Provider>;
 }

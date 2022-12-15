@@ -1,5 +1,6 @@
 import { useAppContext } from "contexts/AppContext";
 import styled from "styled-components";
+import { GameDataAnswer } from "../types";
 import Info from "./Info";
 import Line from "./Line";
 
@@ -19,7 +20,7 @@ export default function List() {
 
   return (
     <Container>
-      <Info answers={answers} />
+      <Info answers={answers as GameDataAnswer[]} />
 
       <Line
         type={"header"}

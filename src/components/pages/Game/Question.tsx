@@ -16,7 +16,7 @@ export default function Question() {
 
   const configGameData = gameData?.config;
 
-  const timerWidth = (timerMaxWidth * timeLeft) / configGameData?.questionTime;
+  const timerWidth = (timerMaxWidth * timeLeft) / (configGameData?.questionTime as number);
 
   useEffect(() => {
     if (timeLeft > 0) {
