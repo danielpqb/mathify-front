@@ -5,29 +5,29 @@ export const GlobalStyle = createGlobalStyle`
     --fontsize: 26px;
     --fontcolor: rgb(255, 255, 255);
 
-    --background-a-color: #afafaf;
-    --background-b-color: #252525;
+    --background-a-color: rgb(175, 175, 175);
+    --background-b-color: rgb(40, 40, 40);
 
     --config-true-color: rgb(0, 115, 45);
     --config-false-color: rgba(180, 30, 30, 0.5);
 
-    --keyboard-buttom-enter-color: #11257c;
-    --keyboard-buttom-backspace-color: #BC2525;
-    --keyboard-buttom-number-color: #747474;
+    --keyboard-buttom-enter-color: rgb(20, 125, 40);
+    --keyboard-buttom-backspace-color: rgb(190, 40, 40);
+    --keyboard-buttom-number-color: rgb(110, 110, 110);
 
-    --problem-operator-color: #ccb220;
-    --problem-operate-color: #3044b8;
-    --problem-equals-color: #1b743e;
-    --problem-result-color: #F15412;
+    --problem-operator-color: rgba(0, 120, 80, 0.8);
+    --problem-operate-color: rgba(0, 70, 180, 0.8);
+    --problem-equals-color: rgba(110, 110, 110, 0.4);
+    --problem-result-color: rgb(240, 85, 20);
 
-    --question-timer-color: #BC2525;
+    --question-timer-color: rgb(150, 40, 40);
 
     --game-start-buttom-color: rgb(30, 60, 130);
-    --game-restart-buttom-color: rgb(180, 170, 0);
+    --game-restart-buttom-color: rgba(180, 170, 0, 0.9);
 
-    --game-answers-true-color: #287211;
-    --game-answers-false-color: #BC2525;
-    --game-answers-none-color: #747474;
+    --game-answers-true-color: rgba(40, 115, 15, 0.9);
+    --game-answers-false-color: rgba(190, 40, 40, 0.9);
+    --game-answers-none-color: rgba(110, 110, 110, 0.9);
 
     --result-answers-header-color: transparent;
     --result-answers-line-color: rgb(70, 70, 70);
