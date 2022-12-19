@@ -7,7 +7,7 @@ export function filterInput({
   type: "only-numbers";
   size: number;
 }) {
-  let resp = value;
+  let resp = String(value);
 
   switch (type) {
   case "only-numbers":

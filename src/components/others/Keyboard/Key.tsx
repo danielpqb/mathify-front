@@ -32,6 +32,7 @@ export default function Key({
 
   return (
     <Container
+      id={`keyboard-key-${value}`}
       style={style}
       onClick={() => {
         const isNumber = !isNaN(value);

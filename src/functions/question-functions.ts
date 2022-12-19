@@ -1,4 +1,6 @@
 import { ConfigData } from "components/pages/Game/types";
+import { useAppContext } from "contexts/AppContext";
+import { renderNewQuestion, saveAnswer } from "./game-functions";
 
 export function createProblemData(configGameData: ConfigData) {
   const { allowedOperators, rangeOfNumbers } = configGameData;

@@ -71,18 +71,24 @@ export function useKeyboardListener() {
   }, []);
 
   function handler(e: KeyboardEvent) {
-    console.log(e.key);
     const resp = filterInput({ value: e.key, type: "only-numbers", size: 1 });
 
     if (resp) {
-      //Insert number pressed
+      setQuestionData((old) => {
+        return { ...old, answer: old.answer + resp };
+      });
     }
+
     if (e.key === "Enter") {
-      //Enter answer
+      document.getElementById("keyboard-key-enter")?.click();
     }
+
     if (e.key === "Backspace") {
-      //Delete last digit
+      setQuestionData((old) => {
+        return { ...old, answer: old.answer?.slice(0, -1) };
+      });
     }
+
     return;
   }
 }
