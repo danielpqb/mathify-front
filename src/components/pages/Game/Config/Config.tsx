@@ -3,12 +3,23 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { defaultGameConfig } from "../../../../constants/game-constants";
 import { renderNewGame } from "../../../../functions/app-functions";
-import { saveConfigs, renderNewQuestion } from "../../../../functions/game-functions";
+import {
+  saveConfigs,
+  renderNewQuestion,
+} from "../../../../functions/game-functions";
 import { ConfigData } from "../types";
 import ConfigTable from "./ConfigTable/ConfigTable";
+import RankingPresetConfig from "./RankingPresetConfig";
 
 export default function Config() {
-  const { setGameData, setConfigData, configData, setAlert, setCounter, setQuestionData } = useAppContext();
+  const {
+    setGameData,
+    setConfigData,
+    configData,
+    setAlert,
+    setCounter,
+    setQuestionData,
+  } = useAppContext();
 
   useEffect(() => {
     setConfigData((old) => {
@@ -21,6 +32,7 @@ export default function Config() {
   return (
     <Container>
       <ConfigTable />
+      <RankingPresetConfig />
 
       <StartButton
         onClick={() => {
@@ -59,6 +71,7 @@ export default function Config() {
 const Container = styled.div`
   & {
     flex-direction: column;
+    padding: 0px 10px;
   }
 `;
 
