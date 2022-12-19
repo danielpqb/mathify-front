@@ -10,8 +10,8 @@ export default function RankingPresetConfig() {
   const tiers = [
     { tier: "bronze", color: "rgb(214, 163, 69)" },
     { tier: "silver", color: "rgb(216, 216, 216)" },
-    { tier: "gold", color: "rgb(255, 208, 0)" },
-    { tier: "challenger", color: "rgb(216, 40, 27)" },
+    { tier: "gold", color: "rgb(233, 196, 31)" },
+    { tier: "challenger", color: "rgb(220, 35, 50)" },
   ];
 
   return (

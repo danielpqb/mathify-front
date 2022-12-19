@@ -5,8 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     --fontsize: 26px;
     --fontcolor: rgb(255, 255, 255);
 
-    --background-a-color: rgb(175, 175, 175);
-    --background-b-color: rgb(40, 40, 40);
+    --background-a-color: rgb(40, 40, 40);
+    --background-border-color: rgb(175, 175, 175);
 
     --config-true-color: rgb(0, 115, 45);
     --config-false-color: rgba(180, 30, 30, 0.5);

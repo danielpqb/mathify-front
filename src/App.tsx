@@ -70,8 +70,6 @@ const Layer1 = styled.div`
   & {
     width: 100vw;
 
-    padding: 5px;
-
     background-color: var(--background-a-color);
 
     @media (max-height: 400px) {
@@ -82,11 +80,10 @@ const Layer1 = styled.div`
 
 const Layer2 = styled.div`
   & {
-    background-color: var(--background-b-color);
-
     border-radius: 20px;
 
     padding: 10px 0px;
+    border: 3px solid var(--background-border-color);
 
     @media (max-height: 400px) {
       padding: 0px;
