@@ -77,16 +77,19 @@ export function useKeyboardListener() {
       setQuestionData((old) => {
         return { ...old, answer: old.answer + resp };
       });
+      return;
     }
 
     if (e.key === "Enter") {
       document.getElementById("keyboard-key-enter")?.click();
+      return;
     }
 
     if (e.key === "Backspace") {
       setQuestionData((old) => {
         return { ...old, answer: old.answer?.slice(0, -1) };
       });
+      return;
     }
 
     return;
