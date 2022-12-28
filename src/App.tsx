@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Counter from "./components/common/Counter/Counter";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 
-import { requestUserData } from "./global-functions";
 import { useAppContext } from "./contexts/AppContext";
 import { useConsoleLogVariables, useKeyboardListener } from "global-hooks";
 import Alert from "components/common/Alert/Alert";
@@ -19,13 +18,6 @@ export default function App() {
 
   //useConsoleLogVariables();
   useKeyboardListener();
-
-  useEffect(() => {
-    const localToken = localStorage.getItem("userToken");
-    if (localToken) {
-      requestUserData(localToken, setUserData);
-    }
-  }, [setUserData]);
 
   return (
     <>

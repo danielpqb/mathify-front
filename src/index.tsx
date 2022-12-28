@@ -1,3 +1,4 @@
+import UserContextProvider from "contexts/UserContext";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -9,7 +10,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <GlobalStyle />
 
     <AppContextProvider>
-      <App />
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
     </AppContextProvider>
   </React.StrictMode>
 );
