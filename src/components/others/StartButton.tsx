@@ -51,7 +51,7 @@ export default function StartButton() {
                 });
                 return old;
               });
-              navigate("/");
+              navigate("/game");
             },
           });
         }

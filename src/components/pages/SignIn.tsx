@@ -43,7 +43,7 @@ export default function SignIn() {
 
       setIsSubmitDisabled(false);
 
-      navigate("/");
+      navigate("/game");
     });
   }
 

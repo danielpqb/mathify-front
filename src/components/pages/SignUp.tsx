@@ -39,7 +39,7 @@ export default function SignUp() {
 
       setIsSubmitDisabled(false);
 
-      navigate("/");
+      navigate("/game");
     }
     catch (error) {
       setAlert({

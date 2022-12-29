@@ -34,7 +34,7 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route
-              path="/"
+              path="/game"
               element={isGameStarted ? <Game /> : <Config />}
             />
             <Route
@@ -53,7 +53,7 @@ export default function App() {
               element={
                 <ProtectedRoute
                   token={token}
-                  hasTokenPath={"/"}
+                  hasTokenPath={"/home"}
                 />
               }
             >

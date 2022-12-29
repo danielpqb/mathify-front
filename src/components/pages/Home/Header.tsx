@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 export default function Header() {
   const { userData } = useUserContext();
-  console.log(userData);
 
   const navigate = useNavigate();
 
