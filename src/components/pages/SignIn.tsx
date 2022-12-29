@@ -78,7 +78,7 @@ export default function SignIn() {
     <Container>
       <Logo>
         <img
-          src="/logo.png"
+          src="images/logo.png"
           alt=""
         />
       </Logo>
@@ -98,7 +98,7 @@ export default function SignIn() {
         <GoogleButton
           onClick={async () => {
             await getTokenWithGoogleOAuth();
-            navigate("/");
+            navigate("/home");
           }}
         ></GoogleButton>
       </OAuthButtons>

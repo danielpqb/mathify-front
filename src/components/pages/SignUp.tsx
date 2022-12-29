@@ -94,7 +94,7 @@ export default function SignUp() {
     <Container>
       <Logo>
         <img
-          src="/logo.png"
+          src="images/logo.png"
           alt=""
         />
       </Logo>

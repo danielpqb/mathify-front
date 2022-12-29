@@ -18,7 +18,7 @@ export default function useUserData(config?: { immediate?: boolean; retry?: bool
   } = useAsync(() => getUserDataByToken(token), configs?.immediate, configs?.retry);
 
   return {
-    userData,
+    userData: (userData as any)?.data?.user,
     userDataLoading,
     userDataError,
     fetchUserData,

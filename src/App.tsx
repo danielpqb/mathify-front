@@ -13,6 +13,7 @@ import Config from "components/pages/Game/Config/Config";
 import useToken from "hooks/api/useToken";
 import SignIn from "components/pages/SignIn";
 import SignUp from "components/pages/SignUp";
+import Home from "components/pages/Home/Home";
 
 export default function App() {
   const { gameData, alert, counter } = useAppContext();
@@ -35,6 +36,10 @@ export default function App() {
             <Route
               path="/"
               element={isGameStarted ? <Game /> : <Config />}
+            />
+            <Route
+              path="/home"
+              element={<Home />}
             />
             <Route
               path="/sign-in"
@@ -92,6 +97,9 @@ const Layer2 = styled.div`
 
     padding: 10px 0px;
     border: 3px solid var(--background-border-color);
+
+    position: relative;
+    overflow: hidden;
 
     @media (max-height: 400px) {
       padding: 0px;
