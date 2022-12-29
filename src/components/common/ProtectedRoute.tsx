@@ -1,32 +1,18 @@
-import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useAppContext } from "../../contexts/AppContext";
 
 export default function ProtectedRoute({
   token,
-  redirectPath = "/",
+  hasTokenPath = "/",
   children,
 }: {
   token: string | null;
-  redirectPath?: string;
+  hasTokenPath?: string;
   children?: React.ReactElement;
 }) {
-  const { setAlert } = useAppContext();
-
-  useEffect(() => {
-    if (!token) {
-      setAlert({
-        show: true,
-        message: "Sign in to access this page!",
-        flag: "red",
-      });
-    }
-  }, [setAlert, token]);
-
-  if (!token) {
+  if (token) {
     return (
       <Navigate
-        to={redirectPath}
+        to={hasTokenPath}
         replace
       />
     );

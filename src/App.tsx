@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,9 +10,14 @@ import { useConsoleLogVariables, useKeyboardListener } from "global-hooks";
 import Alert from "components/common/Alert/Alert";
 import Game from "components/pages/Game/Game";
 import Config from "components/pages/Game/Config/Config";
+import useToken from "hooks/api/useToken";
+import SignIn from "components/pages/SignIn";
+import SignUp from "components/pages/SignUp";
 
 export default function App() {
-  const { gameData, setUserData, alert, counter } = useAppContext();
+  const { gameData, alert, counter } = useAppContext();
+
+  const token = useToken();
 
   const isGameStarted = gameData?.isGameStarted;
 
@@ -32,10 +37,21 @@ export default function App() {
               element={isGameStarted ? <Game /> : <Config />}
             />
             <Route
-              path="/sign-up"
-              element={<></>}
+              path="/sign-in"
+              element={<SignIn />}
             />
-            <Route element={<ProtectedRoute token={localStorage.getItem("userToken")} />}>
+            <Route
+              path="/sign-up"
+              element={<SignUp />}
+            />
+            <Route
+              element={
+                <ProtectedRoute
+                  token={token}
+                  hasTokenPath={"/"}
+                />
+              }
+            >
               <Route
                 path="*"
                 element={<Navigate to="/" />}

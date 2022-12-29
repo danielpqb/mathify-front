@@ -97,7 +97,6 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 700;
     font-size: 15px;
     color: #FFFFFF;
-    margin: 30px 0px;
   }
 
   a:hover {
