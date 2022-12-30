@@ -1,4 +1,4 @@
-import { filterInput } from "functions/filter-functions";
+import { filterInput } from "functions/regex-functions";
 import { useEffect } from "react";
 
 export function useKeyboardListener() {
