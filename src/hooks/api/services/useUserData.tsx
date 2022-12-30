@@ -1,9 +1,14 @@
+import { useUserContext } from "contexts/UserContext";
 import { getUserDataByToken } from "services/user-services";
 import useAsync from "../useAsync";
-import useToken from "../useToken";
 
-export default function useUserData(config?: { immediate?: boolean; retry?: boolean }) {
-  const token = useToken();
+export default function useUserData(config?: {
+  immediate?: boolean;
+  retry?: boolean;
+}) {
+  const { token } = useUserContext();
+  const localToken = localStorage.getItem("userToken") || "";
+
   const configs = { ...config };
 
   if (!token) {
@@ -15,7 +20,11 @@ export default function useUserData(config?: { immediate?: boolean; retry?: bool
     loading: userDataLoading,
     error: userDataError,
     act: fetchUserData,
-  } = useAsync(() => getUserDataByToken(token), configs?.immediate, configs?.retry);
+  } = useAsync(
+    () => getUserDataByToken(token ? token : localToken),
+    configs?.immediate,
+    configs?.retry
+  );
 
   return {
     userData: (userData as any)?.data?.user,

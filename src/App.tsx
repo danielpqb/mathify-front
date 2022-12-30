@@ -10,15 +10,15 @@ import { useConsoleLogVariables, useKeyboardListener } from "global-hooks";
 import Alert from "components/common/Alert/Alert";
 import Game from "components/pages/Game/Game";
 import Config from "components/pages/Game/Config/Config";
-import useToken from "hooks/api/useToken";
 import SignIn from "components/pages/SignIn";
 import SignUp from "components/pages/SignUp";
 import Home from "components/pages/Home/Home";
+import { useUserContext } from "contexts/UserContext";
 
 export default function App() {
   const { questionData, alert, counter } = useAppContext();
 
-  const token = useToken();
+  const { token } = useUserContext();
 
   //useConsoleLogVariables();
   useKeyboardListener();
@@ -45,7 +45,9 @@ export default function App() {
             />
             <Route
               path="/game"
-              element={questionData.problemData ? <Game /> : <Navigate to="/home" />}
+              element={
+                questionData.problemData ? <Game /> : <Navigate to="/home" />
+              }
             />
             <Route
               path="/settings"

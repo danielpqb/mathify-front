@@ -1,7 +1,13 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "helpers/oauth";
 import useUserData from "hooks/api/services/useUserData";
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { putOAuth } from "services/user-services";
 import { UserStates } from "types/user-types";
 
@@ -16,7 +22,13 @@ export default function UserContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [reloaded, setReloaded] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("userToken"));
+
+  useEffect(() => {
+    if (token) {
+      fetchUserData(token);
+    }
+  }, [token]);
 
   const { userData, userDataLoading, userDataError, fetchUserData } =
     useUserData({ immediate: true });
@@ -28,16 +40,16 @@ export default function UserContextProvider({
     const { displayName: name, email, photoURL: photoUrl } = response.user;
 
     if (name && email && photoUrl) {
-      const token = (await putOAuth({ name, email, photoUrl })).data.token;
-      localStorage.setItem("userToken", token);
+      const userToken = (await putOAuth({ name, email, photoUrl })).data.token;
+      localStorage.setItem("userToken", userToken);
+      setToken(userToken);
     }
-
-    setReloaded((old) => !old);
 
     return;
   };
 
   const states = {
+    token,
     userData,
     userDataLoading,
     userDataError,

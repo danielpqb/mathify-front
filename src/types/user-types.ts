@@ -1,4 +1,5 @@
 export type UserStates = {
+  token: string;
   userData: UserData | null;
   userDataLoading: boolean | null;
   userDataError: Error | null;

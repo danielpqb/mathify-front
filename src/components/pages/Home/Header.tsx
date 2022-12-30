@@ -11,7 +11,7 @@ export default function Header() {
     <Container>
       <LeftBox>
         <Photo
-          src={userData ? userData?.photoUrl : "images/person.svg"}
+          src={userData?.photoUrl ? userData.photoUrl : "images/person.svg"}
           referrerPolicy="no-referrer"
         ></Photo>
         <Name>{userData ? userData?.name.split(" ")[0] : ""}</Name>
