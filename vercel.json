@@ -1,5 +1,5 @@
 {
   "redirects": [
-    { "source": "/*", "destination": "/home" }
+    { "source": "/:path*", "destination": "/home" }
   ]
 }
