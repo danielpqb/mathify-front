@@ -33,9 +33,6 @@ export default function StartButton() {
         const isSaved = saveConfigs({ setGameData, configData, setAlert });
         if (isSaved) {
           renderNewGame({ setGameData });
-          setGameData((old) => {
-            return { ...old, isGameStarted: true };
-          });
           setCounter({
             show: true,
             inicialValue: 3000,

@@ -16,11 +16,9 @@ import SignUp from "components/pages/SignUp";
 import Home from "components/pages/Home/Home";
 
 export default function App() {
-  const { gameData, alert, counter } = useAppContext();
+  const { questionData, alert, counter } = useAppContext();
 
   const token = useToken();
-
-  const isGameStarted = gameData?.isGameStarted;
 
   //useConsoleLogVariables();
   useKeyboardListener();
@@ -34,10 +32,6 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route
-              path="/game"
-              element={isGameStarted ? <Game /> : <Config />}
-            />
-            <Route
               path="/home"
               element={<Home />}
             />
@@ -50,13 +44,25 @@ export default function App() {
               element={<SignUp />}
             />
             <Route
+              path="/game"
+              element={questionData.problemData ? <Game /> : <Navigate to="/home" />}
+            />
+            <Route
+              path="/settings"
+              element={<Config />}
+            />
+            <Route
               element={
                 <ProtectedRoute
                   token={token}
-                  hasTokenPath={"/home"}
+                  noTokenPath={"/home"}
                 />
               }
             >
+              <Route
+                path="/user"
+                element={<></>}
+              />
               <Route
                 path="*"
                 element={<Navigate to="/home" />}

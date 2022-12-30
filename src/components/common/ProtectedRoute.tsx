@@ -2,17 +2,17 @@ import { Navigate, Outlet } from "react-router-dom";
 
 export default function ProtectedRoute({
   token,
-  hasTokenPath = "/home",
+  noTokenPath = "/home",
   children,
 }: {
   token: string | null;
-  hasTokenPath?: string;
+  noTokenPath?: string;
   children?: React.ReactElement;
 }) {
-  if (token) {
+  if (!token) {
     return (
       <Navigate
-        to={hasTokenPath}
+        to={noTokenPath}
         replace
       />
     );

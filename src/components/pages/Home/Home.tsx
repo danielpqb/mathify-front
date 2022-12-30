@@ -17,7 +17,7 @@ export default function Home() {
         <StartButton />
         <Settings
           onClick={() => {
-            navigate("/game");
+            navigate("/settings");
           }}
         >
           Settings
