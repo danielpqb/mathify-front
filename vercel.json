@@ -1,14 +1,14 @@
 {
   "rewrites": [
     {
-      "source": "/:path*",
+      "source": "/*",
       "has": [
         {
           "type": "host",
           "value": "https://mathify.vercel.app"
         }
       ],
-      "destination": "/home/:path*"
+      "destination": "/home/*"
     }
   ]
 }
