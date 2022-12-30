@@ -59,7 +59,7 @@ export default function App() {
             >
               <Route
                 path="*"
-                element={<Navigate to="/" />}
+                element={<Navigate to="/home" />}
               />
             </Route>
           </Routes>

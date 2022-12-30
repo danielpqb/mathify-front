@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 export default function ProtectedRoute({
   token,
-  hasTokenPath = "/",
+  hasTokenPath = "/home",
   children,
 }: {
   token: string | null;
