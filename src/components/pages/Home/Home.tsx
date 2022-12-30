@@ -35,9 +35,6 @@ const Container = styled.div`
     position: absolute;
     top: 0px;
     height: 100%;
-    background: #5f3838;
-
-    object-fit: cover;
   }
 `;
 
