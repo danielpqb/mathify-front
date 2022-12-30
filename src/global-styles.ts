@@ -18,12 +18,14 @@ export const GlobalStyle = createGlobalStyle`
     --problem-operator-color: rgba(0, 120, 80, 0.8);
     --problem-operate-color: rgba(0, 70, 180, 0.8);
     --problem-equals-color: rgba(110, 110, 110, 0.4);
-    --problem-result-color: rgb(240, 85, 20);
+    --problem-result-border-color: rgba(218, 207, 0, 1);
 
     --question-timer-color: rgb(150, 40, 40);
 
-    --game-start-buttom-color: rgb(30, 60, 130);
-    --game-restart-buttom-color: rgba(180, 170, 0, 0.9);
+    --game-play-buttom-color: rgba(0, 50, 115, 1);
+    --game-restart-buttom-color: rgb(150, 60, 0);
+    --game-settings-buttom-color: rgba(0, 85, 15, 1);
+    --game-save-buttom-color: rgba(0, 95, 120, 1);
 
     --game-answers-true-color: rgba(40, 115, 15, 0.9);
     --game-answers-false-color: rgba(190, 40, 40, 0.9);

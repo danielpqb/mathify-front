@@ -22,7 +22,6 @@ export default function Box({ boxData }: { boxData: QuestionProblemData }) {
     break;
   case "result":
     style = {
-      backgroundColor: "var(--problem-result-color)",
       gridArea: "result",
     };
     break;
@@ -32,6 +31,7 @@ export default function Box({ boxData }: { boxData: QuestionProblemData }) {
       gridArea: "equals",
       height: "35px",
       fontSize: "30px",
+      display: "none"
     };
     break;
   }
@@ -39,7 +39,10 @@ export default function Box({ boxData }: { boxData: QuestionProblemData }) {
     style = {
       ...style,
       backgroundColor: "var(--default-color-one)",
-      border: "4px dashed #e20000",
+      border: "4px dashed var(--problem-result-border-color)",
+      fontSize: "32px",
+      padding: "10px",
+      height: "fit-content"
     };
   }
 

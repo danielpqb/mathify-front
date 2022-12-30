@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Header() {
-  const { userData } = useUserContext();
+  const { userData, token } = useUserContext();
 
   const navigate = useNavigate();
 
@@ -14,17 +14,19 @@ export default function Header() {
           src={userData?.photoUrl ? userData.photoUrl : "images/person.svg"}
           referrerPolicy="no-referrer"
         ></Photo>
-        <Name>{userData ? userData?.name.split(" ")[0] : ""}</Name>
+        <Name>{userData?.name ? userData.name.split(" ")[0] : ""}</Name>
       </LeftBox>
 
       <RightBox>
-        <Login
-          onClick={() => {
-            navigate("/sign-in");
-          }}
-        >
-          Login
-        </Login>
+        {!token && (
+          <Login
+            onClick={() => {
+              navigate("/sign-in");
+            }}
+          >
+            Login
+          </Login>
+        )}
       </RightBox>
     </Container>
   );
@@ -64,8 +66,14 @@ const Name = styled.div`
 const Login = styled.div`
   & {
     width: fit-content;
+    height: fit-content;
     justify-self: flex-end;
     font-size: 16px;
+
+    padding: 10px;
+
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
   }
 
   &:hover {

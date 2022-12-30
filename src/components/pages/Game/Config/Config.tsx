@@ -1,30 +1,18 @@
-import StartButton from "components/others/StartButton";
+import PlayButton from "components/others/PlayButton";
+import SaveButton from "components/others/SaveButton";
 import { useAppContext } from "contexts/AppContext";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { defaultGameConfig } from "../../../../constants/game-constants";
 import ConfigTable from "./ConfigTable/ConfigTable";
 import RankingPresetConfig from "./RankingPresetConfig";
 
 export default function Config() {
-  const {
-    setConfigData,
-  } = useAppContext();
-
-  useEffect(() => {
-    setConfigData((old) => {
-      const newer = { ...old, ...defaultGameConfig };
-
-      return newer;
-    });
-  }, [setConfigData]);
-
   return (
     <Container>
       <ConfigTable />
       <RankingPresetConfig />
 
-      <StartButton />
+      <SaveButton />
     </Container>
   );
 }

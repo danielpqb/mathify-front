@@ -1,5 +1,6 @@
 import VideoBackground from "components/common/Dummy/VideoBackground";
-import StartButton from "components/others/StartButton";
+import SettingsButton from "components/others/SettingsButton";
+import PlayButton from "components/others/PlayButton";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header";
@@ -14,14 +15,8 @@ export default function Home() {
       <Header />
 
       <Buttons>
-        <StartButton />
-        <Settings
-          onClick={() => {
-            navigate("/settings");
-          }}
-        >
-          Settings
-        </Settings>
+        <PlayButton />
+        <SettingsButton />
       </Buttons>
     </Container>
   );
@@ -44,27 +39,5 @@ const Buttons = styled.div`
     bottom: 10vh;
     height: fit-content;
     flex-direction: column;
-  }
-`;
-
-const Settings = styled.div`
-  & {
-    background-color: var(--game-start-buttom-color);
-
-    border-radius: 10px;
-
-    border: 4px solid rgba(0, 0, 0, 0.4);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    max-width: 150px;
-    min-height: 50px;
-    max-height: 50px;
-
-    justify-self: center;
-    margin-top: 10px;
-  }
-
-  &:hover {
-    cursor: pointer;
   }
 `;

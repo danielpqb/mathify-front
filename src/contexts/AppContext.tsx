@@ -1,4 +1,5 @@
-import { createContext, useContext, ReactNode, useState } from "react";
+import { defaultGameConfig } from "constants/game-constants";
+import { createContext, useContext, ReactNode, useState, useEffect } from "react";
 import { AppStates, UserData } from "../types/app-types";
 
 const AppContext = createContext({} as AppStates);
@@ -15,6 +16,14 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
   const [gameData, setGameData] = useState({});
   const [questionData, setQuestionData] = useState({});
   const [configData, setConfigData] = useState({});
+
+  useEffect(() => {
+    setConfigData((old) => {
+      const newer = { ...old, ...defaultGameConfig };
+
+      return newer;
+    });
+  }, [setConfigData]);
 
   const states = {
     userData,
