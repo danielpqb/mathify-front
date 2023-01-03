@@ -1,16 +1,13 @@
 import VideoBackground from "components/common/Dummy/VideoBackground";
 import SettingsButton from "components/others/SettingsButton";
 import PlayButton from "components/others/PlayButton";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header";
 
 export default function Home() {
-  const navigate = useNavigate();
-
   return (
     <Container>
-      <VideoBackground src={"videos/background.mp4"} />
+      <VideoBackground src={"videos/math.mp4"} />
 
       <Header />
 
