@@ -27,12 +27,10 @@ const Container = styled.div`
 
     max-height: 180px;
 
-    @media (orientation: portrait) {
-      display: grid;
-      grid-template-areas:
-        ". . ."
-        "equals equals equals"
-        "result result result";
-    }
+    display: grid;
+    grid-template-areas:
+      ". . ."
+      "equals equals equals"
+      "result result result";
   }
 `;

@@ -60,7 +60,7 @@ const Container = styled.div`
     z-index: 21;
 
     font-family: "Arial";
-    font-size: 30vw;
+    font-size: 20vh;
     width: 90vw;
     height: fit-content;
     padding: 15px;

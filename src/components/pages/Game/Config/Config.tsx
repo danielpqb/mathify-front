@@ -8,7 +8,7 @@ import RankingPresetConfig from "./RankingPresetConfig";
 
 export default function Config() {
   return (
-    <Container>
+    <Container id={"config"}>
       <ConfigTable />
       <RankingPresetConfig />
 
@@ -21,5 +21,7 @@ const Container = styled.div`
   & {
     flex-direction: column;
     padding: 0px 10px;
+
+    max-width: 500px;
   }
 `;
