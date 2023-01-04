@@ -15,9 +15,11 @@ const Container = styled.div`
     border: 4px solid rgba(0, 0, 0, 0.4);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-    max-width: 150px;
+    width: 150px;
+    height: 50px;
     min-height: 50px;
-    max-height: 50px;
+
+    box-sizing: border-box;
 
     justify-self: center;
     margin-top: 10px;

@@ -36,5 +36,7 @@ const Buttons = styled.div`
     bottom: 10vh;
     height: fit-content;
     flex-direction: column;
+
+    width: unset;
   }
 `;

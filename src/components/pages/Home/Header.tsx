@@ -1,9 +1,12 @@
+import Button from "components/common/Dummy/Button";
 import { useUserContext } from "contexts/UserContext";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Header() {
   const { userData, token } = useUserContext();
+  const [showLogout, setShowLogout] = useState(false);
 
   const navigate = useNavigate();
 
@@ -13,7 +16,31 @@ export default function Header() {
         <Photo
           src={userData?.photoUrl ? userData.photoUrl : "images/person.svg"}
           referrerPolicy="no-referrer"
+          onClick={() => {
+            if (userData) {
+              setShowLogout((old) => !old);
+            }
+          }}
         ></Photo>
+        {showLogout ? (
+          <>
+            <WaitClick
+              onClick={() => {
+                setShowLogout(() => false);
+              }}
+            />
+            <Logout
+              onClick={() => {
+                localStorage.clear();
+                location.reload();
+              }}
+            >
+              Logout
+            </Logout>
+          </>
+        ) : (
+          <></>
+        )}
         <Name>{userData?.name ? userData.name.split(" ")[0] : ""}</Name>
       </LeftBox>
 
@@ -92,5 +119,39 @@ const RightBox = styled.div`
   & {
     justify-content: flex-end;
     gap: 10px;
+  }
+`;
+
+const Logout = styled(Button)`
+  && {
+    position: absolute;
+    background: rgb(90, 90, 90);
+
+    width: fit-content;
+    height: fit-content;
+    min-height: initial;
+
+    margin: 0px;
+    padding: 3px 5px;
+    bottom: -15px;
+    left: 10px;
+
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    z-index: 2;
+  }
+`;
+
+const WaitClick = styled.div`
+  & {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: var(--doc-heigth);
+    z-index: 1;
   }
 `;
