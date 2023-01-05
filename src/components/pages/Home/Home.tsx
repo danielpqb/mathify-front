@@ -3,11 +3,15 @@ import SettingsButton from "components/others/SettingsButton";
 import PlayButton from "components/others/PlayButton";
 import styled from "styled-components";
 import Header from "./Header";
+import ClockTimerSVG from "./ClockTimerSVG";
+import SumBoxSVG from "./SumBoxSVG";
 
 export default function Home() {
   return (
     <Container>
       <VideoBackground src={"videos/math.mp4"} />
+
+      <SumBoxSVG />
 
       <Header />
 
