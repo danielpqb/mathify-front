@@ -8,6 +8,7 @@ import styled from "styled-components";
 import GoogleButton from "react-google-button";
 import { useUserContext } from "contexts/UserContext";
 import { regexErrors } from "constants/regex-errors";
+import { Animation } from "react-animate-with-css";
 
 export default function SignIn() {
   const [form, setForm] = useState({
@@ -76,12 +77,14 @@ export default function SignIn() {
 
   return (
     <Container>
-      <Logo>
-        <img
-          src="images/logo.png"
-          alt=""
-        />
-      </Logo>
+      <Animation animateIn={{ name: "fadeIn", duration: 2000 }}>
+        <Logo>
+          <img
+            src="images/logo.png"
+            alt=""
+          />
+        </Logo>
+      </Animation>
 
       <Form
         inputs={inputs}
@@ -90,18 +93,22 @@ export default function SignIn() {
         submitButtonText={"Sign In"}
       />
 
-      <RedirectTo>
-        <Link to={"/sign-up"}>First time? Create an account!</Link>
-      </RedirectTo>
+      <Animation animateIn={{ name: "fadeIn", duration: 2000 }}>
+        <RedirectTo>
+          <Link to={"/sign-up"}>First time? Create an account!</Link>
+        </RedirectTo>
+      </Animation>
 
-      <OAuthButtons>
-        <GoogleButton
-          onClick={async () => {
-            await getTokenWithGoogleOAuth();
-            navigate("/home");
-          }}
-        ></GoogleButton>
-      </OAuthButtons>
+      <Animation animateIn={{ name: "heartBeat", duration: 1000 }}>
+        <OAuthButtons style={{ transform: "scale(1.15)" }}>
+          <GoogleButton
+            onClick={async () => {
+              await getTokenWithGoogleOAuth();
+              navigate("/home");
+            }}
+          ></GoogleButton>
+        </OAuthButtons>
+      </Animation>
     </Container>
   );
 }
@@ -138,10 +145,14 @@ const RedirectTo = styled.div`
 
 const Logo = styled.div`
   & {
-    max-width: 20vh;
-    max-height: 20vh;
+    max-width: 28vh;
+    max-height: 28vh;
 
     padding-bottom: 25px;
+
+    @media (orientation: landscape) {
+      display: none;
+    }
   }
   img {
     object-fit: contain;

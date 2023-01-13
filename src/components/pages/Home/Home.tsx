@@ -3,17 +3,26 @@ import SettingsButton from "components/others/SettingsButton";
 import PlayButton from "components/others/PlayButton";
 import styled from "styled-components";
 import Header from "./Header";
+import { Animation } from "react-animate-with-css";
 
 export default function Home() {
   return (
     <Container>
-      <VideoBackground src={"videos/math.mp4"} />
+      <Animation animateIn={{ name: "fadeIn", duration: 2000, timing: "cubic-bezier(1.0, 0, 1.0, 1.0)" }}>
+        <VideoBackground src={"videos/math.mp4"} />
+      </Animation>
 
-      <Header />
+      <Animation animateIn={{ name: "fadeIn", duration: 2000, timing: "cubic-bezier(1.0, 0, 1.0, 1.0)" }}>
+        <Header />
+      </Animation>
 
       <Buttons>
-        <PlayButton />
-        <SettingsButton />
+        <Animation animateIn={{ name: "backInLeft" }}>
+          <PlayButton />
+        </Animation>
+        <Animation animateIn={{ name: "backInRight" }}>
+          <SettingsButton />
+        </Animation>
       </Buttons>
     </Container>
   );

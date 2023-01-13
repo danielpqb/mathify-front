@@ -3,6 +3,7 @@ import { InputBoxProps } from "components/common/Form/InputBox";
 import { regexErrors } from "constants/regex-errors";
 import { useAppContext } from "contexts/AppContext";
 import React, { useState } from "react";
+import { Animation } from "react-animate-with-css";
 import { Link, useNavigate } from "react-router-dom";
 import { postSignUp } from "services/user-services";
 import styled from "styled-components";
@@ -92,12 +93,14 @@ export default function SignUp() {
 
   return (
     <Container>
-      <Logo>
-        <img
-          src="images/logo.png"
-          alt=""
-        />
-      </Logo>
+      <Animation animateIn={{ name: "fadeIn", duration: 2000 }}>
+        <Logo>
+          <img
+            src="images/logo.png"
+            alt=""
+          />
+        </Logo>
+      </Animation>
 
       <Form
         inputs={inputs}
@@ -106,9 +109,11 @@ export default function SignUp() {
         submitButtonText={"Sign Up"}
       />
 
-      <RedirectTo>
-        <Link to={"/sign-in"}>Switch back to log in</Link>
-      </RedirectTo>
+      <Animation animateIn={{ name: "fadeIn", duration: 2000 }}>
+        <RedirectTo>
+          <Link to={"/sign-in"}>Switch back to log in</Link>
+        </RedirectTo>
+      </Animation>
     </Container>
   );
 }
@@ -145,10 +150,14 @@ const RedirectTo = styled.div`
 
 const Logo = styled.div`
   & {
-    max-width: 20vh;
-    max-height: 20vh;
+    max-width: 28vh;
+    max-height: 28vh;
 
     padding-bottom: 25px;
+
+    @media (orientation: landscape) {
+      display: none;
+    }
   }
   img {
     object-fit: contain;

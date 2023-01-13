@@ -20,7 +20,17 @@ export type InputBoxProps = {
   regex?: RegExp;
 };
 export default function InputBox({
-  data: { name, placeholder, type, onChange, value, height = "60px", hasCheckBox, hasIcon, regex },
+  data: {
+    name,
+    placeholder,
+    type,
+    onChange,
+    value,
+    height = "60px",
+    hasCheckBox,
+    hasIcon,
+    regex,
+  },
 }: {
   data: InputBoxProps;
 }) {
@@ -60,8 +70,10 @@ export default function InputBox({
 
   return (
     <Container
-      height={height}
-      isValidPattern={isValidPattern}
+      style={{
+        height,
+        border: isValidPattern ? "none" : "3px solid rgb(190, 0, 0)",
+      }}
     >
       {hasIcon && <ShowIcon>{hasIcon}</ShowIcon>}
       <input
@@ -92,13 +104,11 @@ export default function InputBox({
   );
 }
 
-const Container = styled.div<{ height: string; isValidPattern: boolean }>`
+const Container = styled.div`
   & {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 1);
     border-radius: 5px;
-    height: ${({ height }) => height};
     margin: 10px 0px;
-    border: ${({ isValidPattern }) => (isValidPattern ? "0px" : "3px")} solid rgb(190, 0, 0);
     padding: 5px 10px;
   }
   input {
