@@ -57,8 +57,8 @@ export const GlobalStyle = createGlobalStyle`
   * {
     background: none;
     border: none;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     vertical-align: middle;
     box-sizing: border-box;
     font-family: "Roboto Slab";
@@ -67,6 +67,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: var(--fontsize);
     line-height: 100%;
     color: var(--fontcolor);
+    outline: none;
   }
 
   *:focus {

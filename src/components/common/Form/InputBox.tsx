@@ -106,6 +106,8 @@ export default function InputBox({
 
 const Container = styled.div`
   & {
+    flex-direction: row;
+    width: 100%;
     background: rgba(255, 255, 255, 1);
     border-radius: 5px;
     margin: 10px 0px;

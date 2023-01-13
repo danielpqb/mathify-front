@@ -36,7 +36,7 @@ specifiers:
   prettier: 2.8.1
   promise-retry: ^2.0.1
   react: ^18.2.0
-  react-animate-with-css: ^1.1.1
+  react-animate-with-css: ^1.1.6
   react-dom: ^18.2.0
   react-google-button: ^0.7.2
   react-icons: ^4.7.1
@@ -54,7 +54,7 @@ dependencies:
   firebase: 9.15.0
   promise-retry: 2.0.1
   react: 18.2.0
-  react-animate-with-css: 1.1.1_biqbaboplfbrettd7655fr4n2y
+  react-animate-with-css: 1.1.6_biqbaboplfbrettd7655fr4n2y
   react-dom: 18.2.0_react@18.2.0
   react-google-button: 0.7.2_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
@@ -5872,8 +5872,8 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
-  /react-animate-with-css/1.1.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-6j/sBgWKKErP8CefHau2jz+q1qbSPBlf+n2upRvYwwss+b/2Ijs0QV/7wroWSY5ucG6kH2ozXsz7eYP33TRcKA==}
+  /react-animate-with-css/1.1.6_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-eAp/I9u5issZyehw39f2BiIVNEdKQVNHaW6cxQ4QOF9oUpU3iolzukcWWe7Kb8B+a239g19aVm9rZxQT+zTXgA==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0

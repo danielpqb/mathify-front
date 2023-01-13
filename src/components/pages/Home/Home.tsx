@@ -8,21 +8,28 @@ import { Animation } from "react-animate-with-css";
 export default function Home() {
   return (
     <Container>
-      <Animation animateIn={{ name: "fadeIn", duration: 2000, timing: "cubic-bezier(1.0, 0, 1.0, 1.0)" }}>
+      <Animation
+        animateIn={{
+          name: "fadeIn",
+          timing: "cubic-bezier(1.0, 0, 1.0, 1.0)",
+        }}
+      >
         <VideoBackground src={"videos/math.mp4"} />
-      </Animation>
 
-      <Animation animateIn={{ name: "fadeIn", duration: 2000, timing: "cubic-bezier(1.0, 0, 1.0, 1.0)" }}>
         <Header />
       </Animation>
 
       <Buttons>
-        <Animation animateIn={{ name: "backInLeft" }}>
-          <PlayButton />
-        </Animation>
-        <Animation animateIn={{ name: "backInRight" }}>
-          <SettingsButton />
-        </Animation>
+        <div>
+          <Animation animateIn={{ name: "backInLeft" }}>
+            <PlayButton />
+          </Animation>
+        </div>
+        <div>
+          <Animation animateIn={{ name: "backInRight" }}>
+            <SettingsButton />
+          </Animation>
+        </div>
       </Buttons>
     </Container>
   );

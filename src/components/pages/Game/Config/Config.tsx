@@ -1,7 +1,5 @@
-import PlayButton from "components/others/PlayButton";
 import SaveButton from "components/others/SaveButton";
-import { useAppContext } from "contexts/AppContext";
-import { useEffect } from "react";
+import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
 import ConfigTable from "./ConfigTable/ConfigTable";
 import RankingPresetConfig from "./RankingPresetConfig";
@@ -9,8 +7,15 @@ import RankingPresetConfig from "./RankingPresetConfig";
 export default function Config() {
   return (
     <Container id={"config"}>
-      <ConfigTable />
-      <RankingPresetConfig />
+      <Animation
+        animateIn={{
+          name: "fadeIn",
+          timing: "cubic-bezier(1.0, 0, 1.0, 1.0)",
+        }}
+      >
+        <ConfigTable />
+        <RankingPresetConfig />
+      </Animation>
 
       <SaveButton />
     </Container>

@@ -77,36 +77,44 @@ export default function SignIn() {
 
   return (
     <Container>
-      <Animation animateIn={{ name: "fadeIn", duration: 2000 }}>
-        <Logo>
+      <Animation animateIn={{ name: "fadeIn" }}>
+        <Logo
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
           <img
             src="images/logo.png"
             alt=""
           />
         </Logo>
-      </Animation>
 
-      <Form
-        inputs={inputs}
-        handleSubmit={handleSubmit}
-        isSubmitDisabled={isSubmitDisabled}
-        submitButtonText={"Sign In"}
-      />
+        <Form
+          inputs={inputs}
+          handleSubmit={handleSubmit}
+          isSubmitDisabled={isSubmitDisabled}
+          submitButtonText={"Sign In"}
+        />
 
-      <Animation animateIn={{ name: "fadeIn", duration: 2000 }}>
         <RedirectTo>
           <Link to={"/sign-up"}>First time? Create an account!</Link>
         </RedirectTo>
-      </Animation>
 
-      <Animation animateIn={{ name: "heartBeat", duration: 1000 }}>
         <OAuthButtons style={{ transform: "scale(1.15)" }}>
-          <GoogleButton
-            onClick={async () => {
-              await getTokenWithGoogleOAuth();
-              navigate("/home");
+          <Animation
+            animateIn={{
+              name: "heartBeat",
+              delay: 1000,
+              repeat: 2,
             }}
-          ></GoogleButton>
+          >
+            <GoogleButton
+              onClick={async () => {
+                await getTokenWithGoogleOAuth();
+                navigate("/home");
+              }}
+            ></GoogleButton>
+          </Animation>
         </OAuthButtons>
       </Animation>
     </Container>
@@ -131,7 +139,7 @@ const Container = styled.div`
 const RedirectTo = styled.div`
   & {
     height: fit-content;
-    padding: 10px 0px;
+    padding: 20px 0px;
   }
   a {
     font-family: "Lato";
@@ -150,9 +158,12 @@ const Logo = styled.div`
 
     padding-bottom: 25px;
 
-    @media (orientation: landscape) {
+    @media (orientation: landscape) and (max-height: 600px) {
       display: none;
     }
+  }
+  &:hover {
+    cursor: pointer;
   }
   img {
     object-fit: contain;
@@ -161,7 +172,7 @@ const Logo = styled.div`
 
 const OAuthButtons = styled.div`
   & {
-    padding: 30px 0px;
+    padding: 5px 0px;
     height: fit-content;
   }
 

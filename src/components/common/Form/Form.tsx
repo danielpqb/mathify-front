@@ -19,19 +19,21 @@ export default function Form({
       action=""
       onSubmit={handleSubmit}
     >
-      <Animation animateIn={{ name: "slideInLeft", duration: 70 }}>
-        {inputs.map((inputData, index) => {
-          return (
-            <InputBox
-              key={index}
-              data={inputData}
-            />
-          );
-        })}
+      {inputs.map((inputData, index) => {
+        return (
+          <Animation
+            key={index}
+            animateIn={{ name: "fadeInLeftBig", duration: 200 }}
+          >
+            <InputBox data={inputData} />
+          </Animation>
+        );
+      })}
 
+      <Animation animateIn={{ name: "slideInDown", duration: 200 }}>
         <SubmitButton
           disabled={isSubmitDisabled}
-          style={{ height: "50px" }}
+          style={{ height: "50px", width: "100%" }}
         >
           {submitButtonText}{" "}
         </SubmitButton>
@@ -47,9 +49,7 @@ const Container = styled.form`
     width: 100%;
     max-width: 500px;
     text-align: center;
-  }
 
-  & > * {
-    margin: auto;
+    margin: 0 !important;
   }
 `;

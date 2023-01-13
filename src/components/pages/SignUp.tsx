@@ -93,23 +93,25 @@ export default function SignUp() {
 
   return (
     <Container>
-      <Animation animateIn={{ name: "fadeIn", duration: 2000 }}>
-        <Logo>
+      <Animation animateIn={{ name: "fadeIn" }}>
+        <Logo
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
           <img
             src="images/logo.png"
             alt=""
           />
         </Logo>
-      </Animation>
 
-      <Form
-        inputs={inputs}
-        handleSubmit={handleSubmit}
-        isSubmitDisabled={isSubmitDisabled}
-        submitButtonText={"Sign Up"}
-      />
+        <Form
+          inputs={inputs}
+          handleSubmit={handleSubmit}
+          isSubmitDisabled={isSubmitDisabled}
+          submitButtonText={"Sign Up"}
+        />
 
-      <Animation animateIn={{ name: "fadeIn", duration: 2000 }}>
         <RedirectTo>
           <Link to={"/sign-in"}>Switch back to log in</Link>
         </RedirectTo>
@@ -136,7 +138,7 @@ const Container = styled.div`
 const RedirectTo = styled.div`
   & {
     height: fit-content;
-    padding: 10px 0px;
+    padding: 20px 0px;
   }
   a {
     font-family: "Lato";
@@ -155,9 +157,12 @@ const Logo = styled.div`
 
     padding-bottom: 25px;
 
-    @media (orientation: landscape) {
+    @media (orientation: landscape) and (max-height: 600px) {
       display: none;
     }
+  }
+  &:hover {
+    cursor: pointer;
   }
   img {
     object-fit: contain;

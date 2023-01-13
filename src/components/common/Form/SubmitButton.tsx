@@ -1,4 +1,4 @@
-import styled, { StyledProps } from "styled-components";
+import styled from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
 import React from "react";
 
