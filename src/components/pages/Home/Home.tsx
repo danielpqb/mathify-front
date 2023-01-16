@@ -4,8 +4,24 @@ import PlayButton from "components/others/PlayButton";
 import styled from "styled-components";
 import Header from "./Header";
 import { Animation } from "react-animate-with-css";
+import Lottie from "react-lottie";
+
+import mathSign from "../../../assets/mathSign.json";
+import signs from "../../../assets/signs.json";
 
 export default function Home() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const winWidth = window.innerWidth;
+  const winHeight = window.innerHeight;
+  const portrait = window.matchMedia("(orientation: portrait)").matches ? true : false;
+
   return (
     <Container>
       <Animation
@@ -14,10 +30,25 @@ export default function Home() {
           timing: "cubic-bezier(1.0, 0, 1.0, 1.0)",
         }}
       >
-        <VideoBackground src={"videos/math.mp4"} />
-
         <Header />
       </Animation>
+
+      <div style={{ position: "absolute", margin: "auto" }}>
+        {/* <Lottie
+          options={{ ...defaultOptions, animationData: mathSign }}
+          height={400}
+          width={400}
+          isStopped={false}
+          isPaused={false}
+        /> */}
+        <Lottie
+          options={{ ...defaultOptions, animationData: signs }}
+          width={portrait ? winWidth : winHeight}
+          height={portrait ? winWidth : winHeight}
+          isStopped={false}
+          isPaused={false}
+        />
+      </div>
 
       <Buttons>
         <div>
