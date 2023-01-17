@@ -6,7 +6,6 @@ import Header from "./Header";
 import { Animation } from "react-animate-with-css";
 import Lottie from "react-lottie";
 
-import mathSign from "../../../assets/mathSign.json";
 import signs from "../../../assets/signs.json";
 
 export default function Home() {
@@ -18,8 +17,8 @@ export default function Home() {
     },
   };
 
-  const winWidth = window.innerWidth;
-  const winHeight = window.innerHeight;
+  const winWidth = Math.min(window.innerWidth, 700);
+  const winHeight = Math.min(window.innerHeight, 700);
   const portrait = window.matchMedia("(orientation: portrait)").matches
     ? true
     : false;
