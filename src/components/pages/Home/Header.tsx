@@ -19,7 +19,10 @@ export default function Header() {
           onClick={() => {
             if (userData) {
               setShowLogout((old) => !old);
+              return;
             }
+            console.log("iew");
+            navigate("/sign-in");
           }}
         ></Photo>
         {showLogout ? (
@@ -68,6 +71,8 @@ const Container = styled.div`
     padding: 0px 15px;
 
     justify-content: flex-start;
+
+    z-index: 2;
   }
 `;
 
@@ -76,10 +81,11 @@ const Photo = styled.img`
     width: 50px;
     height: 50px;
 
-    box-shadow: 0px 0px 5px 1px white;
+    border: 4px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-
-    background-color: rgba(255, 255, 255, 0.7);
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
 

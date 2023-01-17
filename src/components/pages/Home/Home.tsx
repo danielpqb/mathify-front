@@ -20,7 +20,9 @@ export default function Home() {
 
   const winWidth = window.innerWidth;
   const winHeight = window.innerHeight;
-  const portrait = window.matchMedia("(orientation: portrait)").matches ? true : false;
+  const portrait = window.matchMedia("(orientation: portrait)").matches
+    ? true
+    : false;
 
   return (
     <Container>
@@ -33,22 +35,17 @@ export default function Home() {
         <Header />
       </Animation>
 
-      <div style={{ position: "absolute", margin: "auto" }}>
-        {/* <Lottie
-          options={{ ...defaultOptions, animationData: mathSign }}
-          height={400}
-          width={400}
-          isStopped={false}
-          isPaused={false}
-        /> */}
-        <Lottie
-          options={{ ...defaultOptions, animationData: signs }}
-          width={portrait ? winWidth : winHeight}
-          height={portrait ? winWidth : winHeight}
-          isStopped={false}
-          isPaused={false}
-        />
-      </div>
+      <Logo>
+        <Animation animateIn={{ name:"fadeInDownBig" }}>
+          <Lottie
+            options={{ ...defaultOptions, animationData: signs }}
+            width={portrait ? winWidth : winHeight}
+            height={portrait ? winWidth : winHeight}
+            isStopped={false}
+            isPaused={false}
+          />
+        </Animation>
+      </Logo>
 
       <Buttons>
         <div>
@@ -80,10 +77,19 @@ const Container = styled.div`
 const Buttons = styled.div`
   & {
     position: fixed;
-    bottom: 10vh;
+    bottom: 7vh;
     height: fit-content;
     flex-direction: column;
+  }
+`;
 
-    width: unset;
+const Logo = styled.div`
+  & {
+    position: absolute;
+    bottom: 7vh;
+  }
+
+  * {
+    pointer-events: none;
   }
 `;
