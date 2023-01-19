@@ -8,7 +8,7 @@ import styled from "styled-components";
 import GoogleButton from "react-google-button";
 import { useUserContext } from "contexts/UserContext";
 import { regexErrors } from "constants/regex-errors";
-import { Animation } from "react-animate-with-css";
+import { Animation } from "components/common/Animate/AnimationContext";
 
 export default function SignIn() {
   const [form, setForm] = useState({

@@ -1,6 +1,6 @@
+import { AnimationContextProvider } from "components/common/Animate/AnimationContext";
 import UserContextProvider from "contexts/UserContext";
 import React from "react";
-import { AnimationContextProvider } from "react-animate-with-css";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { AppContextProvider } from "./contexts/AppContext";

@@ -5,7 +5,7 @@ import Header from "./Header";
 import Lottie from "react-lottie";
 
 import signs from "../../../assets/signs.json";
-import { Animation } from "react-animate-with-css";
+import { Animation } from "components/common/Animate/AnimationContext";
 
 export default function Home() {
   const defaultOptions = {

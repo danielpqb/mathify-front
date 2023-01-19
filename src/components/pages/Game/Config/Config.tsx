@@ -1,5 +1,5 @@
+import { Animation } from "components/common/Animate/AnimationContext";
 import SaveButton from "components/others/SaveButton";
-import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
 import ConfigTable from "./ConfigTable/ConfigTable";
 import RankingPresetConfig from "./RankingPresetConfig";

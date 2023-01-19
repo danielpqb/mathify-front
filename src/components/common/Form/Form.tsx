@@ -1,7 +1,7 @@
 import InputBox, { InputBoxProps } from "components/common/Form/InputBox";
 import SubmitButton from "components/common/Form/SubmitButton";
-import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
+import { Animation } from "../Animate/AnimationContext";
 
 export default function Form({
   inputs,

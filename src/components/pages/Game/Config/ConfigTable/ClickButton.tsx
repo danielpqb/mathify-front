@@ -1,5 +1,5 @@
+import { useAnimate } from "components/common/Animate/AnimationContext";
 import { useAppContext } from "contexts/AppContext";
-import { useAnimate } from "react-animate-with-css";
 import styled from "styled-components";
 import { ConfigParamData } from "./ConfigTable";
 

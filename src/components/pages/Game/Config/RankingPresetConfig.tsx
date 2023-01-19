@@ -1,7 +1,7 @@
+import { Animation, useAnimate } from "components/common/Animate/AnimationContext";
 import IonIcon from "components/common/IonIcon/IonIcon";
 import { tierConfigs } from "constants/game-constants";
 import { useAppContext } from "contexts/AppContext";
-import { Animation, useAnimate } from "react-animate-with-css";
 import styled from "styled-components";
 import { ConfigData } from "../types";
 

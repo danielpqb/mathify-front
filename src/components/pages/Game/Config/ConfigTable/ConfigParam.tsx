@@ -1,8 +1,8 @@
+import { Animation } from "components/common/Animate/AnimationContext";
 import InputBox from "components/others/InputBox/InputBox";
 import { useAppContext } from "contexts/AppContext";
 import { filterInput } from "functions/regex-functions";
 import React from "react";
-import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
 import { ConfigData } from "../../types";
 import ClickButton from "./ClickButton";

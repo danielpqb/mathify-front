@@ -1,9 +1,9 @@
+import { useAnimate } from "components/common/Animate/AnimationContext";
 import Button from "components/common/Dummy/Button";
 import { ConfigData } from "components/pages/Game/types";
 import { useAppContext } from "contexts/AppContext";
 import { renderNewGame } from "functions/app-functions";
 import { renderNewQuestion, saveConfigs } from "functions/game-functions";
-import { useAnimate } from "react-animate-with-css";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 

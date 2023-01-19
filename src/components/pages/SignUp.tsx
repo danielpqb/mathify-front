@@ -1,9 +1,9 @@
+import { Animation } from "components/common/Animate/AnimationContext";
 import Form from "components/common/Form/Form";
 import { InputBoxProps } from "components/common/Form/InputBox";
 import { regexErrors } from "constants/regex-errors";
 import { useAppContext } from "contexts/AppContext";
 import React, { useState } from "react";
-import { Animation } from "react-animate-with-css";
 import { Link, useNavigate } from "react-router-dom";
 import { postSignUp } from "services/user-services";
 import styled from "styled-components";
