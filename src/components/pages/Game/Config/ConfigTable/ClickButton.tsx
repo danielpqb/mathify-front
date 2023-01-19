@@ -31,7 +31,7 @@ export default function ClickButton({
           };
           (newer[configParamData.name as keyof object] as any)[choice] =
             !old[configParamData.name as keyof object][choice];
-          return { ...old, ...newer };
+          return { ...old, ...newer, tier: undefined };
         });
       }}
     >

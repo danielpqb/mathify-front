@@ -65,7 +65,7 @@ export default function ConfigParam({
                   type: "only-numbers",
                   size: 2,
                 });
-                const newer = { ...old };
+                const newer = { ...old, tier: undefined };
                 newer[configParamData.name as keyof object] = value as never;
                 return newer;
               });
@@ -94,7 +94,7 @@ export default function ConfigParam({
                   type: "only-numbers",
                   size: 2,
                 });
-                const newer = { ...old } as any;
+                const newer = { ...old, tier: undefined } as any;
                 newer[configParamData.name as keyof object] = {
                   ...(newer[configParamData.name as keyof object] as object),
                   from: value,
@@ -118,7 +118,7 @@ export default function ConfigParam({
                   type: "only-numbers",
                   size: 2,
                 });
-                const newer = { ...old } as any;
+                const newer = { ...old, tier: undefined } as any;
                 newer[configParamData.name as keyof object] = {
                   ...(newer[configParamData.name as keyof object] as object),
                   to: value,

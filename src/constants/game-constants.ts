@@ -70,4 +70,16 @@ export const tierConfigs = {
     numberOfQuestions: 10,
     rangeOfNumbers: { from: 11, to: 99 },
   },
+  challenger2: {
+    questionTime: 15,
+    allowedOperators: { "+": false, "-": false, "×": true, "÷": false },
+    numberOfQuestions: 10,
+    rangeOfNumbers: { from: 11, to: 99 },
+  },
+  challenger1: {
+    questionTime: 15,
+    allowedOperators: { "+": false, "-": false, "×": true, "÷": true },
+    numberOfQuestions: 10,
+    rangeOfNumbers: { from: 11, to: 99 },
+  },
 };
