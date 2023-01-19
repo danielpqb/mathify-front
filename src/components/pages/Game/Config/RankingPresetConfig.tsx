@@ -7,8 +7,8 @@ import { ConfigData } from "../types";
 
 export default function RankingPresetConfig() {
   const { configData, setConfigData } = useAppContext();
-  const { animate, animations } = useAnimate();
-  console.log(animations);
+  const { animate } = useAnimate();
+
   const tiers = [
     { name: "bronze", color: "rgb(214, 163, 69)" },
     { name: "silver", color: "rgb(216, 216, 216)" },
