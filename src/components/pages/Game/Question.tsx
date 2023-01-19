@@ -3,20 +3,29 @@ import styled from "styled-components";
 import Answers from "../../others/Answers/Answers";
 import Problem from "../../others/Problem/Problem";
 import Keyboard from "../../others/Keyboard/Keyboard";
-import { renderNewQuestion, saveAnswer } from "../../../functions/game-functions";
+import {
+  renderNewQuestion,
+  saveAnswer,
+} from "../../../functions/game-functions";
 import { useAppContext } from "contexts/AppContext";
+import { Animation, useAnimate } from "react-animate-with-css";
 
 export default function Question() {
-  const { gameData, setGameData, questionData, setQuestionData } = useAppContext();
+  const { gameData, setGameData, questionData, setQuestionData } =
+    useAppContext();
+  const { animate } = useAnimate();
 
-  const timerMaxWidth = window.innerWidth - (window.matchMedia("(min-height: 400px)").matches ? 10 : 0);
+  const timerMaxWidth =
+    window.innerWidth -
+    (window.matchMedia("(min-height: 400px)").matches ? 10 : 0);
 
   const { timeLeft, lastTickTimestamp } = questionData;
   const _questionData = questionData;
 
   const configGameData = gameData?.config;
 
-  const timerWidth = (timerMaxWidth * timeLeft) / (configGameData?.questionTime as number);
+  const timerWidth =
+    (timerMaxWidth * timeLeft) / (configGameData?.questionTime as number);
 
   useEffect(() => {
     if (timeLeft > 0) {
@@ -25,7 +34,10 @@ export default function Question() {
           const now = Date.now();
           return {
             ...old,
-            timeLeft: Math.max(timeLeft - (now - (lastTickTimestamp ? lastTickTimestamp : now)), 0),
+            timeLeft: Math.max(
+              timeLeft - (now - (lastTickTimestamp ? lastTickTimestamp : now)),
+              0
+            ),
             lastTickTimestamp: now,
           };
         });
@@ -37,6 +49,10 @@ export default function Question() {
     if (timeLeft === 0) {
       saveAnswer({ setGameData, questionData: _questionData });
 
+      if (Number(questionData.answer) !== Number(questionData.correctAnswer)) {
+        animate({ id: "gameScreen", name: "headShake", duration: 600 });
+      }
+
       return renderNewQuestion({
         setQuestionData: setQuestionData,
         configGameData: configGameData,
@@ -45,19 +61,28 @@ export default function Question() {
         isFirst: false,
       });
     }
-  }, [_questionData, configGameData, lastTickTimestamp, setGameData, setQuestionData, timeLeft]);
+  }, [
+    _questionData,
+    configGameData,
+    lastTickTimestamp,
+    setGameData,
+    setQuestionData,
+    timeLeft,
+  ]);
 
   return (
     <Container>
-      <TopInfo>
-        <Problem />
-      </TopInfo>
+      <Animation id="gameScreen">
+        <TopInfo>
+          <Problem />
+        </TopInfo>
 
-      <Info>
-        <Keyboard />
-        <Timer style={{ width: `${timerWidth}px` }} />
-        <Answers />
-      </Info>
+        <Info>
+          <Keyboard />
+          <Timer style={{ width: `${timerWidth}px` }} />
+          <Answers />
+        </Info>
+      </Animation>
     </Container>
   );
 }

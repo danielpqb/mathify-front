@@ -1,4 +1,5 @@
 import { useAppContext } from "contexts/AppContext";
+import { Animation, useAnimate } from "react-animate-with-css";
 import styled from "styled-components";
 import {
   renderNewQuestion,
@@ -14,6 +15,8 @@ export default function Key({
 }) {
   const { gameData, setGameData, questionData, setQuestionData } =
     useAppContext();
+
+  const { animate } = useAnimate();
 
   const myAnswer = questionData?.answer;
 
@@ -31,47 +34,63 @@ export default function Key({
   };
 
   return (
-    <Container
+    <Animation
       id={`keyboard-key-${value}`}
-      style={style}
-      onClick={() => {
-        const isNumber = !isNaN(value);
-        if (isNumber) {
-          return setQuestionData((old) => {
-            return {
-              ...old,
-              answer: `${myAnswer}${value}`,
-            };
-          });
-        }
-        if (value === "backspace") {
-          return setQuestionData((old) => {
-            return {
-              ...old,
-              answer: myAnswer.slice(0, -1),
-            };
-          });
-        }
-        if (value === "enter") {
-          if (myAnswer === "") {
-            return;
-          }
-          else {
-            saveAnswer({ setGameData, questionData });
-          }
-
-          renderNewQuestion({
-            setQuestionData: setQuestionData,
-            configGameData: configGameData,
-            setGameData: setGameData,
-            type: "answering",
-            isFirst: false,
-          });
-        }
-      }}
+      style={{ ...style, backgroundColor: "none" }}
     >
-      {children}
-    </Container>
+      <Container
+        id={`keyboard-key-${value}`}
+        style={style}
+        onClick={() => {
+          animate({
+            id: `keyboard-key-${value}`,
+            name: "fadeIn",
+            duration: 200,
+          });
+          const isNumber = !isNaN(value);
+          if (isNumber) {
+            return setQuestionData((old) => {
+              return {
+                ...old,
+                answer: `${myAnswer}${value}`,
+              };
+            });
+          }
+          if (value === "backspace") {
+            return setQuestionData((old) => {
+              return {
+                ...old,
+                answer: myAnswer.slice(0, -1),
+              };
+            });
+          }
+          if (value === "enter") {
+            if (myAnswer === "") {
+              return;
+            }
+            else {
+              saveAnswer({ setGameData, questionData });
+            }
+
+            if (
+              Number(questionData.answer) !== Number(questionData.correctAnswer)
+            ) {
+              animate({ id: "gameScreen", name: "headShake", duration: 600 });
+            }
+
+            renderNewQuestion({
+              setQuestionData: setQuestionData,
+              configGameData: configGameData,
+              setGameData: setGameData,
+              type: "answering",
+              isFirst: false,
+            });
+          }
+        }}
+      >
+        {children}
+      </Container>
+    </Animation>
   );
 }
 

@@ -1,4 +1,6 @@
 import { GameDataAnswer } from "components/pages/Game/types";
+import { useEffect, useMemo } from "react";
+import { Animation, useAnimate } from "react-animate-with-css";
 import styled from "styled-components";
 
 export default function Answer({
@@ -6,6 +8,8 @@ export default function Answer({
 }: {
   answerData: Partial<GameDataAnswer>;
 }) {
+  const { animate } = useAnimate();
+
   let style;
   if (answerData.isCorrect === true) {
     style = { backgroundColor: "var(--game-answers-true-color)" };
@@ -17,10 +21,33 @@ export default function Answer({
     style = { backgroundColor: "var(--game-answers-none-color)" };
   }
 
-  return <Container style={style}>{answerData.id}</Container>;
+  useEffect(() => {
+    if (answerData.isCorrect) {
+      console.log("id", answerData.id);
+      animate({
+        id: `answer-circle-${answerData.id}`,
+        name: "flip",
+      });
+    }
+    else{
+      animate({
+        id: `answer-circle-${answerData.id}`,
+        name: "bounceIn",
+      });
+    }
+  }, [style.backgroundColor]);
+
+  return (
+    <Animation
+      id={`answer-circle-${answerData.id}`}
+      style={{ height: "fit-content", width: "fit-content" }}
+    >
+      <Container style={style}>{answerData.id}</Container>
+    </Animation>
+  );
 }
 
-const Container = styled.div.attrs(({ style }) => style)`
+const Container = styled.div`
   & {
     width: 25px;
     height: 25px;

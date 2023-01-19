@@ -1,3 +1,4 @@
+import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
 import List from "./List";
 import Restart from "./Restart";
@@ -5,9 +6,17 @@ import Restart from "./Restart";
 export default function Result() {
   return (
     <Container>
-      <List />
+      <Animation
+        animateIn={{
+          name: "fadeIn",
+          duration: 1500,
+          timing: "cubic-bezier(1.0, 0, 1.0, 1.0)",
+        }}
+      >
+        <List />
 
-      <Restart />
+        <Restart />
+      </Animation>
     </Container>
   );
 }

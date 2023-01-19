@@ -1,3 +1,4 @@
+import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
 import { countProps, sumProps } from "../../../../functions/result-functions";
 import { GameDataAnswer } from "../types";
@@ -8,20 +9,26 @@ export default function Info({ answers }: { answers: GameDataAnswer[] }) {
 
   return (
     <Container style={style}>
-      <InfoBox
-        header={"Accuracy"}
-        value={`${(
-          (countProps({ prop: "isCorrect", withValue: true, data: answers }) /
-            answers.length) *
-          100
-        ).toFixed(1)}%`}
-      />
-      <InfoBox
-        header={"Time"}
-        value={`${(
-          sumProps({ prop: "timeSpent", data: answers }) / 1000
-        ).toFixed(3)}s`}
-      />
+      <Animation
+        animateIn={{
+          name: "fadeInLeft",
+        }}
+      >
+        <InfoBox
+          header={"Accuracy"}
+          value={`${(
+            (countProps({ prop: "isCorrect", withValue: true, data: answers }) /
+              answers.length) *
+            100
+          ).toFixed(1)}%`}
+        />
+        <InfoBox
+          header={"Time"}
+          value={`${(
+            sumProps({ prop: "timeSpent", data: answers }) / 1000
+          ).toFixed(3)}s`}
+        />
+      </Animation>
     </Container>
   );
 }

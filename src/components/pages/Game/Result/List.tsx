@@ -1,4 +1,5 @@
 import { useAppContext } from "contexts/AppContext";
+import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
 import { GameDataAnswer } from "../types";
 import Info from "./Info";
@@ -22,21 +23,23 @@ export default function List() {
     <Container>
       <Info answers={answers as GameDataAnswer[]} />
 
-      <Line
-        type={"header"}
-        data={headerData}
-      />
-      <ListBody>
-        {answers?.map((answerData, index) => {
-          return (
-            <Line
-              key={index}
-              type={"answer"}
-              data={answerData}
-            />
-          );
-        })}
-      </ListBody>
+      <Animation animateIn={{ name: "fadeInUp" }}>
+        <Line
+          type={"header"}
+          data={headerData}
+        />
+        <ListBody>
+          {answers?.map((answerData, index) => {
+            return (
+              <Line
+                key={index}
+                type={"answer"}
+                data={answerData}
+              />
+            );
+          })}
+        </ListBody>
+      </Animation>
     </Container>
   );
 }

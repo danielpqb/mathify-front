@@ -6,7 +6,6 @@ import Counter from "./components/common/Counter/Counter";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 
 import { useAppContext } from "./contexts/AppContext";
-import { useConsoleLogVariables, useKeyboardListener } from "global-hooks";
 import Alert from "components/common/Alert/Alert";
 import Game from "components/pages/Game/Game";
 import Config from "components/pages/Game/Config/Config";
@@ -14,6 +13,7 @@ import SignIn from "components/pages/SignIn";
 import SignUp from "components/pages/SignUp";
 import Home from "components/pages/Home/Home";
 import { useUserContext } from "contexts/UserContext";
+import { useKeyboardListener } from "hooks/useKeyboardListener";
 
 export default function App() {
   const { questionData, alert, counter } = useAppContext();
