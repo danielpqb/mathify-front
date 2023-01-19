@@ -3,6 +3,7 @@ export const defaultGameConfig = {
   allowedOperators: { "+": false, "-": false, "×": true, "÷": false },
   numberOfQuestions: 10,
   rangeOfNumbers: { from: 1, to: 9 },
+  tier: { name: "silver", division: 3 }
 };
 
 export const tierConfigs = {

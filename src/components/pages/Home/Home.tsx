@@ -1,12 +1,11 @@
-import VideoBackground from "components/common/Dummy/VideoBackground";
 import SettingsButton from "components/others/SettingsButton";
 import PlayButton from "components/others/PlayButton";
 import styled from "styled-components";
 import Header from "./Header";
-import { Animation } from "react-animate-with-css";
 import Lottie from "react-lottie";
 
 import signs from "../../../assets/signs.json";
+import { Animation } from "react-animate-with-css";
 
 export default function Home() {
   const defaultOptions = {
@@ -25,39 +24,42 @@ export default function Home() {
 
   return (
     <Container>
-      <Animation
-        animateIn={{
-          name: "fadeIn",
-          timing: "cubic-bezier(1.0, 0, 1.0, 1.0)",
-        }}
-      >
-        <Header />
-      </Animation>
-
-      <Logo>
-        <Animation animateIn={{ name:"fadeInDownBig" }}>
-          <Lottie
-            options={{ ...defaultOptions, animationData: signs }}
-            width={portrait ? winWidth : winHeight}
-            height={portrait ? winWidth : winHeight}
-            isStopped={false}
-            isPaused={false}
-          />
+      <Animation id="homePage">
+        <Animation
+          animateIn={{
+            name: "fadeIn",
+            duration: 1500,
+            timing: "cubic-bezier(1.0, 0, 1.0, 1.0)",
+          }}
+        >
+          <Header />
         </Animation>
-      </Logo>
 
-      <Buttons>
-        <div>
-          <Animation animateIn={{ name: "backInLeft" }}>
-            <PlayButton />
+        <Logo>
+          <Animation animateIn={{ name: "fadeInDownBig" }}>
+            <Lottie
+              options={{ ...defaultOptions, animationData: signs }}
+              width={portrait ? winWidth : winHeight}
+              height={portrait ? winWidth : winHeight}
+              isStopped={false}
+              isPaused={false}
+            />
           </Animation>
-        </div>
-        <div>
-          <Animation animateIn={{ name: "backInRight" }}>
-            <SettingsButton />
-          </Animation>
-        </div>
-      </Buttons>
+        </Logo>
+
+        <Buttons>
+          <div>
+            <Animation animateIn={{ name: "backInLeft" }}>
+              <PlayButton />
+            </Animation>
+          </div>
+          <div>
+            <Animation animateIn={{ name: "backInRight" }}>
+              <SettingsButton />
+            </Animation>
+          </div>
+        </Buttons>
+      </Animation>
     </Container>
   );
 }

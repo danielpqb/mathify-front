@@ -1,5 +1,4 @@
 import { defaultGameConfig } from "constants/game-constants";
-import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
 import ConfigParam from "./ConfigParam";
 

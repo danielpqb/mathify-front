@@ -33,5 +33,5 @@ export type ConfigData = {
   allowedOperators: { "+": boolean; "-": boolean; "×": boolean; "÷": boolean };
   numberOfQuestions: number | string;
   rangeOfNumbers: { from: number | string; to: number | string };
-  tier: string
+  tier: { name: string; division: number };
 };

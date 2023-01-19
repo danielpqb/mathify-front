@@ -21,7 +21,6 @@ export default function Header() {
               setShowLogout((old) => !old);
               return;
             }
-            console.log("iew");
             navigate("/sign-in");
           }}
         ></Photo>

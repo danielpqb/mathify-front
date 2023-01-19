@@ -10,14 +10,15 @@ export default function Config() {
       <Animation
         animateIn={{
           name: "fadeIn",
+          duration: 500,
           timing: "cubic-bezier(1.0, 0, 1.0, 1.0)",
         }}
       >
         <ConfigTable />
         <RankingPresetConfig />
-      </Animation>
 
-      <SaveButton />
+        <SaveButton />
+      </Animation>
     </Container>
   );
 }

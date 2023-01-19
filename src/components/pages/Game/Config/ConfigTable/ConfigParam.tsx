@@ -2,6 +2,7 @@ import InputBox from "components/others/InputBox/InputBox";
 import { useAppContext } from "contexts/AppContext";
 import { filterInput } from "functions/regex-functions";
 import React from "react";
+import { Animation } from "react-animate-with-css";
 import styled from "styled-components";
 import { ConfigData } from "../../types";
 import ClickButton from "./ClickButton";
@@ -95,9 +96,7 @@ export default function ConfigParam({
                 });
                 const newer = { ...old } as any;
                 newer[configParamData.name as keyof object] = {
-                  ...(newer[
-                    configParamData.name as keyof object
-                  ] as object),
+                  ...(newer[configParamData.name as keyof object] as object),
                   from: value,
                 };
                 return newer as ConfigData;
@@ -121,9 +120,7 @@ export default function ConfigParam({
                 });
                 const newer = { ...old } as any;
                 newer[configParamData.name as keyof object] = {
-                  ...(newer[
-                    configParamData.name as keyof object
-                  ] as object),
+                  ...(newer[configParamData.name as keyof object] as object),
                   to: value,
                 };
                 return newer as ConfigData;
@@ -145,11 +142,15 @@ export function ParamChoices({
     <Choices>
       {(configParamData.choices as []).map((choice, index) => {
         return (
-          <ClickButton
+          <Animation
             key={index}
-            choice={choice}
-            configParamData={configParamData}
-          />
+            id={choice}
+          >
+            <ClickButton
+              choice={choice}
+              configParamData={configParamData}
+            />
+          </Animation>
         );
       })}
     </Choices>

@@ -3,23 +3,28 @@ import { ConfigData } from "components/pages/Game/types";
 import { useAppContext } from "contexts/AppContext";
 import { renderNewGame } from "functions/app-functions";
 import { renderNewQuestion, saveConfigs } from "functions/game-functions";
+import { useAnimate } from "react-animate-with-css";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function PlayButton() {
   const navigate = useNavigate();
+  const { animate } = useAnimate();
 
-  const {
-    setGameData,
-    configData,
-    setAlert,
-    setCounter,
-    setQuestionData,
-  } = useAppContext();
+  const { setGameData, configData, setAlert, setCounter, setQuestionData } =
+    useAppContext();
 
   return (
     <Container
       onClick={() => {
+        animate({
+          id: "homePage",
+          name: "fadeOutDownBig",
+          delay: 500,
+          duration: 1500,
+          removeAfter: true,
+        });
+
         const isSaved = saveConfigs({ setGameData, configData, setAlert });
         if (isSaved) {
           renderNewGame({ setGameData });

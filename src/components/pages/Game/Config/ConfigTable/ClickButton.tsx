@@ -1,4 +1,5 @@
 import { useAppContext } from "contexts/AppContext";
+import { useAnimate } from "react-animate-with-css";
 import styled from "styled-components";
 import { ConfigParamData } from "./ConfigTable";
 
@@ -10,6 +11,7 @@ export default function ClickButton({
   configParamData: ConfigParamData;
 }) {
   const { configData, setConfigData } = useAppContext();
+  const { animate } = useAnimate();
 
   return (
     <Container
@@ -20,9 +22,13 @@ export default function ClickButton({
           : {}
       }
       onClick={() => {
+        animate({ id: choice, name: "flipInX", duration: 400 });
+
         setConfigData((old) => {
           const newer = {} as any;
-          newer[configParamData.name as keyof object] = { ...(old[configParamData.name as keyof object] as object) };
+          newer[configParamData.name as keyof object] = {
+            ...(old[configParamData.name as keyof object] as object),
+          };
           (newer[configParamData.name as keyof object] as any)[choice] =
             !old[configParamData.name as keyof object][choice];
           return { ...old, ...newer };
@@ -48,5 +54,8 @@ const Container = styled.div.attrs(({ style }) => style)`
     border-radius: 10px;
     border: 3px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
